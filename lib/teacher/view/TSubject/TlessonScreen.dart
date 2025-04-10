@@ -1,11 +1,10 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, must_be_immutable, prefer_typing_uninitialized_variables, file_names, invalid_use_of_protected_member
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_families.dart';
-import 'package:school_management_system/student/controllers/lessonsController.dart';
 import 'package:school_management_system/teacher/controllers/SubjectController/lessonsController.dart';
 import 'package:school_management_system/teacher/controllers/TasksControllers/bottomSheetController.dart';
 import 'package:school_management_system/teacher/view/tasks/TeacherTasksPage.dart';
@@ -16,9 +15,8 @@ import 'package:shimmer/shimmer.dart';
 var _controller = Get.put(TLessonsController());
 
 class TLessonScreen extends StatelessWidget {
-  TLessonScreen({Key? key, this.subjectId}) : super(key: key);
+  TLessonScreen({super.key, this.subjectId});
 
-  @override
   var subjectId;
 
   @override
@@ -48,10 +46,7 @@ class TLessonScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(
-                                left: 24.w,
-                                top: 24.h,
-                              ),
+                              padding: EdgeInsets.only(left: 24.w, top: 24.h),
                               child: SizedBox(
                                 width: 73.w,
                                 child: FittedBox(
@@ -68,16 +63,14 @@ class TLessonScreen extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(
-                                left: 30.w,
-                                right: 30.w,
-                              ),
+                              padding: EdgeInsets.only(left: 30.w, right: 30.w),
                               child: TextField(
                                 onChanged: (String value) {
                                   _controller.addlessoncontroller.value.text =
                                       value;
-                                  print(_controller
-                                      .addlessoncontroller.value.text);
+                                  print(
+                                    _controller.addlessoncontroller.value.text,
+                                  );
                                 },
                                 decoration: InputDecoration(
                                   label: Text('Enter the name of lesson'),
@@ -88,17 +81,17 @@ class TLessonScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 200.h,
+                      SizedBox(height: 200.h),
+                      Center(
+                        child: AddButton(
+                          onpress: () {
+                            var c = Get.put(BottomSheetController());
+                            _controller.addlesson();
+                            c.update();
+                            Get.back();
+                          },
+                        ),
                       ),
-                      Center(child: AddButton(
-                        onpress: () {
-                          var c = Get.put(BottomSheetController());
-                          _controller.addlesson();
-                          c.update();
-                          Get.back();
-                        },
-                      )),
                     ],
                   ),
                 ),
@@ -113,9 +106,7 @@ class TLessonScreen extends StatelessWidget {
               );
             },
           ),
-          SizedBox(
-            height: 24.h,
-          ),
+          SizedBox(height: 24.h),
           SizedBox(
             height: 635.h,
             width: 428.w,
@@ -132,7 +123,8 @@ class TLessonScreen extends StatelessWidget {
                         return const ErrorMessage();
                       } else if (_controller.lessonslist.isEmpty) {
                         return const Center(
-                            child: Text('There is no lessons.'));
+                          child: Text('There is no lessons.'),
+                        );
                       } else {
                         return ListView.builder(
                           itemCount: _controller.lessonslist.length,
@@ -143,21 +135,25 @@ class TLessonScreen extends StatelessWidget {
                                   width: 400.w,
                                   height: 100.h,
                                   child: GetBuilder(
-                                      init: TLessonsController(),
-                                      builder:
-                                          ((TLessonsController controller) {
-                                        return LessonCard(
-                                          title: _controller
-                                              .lessonslist.value[index].title,
-                                          checked: _controller
-                                              .lessonslist.value[index].checked,
-                                          index: index + 1,
-                                        );
-                                      })),
+                                    init: TLessonsController(),
+                                    builder: ((TLessonsController controller) {
+                                      return LessonCard(
+                                        title:
+                                            _controller
+                                                .lessonslist
+                                                .value[index]
+                                                .title,
+                                        checked:
+                                            _controller
+                                                .lessonslist
+                                                .value[index]
+                                                .checked,
+                                        index: index + 1,
+                                      );
+                                    }),
+                                  ),
                                 ),
-                                SizedBox(
-                                  height: 60.h,
-                                ),
+                                SizedBox(height: 60.h),
                               ],
                             );
                           },
@@ -176,11 +172,13 @@ class TLessonScreen extends StatelessWidget {
 }
 
 class ShimmerLessonsLoading extends StatelessWidget {
-  const ShimmerLessonsLoading({Key? key}) : super(key: key);
+  const ShimmerLessonsLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
+      baseColor: Colors.grey.shade300,
+      highlightColor: loadingPrimarycolor,
       child: ListView.builder(
         itemCount: 11,
         itemBuilder: (BuildContext context, int index) {
@@ -195,30 +193,20 @@ class ShimmerLessonsLoading extends StatelessWidget {
           );
         },
       ),
-      baseColor: Colors.grey.shade300,
-      highlightColor: loadingPrimarycolor,
     );
   }
 }
 
 class LessonCard extends StatelessWidget {
-  const LessonCard({
-    Key? key,
-    this.title,
-    this.index,
-    this.checked,
-  }) : super(key: key);
+  const LessonCard({super.key, this.title, this.index, this.checked});
 
-  @override
   final title;
   final index;
   final checked;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        bottom: 20.h,
-      ),
+      padding: EdgeInsets.only(bottom: 20.h),
       child: CheckboxListTile(
         checkColor: white,
         activeColor: primaryColor,

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables
+
 class TMarksStudentModel {
   final url;
   final name;
@@ -21,8 +23,13 @@ class StudentMarkInprofile {
   var exam1;
   var exam2;
 
-  StudentMarkInprofile(
-      {this.exam1, this.exam2, this.homework, this.subjectname, this.test});
+  StudentMarkInprofile({
+    this.exam1,
+    this.exam2,
+    this.homework,
+    this.subjectname,
+    this.test,
+  });
 }
 
 class DropmenueModel {
@@ -38,6 +45,12 @@ class AddingMarkModel {
   var grade;
   var uid;
   var type;
-  AddingMarkModel(
-      {this.mark, this.fmark, this.grade, this.subject, this.type, this.uid});
+  AddingMarkModel({
+    this.mark,
+    this.fmark,
+    this.grade,
+    this.subject,
+    this.type,
+    this.uid,
+  });
 }

@@ -1,7 +1,7 @@
+// ignore_for_file: avoid_print, file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
 import 'package:school_management_system/public/config/user_information.dart';
-import 'package:school_management_system/student/models/Announcements/AnnouncementsModel.dart';
 
 class AnnouncementsServeces {
   getUserClassroom() async {
@@ -12,12 +12,12 @@ class AnnouncementsServeces {
         .doc(userId)
         .get()
         .then((value) {
-      if (value.data() != null) {
-        userclassroomId = value.data()!["class"].id;
-      }
-      print('Serverss');
-      print(userclassroomId);
-    });
+          if (value.data() != null) {
+            userclassroomId = value.data()!["class"].id;
+          }
+          print('Serverss');
+          print(userclassroomId);
+        });
     print(userclassroomId.toString());
     return userclassroomId;
   }

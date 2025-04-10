@@ -1,7 +1,6 @@
-import 'package:get/get.dart';
-import 'package:school_management_system/student/resources/task/task_api.dart';
-import 'package:school_management_system/teacher/model/Tasks/checkedStudentTaskInfo.dart';
+// ignore_for_file: file_names, non_constant_identifier_names, avoid_print, invalid_use_of_protected_member
 
+import 'package:get/get.dart';
 import '../../resources/TaskServices/TaskServices.dart';
 
 class CheckedStudentTaskInfoController extends GetxController {
@@ -11,8 +10,9 @@ class CheckedStudentTaskInfoController extends GetxController {
   var task_id = ''.obs;
   getCheckedStudentsOfTask() async {
     print('controller is here ');
-    studentList.value =
-        await taskServices.getCheckedStudentsOfTask(task_id.value);
+    studentList.value = await taskServices.getCheckedStudentsOfTask(
+      task_id.value,
+    );
   }
 
   updateList() {

@@ -1,5 +1,6 @@
-import 'dart:typed_data';
+// ignore_for_file: file_names
 
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,16 +8,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_style.dart';
 import 'package:school_management_system/student/Widgets/CustomAppBar.dart';
-import 'package:school_management_system/student/Widgets/custom_progress_indecator.dart';
 import 'package:school_management_system/student/Widgets/global_info.dart';
 import 'package:school_management_system/teacher/controllers/TProfilesController/TProfileController.dart';
-import 'package:school_management_system/teacher/view/Home/homeFlashbar.dart';
 import 'package:school_management_system/teacher/view/tasks/AddFiles/components/SelectFile.dart';
 
 var _controller = Get.put(TProfileController());
 
 class TProfileScreen extends StatelessWidget {
-  const TProfileScreen({Key? key}) : super(key: key);
+  const TProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +25,14 @@ class TProfileScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              SizedBox(
-                height: 20.h,
-              ),
+              SizedBox(height: 20.h),
               GetBuilder<TProfileController>(
                 init: TProfileController(), // INIT IT ONLY THE FIRST TIME
-                builder: (TProfileController controller) => Stack(
-                  children: [
-                    //controller.teacherInfo.value.photoUrl == "GG"
-                    /*Container(
+                builder:
+                    (TProfileController controller) => Stack(
+                      children: [
+                        //controller.teacherInfo.value.photoUrl == "GG"
+                        /*Container(
                       height: 135,
                       width: 135,
                       decoration: BoxDecoration(
@@ -45,92 +43,94 @@ class TProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),*/
-                    GetBuilder<TProfileController>(
-                        init: TProfileController(),
-                        builder: (c) {
-                          return Container(
-                            height: 135,
-                            width: 135,
+                        GetBuilder<TProfileController>(
+                          init: TProfileController(),
+                          builder: (c) {
+                            return Container(
+                              height: 135,
+                              width: 135,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white),
+                                image: DecorationImage(
+                                  image:
+                                      (controller.teacherInfo.value.photoUrl ==
+                                              null)
+                                          ? AssetImage(
+                                                'assets/images/photo.png',
+                                              )
+                                              as ImageProvider
+                                          : NetworkImage(
+                                            controller
+                                                .teacherInfo
+                                                .value
+                                                .photoUrl,
+                                          ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        Positioned(
+                          bottom: -20,
+                          top: 65,
+                          left: 100,
+                          child: Container(
+                            height: 35,
+                            width: 35,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(color: Colors.white),
-                              image: DecorationImage(
-                                image: (controller.teacherInfo.value.photoUrl ==
-                                        null)
-                                    ? AssetImage('assets/images/photo.png')
-                                        as ImageProvider
-                                    : NetworkImage(
-                                        controller.teacherInfo.value.photoUrl),
-                                fit: BoxFit.cover,
+                              gradient: gradientColor,
+                            ),
+                            child: IconButton(
+                              onPressed: () async {
+                                Uint8List img = await pickImage(
+                                  ImageSource.gallery,
+                                );
+                                await controller.updateImage(img);
+                              },
+                              icon: const Icon(
+                                Icons.camera_alt,
+                                size: 17,
+                                color: Colors.white,
                               ),
                             ),
-                          );
-                        }),
-                    Positioned(
-                      bottom: -20,
-                      top: 65,
-                      left: 100,
-                      child: Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white),
-                          gradient: gradientColor,
-                        ),
-                        child: IconButton(
-                          onPressed: () async {
-                            Uint8List img =
-                                await pickImage(ImageSource.gallery);
-                            await controller.updateImage(img);
-                          },
-                          icon: const Icon(
-                            Icons.camera_alt,
-                            size: 17,
-                            color: Colors.white,
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
               ),
-              const SizedBox(
-                height: 10,
+              const SizedBox(height: 10),
+              Text(
+                '${_controller.teacherInfo.value.fname}',
+                style: redHatMediumStyle(fontSize: 20, color: Colors.black),
               ),
-              Text('${_controller.teacherInfo.value.fname}',
-                  style: redHatMediumStyle(fontSize: 20, color: Colors.black)),
-              const SizedBox(
-                height: 8,
+              const SizedBox(height: 8),
+              Text(
+                'Teacher',
+                style: redHatMediumStyle(fontSize: 20, color: primaryColor),
               ),
-              Text('Teacher',
-                  style: redHatMediumStyle(fontSize: 20, color: primaryColor)),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               GlobalInfo(
-                  fullname: "Full name",
-                  name:
-                      '${_controller.teacherInfo.value.fname} ${_controller.teacherInfo.value.lname}',
-                  icon: Icons.person),
-              const Divider(
-                indent: 65,
+                fullname: "Full name",
+                name:
+                    '${_controller.teacherInfo.value.fname} ${_controller.teacherInfo.value.lname}',
+                icon: Icons.person,
               ),
+              const Divider(indent: 65),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Row(
                   children: <Widget>[
-                    Icon(
-                      Icons.book_outlined,
-                      color: gray,
-                      size: 27,
-                    ),
+                    Icon(Icons.book_outlined, color: gray, size: 27),
                     const SizedBox(width: 20),
-                    Text('Subjects',
-                        style: redHatMediumStyle(fontSize: 11, color: gray)),
-                    const SizedBox(
-                      width: 5,
+                    Text(
+                      'Subjects',
+                      style: redHatMediumStyle(fontSize: 11, color: gray),
                     ),
+                    const SizedBox(width: 5),
                     SizedBox(
                       width: 200.w,
                       height: 70,
@@ -163,9 +163,7 @@ class TProfileScreen extends StatelessWidget {
                               ),
                               SizedBox(
                                 width: 30.w,
-                                child: Center(
-                                  child: Text(' | '),
-                                ),
+                                child: Center(child: Text(' | ')),
                               ),
                             ],
                           );
@@ -175,27 +173,20 @@ class TProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const Divider(
-                indent: 65,
-              ),
+              const Divider(indent: 65),
               GlobalInfo(
                 fullname: "Email",
                 name: _controller.teacherInfo.value.email,
                 icon: Icons.email,
               ),
-              const Divider(
-                indent: 65,
-              ),
+              const Divider(indent: 65),
               GlobalInfo(
-                  fullname: "About",
-                  name: '${_controller.teacherInfo.value.about}',
-                  icon: Icons.info_outline),
-              const Divider(
-                indent: 65,
+                fullname: "About",
+                name: '${_controller.teacherInfo.value.about}',
+                icon: Icons.info_outline,
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const Divider(indent: 65),
+              const SizedBox(height: 30),
             ],
           ),
         ),

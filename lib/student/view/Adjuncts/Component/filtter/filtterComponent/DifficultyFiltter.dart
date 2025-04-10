@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member, file_names, prefer_typing_uninitialized_variables, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,9 +11,7 @@ final _controller = Get.put(RefrencesController());
 var difficultyList = _controller.difficulty.value;
 
 class ChosingDifficultyBar extends StatelessWidget {
-  const ChosingDifficultyBar({
-    Key? key,
-  }) : super(key: key);
+  const ChosingDifficultyBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,8 @@ class ChosingDifficultyBar extends StatelessWidget {
         width: 428.w,
         child: GetBuilder(
           init: RefrencesController(),
-          builder: ((controller) => ListView.builder(
+          builder:
+              ((controller) => ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: difficultyList.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -39,17 +40,13 @@ class ChosingDifficultyBar extends StatelessWidget {
 }
 
 class DifficultyBar extends StatelessWidget {
-  const DifficultyBar({
-    Key? key,
-    this.difficulty,
-    this.index,
-  }) : super(key: key);
+  const DifficultyBar({super.key, this.difficulty, this.index});
 
-  @override
   final difficulty;
   final index;
+  @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 30.w,
       width: 100.w,
       child: Row(
@@ -67,18 +64,19 @@ class DifficultyBar extends StatelessWidget {
               activeColor: primaryColor,
             ),
           ),
-          SizedBox(
-            width: 7.w,
-          ),
+          SizedBox(width: 7.w),
           SizedBox(
             width: 50.w,
             height: 25.h,
             child: Text(
               '$difficulty',
               style: TextStyle(
-                  color: gray, fontSize: 12, fontFamily: RedHatDisplay.medium),
+                color: gray,
+                fontSize: 12,
+                fontFamily: RedHatDisplay.medium,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

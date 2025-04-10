@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import '../../../public/config/user_information.dart';
@@ -14,36 +16,41 @@ class taskServices {
         .doc('/students/${UserInformation.User_uId}')
         .get()
         .then((value) {
-      UserInformation.classroom = value.data()!['class'].id;
-    });
+          UserInformation.classroom = value.data()!['class'].id;
+        });
     print(UserInformation.classroom);
     var tasks = [];
 
-    var taskList = await FirebaseFirestore.instance
-        .collection('Task')
-        .where('classroom', isEqualTo: UserInformation.classroom)
-        .orderBy('uploadDate')
-        .get();
+    var taskList =
+        await FirebaseFirestore.instance
+            .collection('Task')
+            .where('classroom', isEqualTo: UserInformation.classroom)
+            .orderBy('uploadDate')
+            .get();
 
     for (var i = 0; i < taskList.docs.length; i++) {
       var docUpliadeTime = DateTime.parse(
-          taskList.docs[i].data()['uploadDate'].toDate().toString());
+        taskList.docs[i].data()['uploadDate'].toDate().toString(),
+      );
       var uploadedate = DateFormat("yyyy/MM/dd").format(docUpliadeTime);
 
       var docDeadlineTime = DateTime.parse(
-          taskList.docs[i].data()['deadline'].toDate().toString());
+        taskList.docs[i].data()['deadline'].toDate().toString(),
+      );
       var deadline = DateFormat("yyyy/MM/dd").format(docDeadlineTime);
 
       if (DateTime.now().isAfter(docDeadlineTime)) {
         continue;
       } else {
-        tasks.add(TaskModel(
-          name: taskList.docs[i].data()['name'],
-          subjectName: taskList.docs[i].data()['subjectName'],
-          deadline: deadline,
-          uploadDate: uploadedate,
-          id: taskList.docs[i].data()['id'].toString(),
-        ));
+        tasks.add(
+          TaskModel(
+            name: taskList.docs[i].data()['name'],
+            subjectName: taskList.docs[i].data()['subjectName'],
+            deadline: deadline,
+            uploadDate: uploadedate,
+            id: taskList.docs[i].data()['id'].toString(),
+          ),
+        );
       }
     }
     return tasks;
@@ -51,42 +58,39 @@ class taskServices {
 
   getTestsResult(String subjectId, String taskid) async {
     var testResult = TaskMarkModel();
-    var markDoc = await FirebaseFirestore.instance
-        .collection('tests')
-        .where('student_id', isEqualTo: UserInformation.User_uId)
-        .where('subject_id', isEqualTo: subjectId)
-        .where('taskid', isEqualTo: taskid)
-        .get();
-    markDoc.docs.forEach((element) {
+    var markDoc =
+        await FirebaseFirestore.instance
+            .collection('tests')
+            .where('student_id', isEqualTo: UserInformation.User_uId)
+            .where('subject_id', isEqualTo: subjectId)
+            .where('taskid', isEqualTo: taskid)
+            .get();
+    for (var element in markDoc.docs) {
       testResult.StudenUploadDate = element.data()['StudenUploadDate'];
       testResult.mark = element.data()['result'];
-    });
+    }
 
-    if (testResult != null)
-      print(testResult.mark);
-    else
-      print('is fucking null');
+    print(testResult.mark);
 
     return testResult;
   }
 
   uploadTaskResult(TaskResultModel item) async {
     try {
-      var id =
-          await FirebaseFirestore.instance.collection('Task-result').doc().id;
+      var id = FirebaseFirestore.instance.collection('Task-result').doc().id;
       FirebaseFirestore.instance
           .collection('Task-result')
           .doc(id.toString())
           .set({
-        'checked': false,
-        'classroom_id': item.classroom_id,
-        'mark': 0,
-        'student_id': item.student_id,
-        'task_id': item.task_id,
-        'task_result_id': id,
-        'uploadDate': Timestamp.fromDate(DateTime.now()),
-        'url': item.url,
-      }, SetOptions(merge: true));
+            'checked': false,
+            'classroom_id': item.classroom_id,
+            'mark': 0,
+            'student_id': item.student_id,
+            'task_id': item.task_id,
+            'task_result_id': id,
+            'uploadDate': Timestamp.fromDate(DateTime.now()),
+            'url': item.url,
+          }, SetOptions(merge: true));
     } catch (e) {
       print('@#@#@#@#@#');
     }

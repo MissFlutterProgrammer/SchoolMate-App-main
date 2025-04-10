@@ -1,13 +1,10 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables
 
+import 'package:flutter/material.dart';
 import '../../../public/utils/font_style.dart';
 
 class SubjectDetails extends StatelessWidget {
-  const SubjectDetails({
-    this.subjectName,
-    this.teacherName,
-    Key? key,
-  }) : super(key: key);
+  const SubjectDetails({this.subjectName, this.teacherName, super.key});
 
   final subjectName;
   final teacherName;
@@ -24,9 +21,7 @@ class SubjectDetails extends StatelessWidget {
             "$subjectName",
             style: sfBoldStyle(fontSize: 18, color: Colors.white),
           ),
-          SizedBox(
-            height: 3,
-          ),
+          SizedBox(height: 3),
           Text(
             "$teacherName",
             style: sfBoldStyle(fontSize: 10, color: Colors.white),

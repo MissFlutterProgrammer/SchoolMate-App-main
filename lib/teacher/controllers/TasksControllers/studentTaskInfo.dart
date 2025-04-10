@@ -1,22 +1,22 @@
+// ignore_for_file: file_names, non_constant_identifier_names, avoid_print, invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:school_management_system/teacher/controllers/TasksControllers/CheckedStudentTaskInfoController.dart';
 import 'package:school_management_system/teacher/model/Tasks/studentTaskInfo.dart';
 import 'package:school_management_system/teacher/resources/TaskServices/TaskServices.dart';
-import 'package:school_management_system/teacher/view/tasks/studentsOfTask.dart';
-
 import '../../../main.dart';
 import '../../model/Tasks/checkedStudentTaskInfo.dart';
 
 class StudentTaskInfoController extends GetxController {
   var taskServices = TaskServices();
-  var studentsTaskList = [
-    /*StudentTaskInfoModel(name: 'Kok', uploadeDate: '2022/8/6'),
+  var studentsTaskList =
+      [
+        /*StudentTaskInfoModel(name: 'Kok', uploadeDate: '2022/8/6'),
     StudentTaskInfoModel(name: 'Rissoto', uploadeDate: '2022/7/4'),
     StudentTaskInfoModel(name: 'Jojo', uploadeDate: '2022/12/4'),*/
-  ].obs;
+      ].obs;
 
   var task_id = ''.obs;
   var newMark = ''.obs;
@@ -24,8 +24,9 @@ class StudentTaskInfoController extends GetxController {
   var task_result_id = ''.obs;
   getUnCheckedStudentsOftask() async {
     print('task id is: ${task_id.value.toString()}');
-    studentsTaskList.value =
-        await taskServices.getUnCheckedStudentsOfTask(task_id.value.toString());
+    studentsTaskList.value = await taskServices.getUnCheckedStudentsOfTask(
+      task_id.value.toString(),
+    );
   }
 
   addMarkForTask() async {
@@ -59,14 +60,19 @@ class StudentTaskInfoController extends GetxController {
 
   showNotification(String filename, String path) {
     flutterLocalNotificationsPlugin.show(
-        0,
-        filename,
-        "The file has been downloaded\n$path",
-        NotificationDetails(
-            android: AndroidNotificationDetails(channel.id, channel.name,
-                importance: Importance.high,
-                color: Colors.blue,
-                playSound: true,
-                icon: '@mipmap/ic_launcher')));
+      0,
+      filename,
+      "The file has been downloaded\n$path",
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+          channel.id,
+          channel.name,
+          importance: Importance.high,
+          color: Colors.blue,
+          playSound: true,
+          icon: '@mipmap/ic_launcher',
+        ),
+      ),
+    );
   }
 }

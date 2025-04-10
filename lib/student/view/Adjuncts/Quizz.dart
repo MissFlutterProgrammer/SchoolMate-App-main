@@ -1,21 +1,21 @@
+// ignore_for_file: file_names, invalid_use_of_protected_member, prefer_typing_uninitialized_variables, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:school_management_system/student/view/Adjuncts/Component/QuizzPage.dart';
-
 import '../../../public/utils/constant.dart';
 import '../../../public/utils/font_families.dart';
 import '../../controllers/quizzController.dart';
 
 class Quizzes extends StatefulWidget {
-  Quizzes({Key? key}) : super(key: key);
+  const Quizzes({super.key});
 
   @override
   State<Quizzes> createState() => _QuizzesState();
 }
 
 class _QuizzesState extends State<Quizzes> {
-  var _controller = Get.put(QuizzController());
+  final _controller = Get.put(QuizzController());
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -41,13 +41,7 @@ class _QuizzesState extends State<Quizzes> {
 }
 
 class QuizCard extends StatelessWidget {
-  QuizCard({
-    Key? key,
-    this.def,
-    this.id,
-    this.name,
-    this.s_name,
-  }) : super(key: key);
+  const QuizCard({super.key, this.def, this.id, this.name, this.s_name});
   final id;
   final name;
   final s_name;
@@ -76,29 +70,20 @@ class QuizCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.quiz,
-                  size: 25,
-                  color: primaryColor,
-                ),
+                child: Icon(Icons.quiz, size: 25, color: primaryColor),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 16.w),
                 child: Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
-                        top: 30.h,
-                        left: 16.w,
-                      ),
+                      padding: EdgeInsets.only(top: 30.h, left: 16.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(
-                              bottom: 6.h,
-                            ),
-                            child: Container(
+                            padding: EdgeInsets.only(bottom: 6.h),
+                            child: SizedBox(
                               width: 225.w,
                               height: 30.h,
                               child: FittedBox(
@@ -116,9 +101,7 @@ class QuizCard extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
-                              bottom: 6.h,
-                            ),
+                            padding: EdgeInsets.only(bottom: 6.h),
                             child: Text(
                               'subject',
                               style: const TextStyle(
@@ -129,9 +112,7 @@ class QuizCard extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
-                              bottom: 6.h,
-                            ),
+                            padding: EdgeInsets.only(bottom: 6.h),
                             child: Text(
                               '$def',
                               style: const TextStyle(

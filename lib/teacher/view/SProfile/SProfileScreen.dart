@@ -1,7 +1,8 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings, invalid_use_of_protected_member, avoid_print, prefer_typing_uninitialized_variables, file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_families.dart';
 import 'package:school_management_system/public/utils/font_style.dart';
@@ -19,7 +20,7 @@ var data = Get.arguments;
 var dropController = Get.put(DropMenuController());
 
 class SProfileScreen extends StatelessWidget {
-  const SProfileScreen({Key? key}) : super(key: key);
+  const SProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +44,7 @@ class SProfileScreen extends StatelessWidget {
                     builder: ((controller) {
                       return Column(
                         children: <Widget>[
-                          SizedBox(
-                            height: 20.h,
-                          ),
+                          SizedBox(height: 20.h),
                           Stack(
                             children: [
                               Container(
@@ -56,9 +55,10 @@ class SProfileScreen extends StatelessWidget {
                                   border: Border.all(color: Colors.white),
                                   image: DecorationImage(
                                     fit: BoxFit.fill,
-                                    image: NetworkImage(_controller
-                                        .studentInfo.value.url
-                                        .toString()),
+                                    image: NetworkImage(
+                                      _controller.studentInfo.value.url
+                                          .toString(),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -88,51 +88,50 @@ class SProfileScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 10,
+                          const SizedBox(height: 10),
+                          Text(
+                            _controller.studentInfo.value.fname.toString(),
+                            style: redHatMediumStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                            ),
                           ),
-                          Text(_controller.studentInfo.value.fname.toString(),
-                              style: redHatMediumStyle(
-                                  fontSize: 20, color: Colors.black)),
-                          const SizedBox(
-                            height: 8,
+                          const SizedBox(height: 8),
+                          Text(
+                            'Student',
+                            style: redHatMediumStyle(
+                              fontSize: 20,
+                              color: primaryColor,
+                            ),
                           ),
-                          Text('Student',
-                              style: redHatMediumStyle(
-                                  fontSize: 20, color: primaryColor)),
-                          const SizedBox(
-                            height: 30,
-                          ),
+                          const SizedBox(height: 30),
                           GlobalInfo(
-                              fullname: "Full name",
-                              name:
-                                  '${_controller.studentInfo.value.fname} ${_controller.studentInfo.value.lname}',
-                              icon: Icons.person),
-                          const Divider(
-                            indent: 65,
+                            fullname: "Full name",
+                            name:
+                                '${_controller.studentInfo.value.fname} ${_controller.studentInfo.value.lname}',
+                            icon: Icons.person,
                           ),
+                          const Divider(indent: 65),
                           Row(
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Row(
                                   children: <Widget>[
-                                    Icon(
-                                      Icons.school,
-                                      color: gray,
-                                      size: 27,
-                                    ),
+                                    Icon(Icons.school, color: gray, size: 27),
                                     const SizedBox(width: 20),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Text('Grade',
-                                            style: redHatMediumStyle(
-                                                fontSize: 11, color: gray)),
-                                        const SizedBox(
-                                          height: 5,
+                                        Text(
+                                          'Grade',
+                                          style: redHatMediumStyle(
+                                            fontSize: 11,
+                                            color: gray,
+                                          ),
                                         ),
+                                        const SizedBox(height: 5),
                                         SizedBox(
                                           width: 100.w,
                                           child: Text(
@@ -151,34 +150,32 @@ class SProfileScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                width: 40.w,
-                              ),
+                              SizedBox(width: 40.w),
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Row(
                                   children: <Widget>[
-                                    Icon(
-                                      Icons.class_,
-                                      color: gray,
-                                      size: 27,
-                                    ),
+                                    Icon(Icons.class_, color: gray, size: 27),
                                     const SizedBox(width: 20),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Text('Class',
-                                            style: redHatMediumStyle(
-                                                fontSize: 11, color: gray)),
-                                        const SizedBox(
-                                          height: 5,
+                                        Text(
+                                          'Class',
+                                          style: redHatMediumStyle(
+                                            fontSize: 11,
+                                            color: gray,
+                                          ),
                                         ),
+                                        const SizedBox(height: 5),
                                         SizedBox(
                                           width: 100.w,
                                           child: Text(
                                             _controller
-                                                .studentInfo.value.classroom
+                                                .studentInfo
+                                                .value
+                                                .classroom
                                                 .toString(),
                                             maxLines: 10,
                                             overflow: TextOverflow.ellipsis,
@@ -195,30 +192,23 @@ class SProfileScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const Divider(
-                            indent: 65,
-                          ),
+                          const Divider(indent: 65),
                           GlobalInfo(
                             fullname: "PhoneNumber",
                             name:
                                 _controller.studentInfo.value.phone.toString(),
                             icon: Icons.call,
                           ),
-                          const Divider(
-                            indent: 65,
-                          ),
+                          const Divider(indent: 65),
                           GlobalInfo(
                             fullname: "Parent",
-                            name: _controller.studentInfo.value.paretnPhone
-                                .toString(),
+                            name:
+                                _controller.studentInfo.value.paretnPhone
+                                    .toString(),
                             icon: Icons.people,
                           ),
-                          const Divider(
-                            indent: 65,
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
+                          const Divider(indent: 65),
+                          const SizedBox(height: 30),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -231,9 +221,7 @@ class SProfileScreen extends StatelessWidget {
                                       precentage:
                                           _controller.studentInfo.value.avrg,
                                     ),
-                                    SizedBox(
-                                      height: 35.h,
-                                    ),
+                                    SizedBox(height: 35.h),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -245,9 +233,10 @@ class SProfileScreen extends StatelessWidget {
                                             child: Text(
                                               'HomeWork',
                                               style: TextStyle(
-                                                  color: darkGray,
-                                                  fontFamily:
-                                                      RedHatDisplay.medium),
+                                                color: darkGray,
+                                                fontFamily:
+                                                    RedHatDisplay.medium,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -257,9 +246,10 @@ class SProfileScreen extends StatelessWidget {
                                             child: Text(
                                               'Exam1',
                                               style: TextStyle(
-                                                  color: darkGray,
-                                                  fontFamily:
-                                                      RedHatDisplay.medium),
+                                                color: darkGray,
+                                                fontFamily:
+                                                    RedHatDisplay.medium,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -269,9 +259,10 @@ class SProfileScreen extends StatelessWidget {
                                             child: Text(
                                               'Test',
                                               style: TextStyle(
-                                                  color: darkGray,
-                                                  fontFamily:
-                                                      RedHatDisplay.medium),
+                                                color: darkGray,
+                                                fontFamily:
+                                                    RedHatDisplay.medium,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -281,69 +272,79 @@ class SProfileScreen extends StatelessWidget {
                                             child: Text(
                                               'Exam2',
                                               style: TextStyle(
-                                                  color: darkGray,
-                                                  fontFamily:
-                                                      RedHatDisplay.medium),
+                                                color: darkGray,
+                                                fontFamily:
+                                                    RedHatDisplay.medium,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ],
                                     ),
+                                    SizedBox(height: 23.h),
                                     SizedBox(
-                                      height: 23.h,
+                                      height: 200.h,
+                                      width: 540.w,
+                                      child: GetBuilder(
+                                        init: DropMenuController(),
+                                        builder: (controller) {
+                                          return FutureBuilder(
+                                            future:
+                                                _controller
+                                                    .getStudentsInfoForTeacher(),
+                                            builder: (
+                                              BuildContext context,
+                                              AsyncSnapshot snapshot,
+                                            ) {
+                                              return Padding(
+                                                padding: const EdgeInsets.all(
+                                                  8.0,
+                                                ),
+                                                child: ListView.builder(
+                                                  itemCount:
+                                                      _controller
+                                                          .studentMarks
+                                                          .length,
+                                                  itemBuilder: (
+                                                    BuildContext context,
+                                                    int index,
+                                                  ) {
+                                                    return SubjectMarksCard(
+                                                      subjectname:
+                                                          _controller
+                                                              .studentMarks
+                                                              .value[index]
+                                                              .subjectname,
+                                                      test:
+                                                          _controller
+                                                              .studentMarks
+                                                              .value[index]
+                                                              .test,
+                                                      homework:
+                                                          _controller
+                                                              .studentMarks
+                                                              .value[index]
+                                                              .homework,
+                                                      exam1:
+                                                          _controller
+                                                              .studentMarks
+                                                              .value[index]
+                                                              .exam1,
+                                                      exam2:
+                                                          _controller
+                                                              .studentMarks
+                                                              .value[index]
+                                                              .exam2,
+                                                    );
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
                                     ),
-                                    SizedBox(
-                                        height: 200.h,
-                                        width: 540.w,
-                                        child: GetBuilder(
-                                          init: DropMenuController(),
-                                          builder: (controller) {
-                                            return FutureBuilder(
-                                              future: _controller
-                                                  .getStudentsInfoForTeacher(),
-                                              builder: (BuildContext context,
-                                                  AsyncSnapshot snapshot) {
-                                                return Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: ListView.builder(
-                                                    itemCount: _controller
-                                                        .studentMarks.length,
-                                                    itemBuilder:
-                                                        (BuildContext context,
-                                                            int index) {
-                                                      return SubjectMarksCard(
-                                                        subjectname: _controller
-                                                            .studentMarks
-                                                            .value[index]
-                                                            .subjectname,
-                                                        test: _controller
-                                                            .studentMarks
-                                                            .value[index]
-                                                            .test,
-                                                        homework: _controller
-                                                            .studentMarks
-                                                            .value[index]
-                                                            .homework,
-                                                        exam1: _controller
-                                                            .studentMarks
-                                                            .value[index]
-                                                            .exam1,
-                                                        exam2: _controller
-                                                            .studentMarks
-                                                            .value[index]
-                                                            .exam2,
-                                                      );
-                                                    },
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                          },
-                                        )),
-                                    SizedBox(
-                                      height: 20.h,
-                                    )
+                                    SizedBox(height: 20.h),
                                   ],
                                 ),
                               ),
@@ -358,15 +359,15 @@ class SProfileScreen extends StatelessWidget {
                                 alignment: Alignment.centerRight,
                                 height: 50.0,
                                 margin: EdgeInsets.all(10),
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                   onPressed: () {
                                     Get.defaultDialog(
                                       textConfirm: 'Add',
                                       onConfirm: () {
                                         print('confirm');
-                                        dropController.grade.value = _controller
-                                            .studentInfo.value.grade
-                                            .toString();
+                                        dropController.grade.value =
+                                            _controller.studentInfo.value.grade
+                                                .toString();
                                         dropController.uid.value =
                                             _controller.studentInfo.value.uid;
                                         dropController.addMark();
@@ -383,78 +384,101 @@ class SProfileScreen extends StatelessWidget {
                                             decoration: InputDecoration(
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color: primaryColor,
-                                                    width: 2),
+                                                  color: primaryColor,
+                                                  width: 2,
+                                                ),
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                               ),
                                               border: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color: primaryColor,
-                                                    width: 2),
+                                                  color: primaryColor,
+                                                  width: 2,
+                                                ),
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                               ),
                                             ),
                                             dropdownColor: backgroundColor,
-                                            value: dropController
-                                                .selectedValue.value,
+                                            value:
+                                                dropController
+                                                    .selectedValue
+                                                    .value,
                                             onChanged: (newValue) {
                                               dropController.updateUI(newValue);
                                             },
                                             items: List.generate(
-                                                dropController.subjectNames
-                                                    .length, (index) {
-                                              print('this is drop item ' +
-                                                  dropController
-                                                      .subjectNames.value[index]
-                                                      .toString());
-                                              return DropdownMenuItem<String>(
-                                                  value: dropController
-                                                      .subjectNames.value[index]
-                                                      .toString(),
+                                              dropController
+                                                  .subjectNames
+                                                  .length,
+                                              (index) {
+                                                print(
+                                                  'this is drop item ' +
+                                                      dropController
+                                                          .subjectNames
+                                                          .value[index]
+                                                          .toString(),
+                                                );
+                                                return DropdownMenuItem<String>(
+                                                  value:
+                                                      dropController
+                                                          .subjectNames
+                                                          .value[index]
+                                                          .toString(),
                                                   child: Text(
-                                                      '${dropController.subjectNames.value[index]}'));
-                                            }),
+                                                    '${dropController.subjectNames.value[index]}',
+                                                  ),
+                                                );
+                                              },
+                                            ),
                                           ),
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
+                                          SizedBox(height: 10.h),
                                           DropdownButtonFormField<String>(
                                             decoration: InputDecoration(
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color: primaryColor,
-                                                    width: 2),
+                                                  color: primaryColor,
+                                                  width: 2,
+                                                ),
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                               ),
                                               border: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color: primaryColor,
-                                                    width: 2),
+                                                  color: primaryColor,
+                                                  width: 2,
+                                                ),
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                               ),
                                             ),
                                             dropdownColor: backgroundColor,
-                                            value: dropController
-                                                .selectedType.value,
+                                            value:
+                                                dropController
+                                                    .selectedType
+                                                    .value,
                                             onChanged: (newValue) {
-                                              dropController
-                                                  .updatetype(newValue);
+                                              dropController.updatetype(
+                                                newValue,
+                                              );
                                             },
                                             items: List.generate(
-                                                dropController.markType.length,
-                                                (index) {
-                                              return DropdownMenuItem<String>(
-                                                  value: dropController
-                                                      .markType.value[index]
-                                                      .toString(),
+                                              dropController.markType.length,
+                                              (index) {
+                                                return DropdownMenuItem<String>(
+                                                  value:
+                                                      dropController
+                                                          .markType
+                                                          .value[index]
+                                                          .toString(),
                                                   child: Text(
-                                                    '${dropController.markType.value[index]}',
-                                                  ));
-                                            }),
+                                                    dropController
+                                                        .markType
+                                                        .value[index],
+                                                  ),
+                                                );
+                                              },
+                                            ),
                                           ),
                                           SizedBox(height: 10),
                                           Row(
@@ -471,7 +495,8 @@ class SProfileScreen extends StatelessWidget {
                                                     label: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
-                                                              8.0),
+                                                            8.0,
+                                                          ),
                                                       child: Text('Enter mark'),
                                                     ),
                                                     labelStyle: TextStyle(
@@ -480,22 +505,22 @@ class SProfileScreen extends StatelessWidget {
                                                     ),
                                                     fillColor: backgroundColor,
                                                     filled: true,
-                                                    border: new OutlineInputBorder(
-                                                        borderRadius:
-                                                            new BorderRadius
-                                                                .circular(12.0),
-                                                        borderSide: new BorderSide(
-                                                            width: 0.0,
-                                                            color:
-                                                                backgroundColor)),
+                                                    border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                            12.0,
+                                                          ),
+                                                      borderSide: BorderSide(
+                                                        width: 0.0,
+                                                        color: backgroundColor,
+                                                      ),
+                                                    ),
                                                     contentPadding:
                                                         EdgeInsets.all(8.0),
                                                   ),
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: 15.w,
-                                              ),
+                                              SizedBox(width: 15.w),
                                               Expanded(
                                                 child: TextField(
                                                   onChanged: (String value) {
@@ -506,9 +531,11 @@ class SProfileScreen extends StatelessWidget {
                                                     label: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
-                                                              8.0),
+                                                            8.0,
+                                                          ),
                                                       child: Text(
-                                                          'Enter full mark'),
+                                                        'Enter full mark',
+                                                      ),
                                                     ),
                                                     labelStyle: TextStyle(
                                                       color: primaryColor,
@@ -516,37 +543,45 @@ class SProfileScreen extends StatelessWidget {
                                                     ),
                                                     fillColor: backgroundColor,
                                                     filled: true,
-                                                    border: new OutlineInputBorder(
-                                                        borderRadius:
-                                                            new BorderRadius
-                                                                .circular(12.0),
-                                                        borderSide: new BorderSide(
-                                                            width: 0.0,
-                                                            color:
-                                                                backgroundColor)),
+                                                    border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                            12.0,
+                                                          ),
+                                                      borderSide: BorderSide(
+                                                        width: 0.0,
+                                                        color: backgroundColor,
+                                                      ),
+                                                    ),
                                                     contentPadding:
                                                         EdgeInsets.all(8.0),
                                                   ),
                                                 ),
                                               ),
                                             ],
-                                          )
+                                          ),
                                         ],
                                       ),
                                     );
                                   },
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(80.0)),
-                                  padding: EdgeInsets.all(0.0),
+                                  style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.all(0.0),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(80.0),
+                                    ),
+                                    backgroundColor: Colors.transparent,
+                                    shadowColor: Colors.transparent,
+                                  ),
                                   child: Ink(
                                     decoration: BoxDecoration(
-                                        gradient: gradientColor,
-                                        borderRadius:
-                                            BorderRadius.circular(30.0)),
+                                      gradient: gradientColor,
+                                      borderRadius: BorderRadius.circular(30.0),
+                                    ),
                                     child: Container(
                                       constraints: BoxConstraints(
-                                          maxWidth: 250.0, minHeight: 50.0),
+                                        maxWidth: 250.0,
+                                        minHeight: 50.0,
+                                      ),
                                       alignment: Alignment.center,
                                       child: Align(
                                         alignment: Alignment.center,
@@ -558,8 +593,9 @@ class SProfileScreen extends StatelessWidget {
                                               "Add Mark",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 15),
+                                                color: Colors.white,
+                                                fontSize: 15,
+                                              ),
                                             ),
                                             Icon(Icons.add, color: white),
                                           ],
@@ -571,9 +607,7 @@ class SProfileScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: 25.h,
-                          ),
+                          SizedBox(height: 25.h),
                         ],
                       );
                     }),
@@ -589,7 +623,7 @@ class SProfileScreen extends StatelessWidget {
 }
 
 class SProfileShimmerLoading extends StatelessWidget {
-  const SProfileShimmerLoading({Key? key}) : super(key: key);
+  const SProfileShimmerLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -604,9 +638,7 @@ class SProfileShimmerLoading extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 20.h,
-                  ),
+                  SizedBox(height: 20.h),
                   Skilton(
                     height: 135.h,
                     width: 135.w,
@@ -615,25 +647,19 @@ class SProfileShimmerLoading extends StatelessWidget {
                       border: Border.all(color: Colors.white),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   Skilton(
                     height: 50.h,
                     width: 100.w,
                     decoration: BoxDecoration(color: white),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 8),
                   Skilton(
                     height: 50.h,
                     width: 100.w,
                     decoration: BoxDecoration(color: white),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),
@@ -695,13 +721,13 @@ class SProfileShimmerLoading extends StatelessWidget {
 
 class SubjectMarksCard extends StatelessWidget {
   const SubjectMarksCard({
-    Key? key,
+    super.key,
     this.exam1,
     this.exam2,
     this.homework,
     this.subjectname,
     this.test,
-  }) : super(key: key);
+  });
   final subjectname;
   final test;
   final homework;
@@ -733,7 +759,9 @@ class SubjectMarksCard extends StatelessWidget {
               child: Text(
                 '$homework',
                 style: TextStyle(
-                    color: darkGray, fontFamily: RedHatDisplay.medium),
+                  color: darkGray,
+                  fontFamily: RedHatDisplay.medium,
+                ),
               ),
             ),
           ),
@@ -743,7 +771,9 @@ class SubjectMarksCard extends StatelessWidget {
               child: Text(
                 '$exam1',
                 style: TextStyle(
-                    color: darkGray, fontFamily: RedHatDisplay.medium),
+                  color: darkGray,
+                  fontFamily: RedHatDisplay.medium,
+                ),
               ),
             ),
           ),
@@ -753,7 +783,9 @@ class SubjectMarksCard extends StatelessWidget {
               child: Text(
                 '$test',
                 style: TextStyle(
-                    color: darkGray, fontFamily: RedHatDisplay.medium),
+                  color: darkGray,
+                  fontFamily: RedHatDisplay.medium,
+                ),
               ),
             ),
           ),
@@ -763,7 +795,9 @@ class SubjectMarksCard extends StatelessWidget {
               child: Text(
                 '$exam2',
                 style: TextStyle(
-                    color: darkGray, fontFamily: RedHatDisplay.medium),
+                  color: darkGray,
+                  fontFamily: RedHatDisplay.medium,
+                ),
               ),
             ),
           ),

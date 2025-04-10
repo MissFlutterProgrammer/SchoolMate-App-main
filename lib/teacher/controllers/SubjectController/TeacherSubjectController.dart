@@ -1,6 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:get/get.dart';
-import 'package:school_management_system/teacher/controllers/home_controller.dart';
-import 'package:school_management_system/teacher/model/subject/TeacherSubjectModel.dart';
 import 'package:school_management_system/teacher/resources/TsubjectsServices/TsubjectsServices.dart';
 
 class TeacherSubjectController extends GetxController {
@@ -8,8 +8,9 @@ class TeacherSubjectController extends GetxController {
   var classId = ''.obs;
   var subjectServices = TSubjetcsServices();
 
-  var teacherSubjectsList = [
-    /* TeacherSubjectModel(
+  var teacherSubjectsList =
+      [
+        /* TeacherSubjectModel(
       subjectName: 'Math',
       subjectId: '',
     ),
@@ -21,10 +22,12 @@ class TeacherSubjectController extends GetxController {
       subjectName: 'Music',
       subjectId: '',
     ),*/
-  ].obs;
+      ].obs;
 
   getTeacherSubject() async {
     teacherSubjectsList.value = await subjectServices.getTeacherSubjectForClass(
-        grade.value.toString(), classId.toString());
+      grade.value.toString(),
+      classId.toString(),
+    );
   }
 }

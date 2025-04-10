@@ -1,13 +1,10 @@
-import 'dart:io';
+// ignore_for_file: file_names, avoid_print, prefer_typing_uninitialized_variables, prefer_interpolation_to_compose_strings
 
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:school_management_system/public/config/user_information.dart';
-import 'package:school_management_system/student/models/task/task_model.dart';
-import 'package:school_management_system/student/view/Adjuncts/refrences.dart';
 import 'package:school_management_system/teacher/model/Tasks/tasksModel.dart';
-import 'package:school_management_system/teacher/view/tasks/AddFiles/components/Tgrade.dart';
-
 import '../../model/Tasks/checkedStudentTaskInfo.dart';
 import '../../model/Tasks/studentTaskInfo.dart';
 
@@ -21,24 +18,24 @@ class TaskServices {
           .where('teacher_id', isEqualTo: UserInformation.User_uId)
           .get()
           .then((value) {
-        value.docs.forEach((element) {
-          TeacherTasksModel item = TeacherTasksModel();
-          item.taskClassroomId = element.data()['classroom'];
-          item.taskId = element.data()['id'];
-          item.deadLine = element.data()['deadline'];
-          item.taskName = element.data()['name'];
-          item.taskSubjectName = element.data()['subjectName'];
-          item.uploadDate = element.data()['uploadDate'];
-          item.url = element.data()['url'];
-          item.subjectId = element.data()['subject_id'];
-          try {
-            tasksList.add(item);
-          } catch (e) {
-            print("#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#");
-            print(e);
-          }
-        });
-      });
+            for (var element in value.docs) {
+              TeacherTasksModel item = TeacherTasksModel();
+              item.taskClassroomId = element.data()['classroom'];
+              item.taskId = element.data()['id'];
+              item.deadLine = element.data()['deadline'];
+              item.taskName = element.data()['name'];
+              item.taskSubjectName = element.data()['subjectName'];
+              item.uploadDate = element.data()['uploadDate'];
+              item.url = element.data()['url'];
+              item.subjectId = element.data()['subject_id'];
+              try {
+                tasksList.add(item);
+              } catch (e) {
+                print("#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#");
+                print(e);
+              }
+            }
+          });
       return tasksList;
     } catch (e) {
       return tasksList;
@@ -54,15 +51,15 @@ class TaskServices {
           .where('teacher', isEqualTo: UserInformation.User_uId)
           .get()
           .then((value) {
-        for (var item in value.docs) {
-          s.add(item.data()['grade']);
-        }
-      });
-      var _gardeslist = [];
-      s.forEach((element) {
-        _gardeslist.add(element);
-      });
-      return _gardeslist;
+            for (var item in value.docs) {
+              s.add(item.data()['grade']);
+            }
+          });
+      var gardeslist = [];
+      for (var element in s) {
+        gardeslist.add(element);
+      }
+      return gardeslist;
     } catch (e) {
       print('@#@#@#@#@#@#@#@#@#@#@#@#@#@#');
     }
@@ -81,64 +78,64 @@ class TaskServices {
   }
 
   getTeacherSubject(List grades) async {
-    var _subject = [];
+    var subject = [];
     await FirebaseFirestore.instance
         .collection('relation')
         .where('grade', whereIn: grades)
         .where('teacher', isEqualTo: UserInformation.User_uId)
         .get()
         .then((value) {
-      value.docs.forEach((element) {
-        _subject.add(element.data()['subject_name']);
-      });
-    });
-    return _subject;
+          for (var element in value.docs) {
+            subject.add(element.data()['subject_name']);
+          }
+        });
+    return subject;
   }
 
   addTask(UploadTaskModel task) async {
     print('Adding start');
-    String tname = UserInformation.first_name + ' ' + UserInformation.last_name;
+    String tname = '${UserInformation.first_name} ${UserInformation.last_name}';
     var url = await uploadFile(task.file, tname, task.name, task.grade);
-    var docid = await FirebaseFirestore.instance.collection('Task').doc().id;
+    var docid = FirebaseFirestore.instance.collection('Task').doc().id;
     var classid = '';
     await FirebaseFirestore.instance
         .collection('class-room')
-        .where(
-          'acadimic_year',
-          isEqualTo: task.grade.toString(),
-        )
+        .where('acadimic_year', isEqualTo: task.grade.toString())
         .where('section', isEqualTo: task.classId.toString())
         .get()
         .then((value) {
-      classid = value.docs[0].data()['uid'];
-    });
+          classid = value.docs[0].data()['uid'];
+        });
     await FirebaseFirestore.instance
         .collection('Task')
         .doc(docid.toString())
         .set({
-      'classroom': classid.toString(),
-      'deadline': task.deadLine,
-      'id': docid,
-      'name': task.name,
-      'subjectName': task.subjectName,
-      'teacher_id': UserInformation.User_uId,
-      'uploadDate': Timestamp.fromDate(DateTime.now()),
-      'url': url.toString(),
-    });
+          'classroom': classid.toString(),
+          'deadline': task.deadLine,
+          'id': docid,
+          'name': task.name,
+          'subjectName': task.subjectName,
+          'teacher_id': UserInformation.User_uId,
+          'uploadDate': Timestamp.fromDate(DateTime.now()),
+          'url': url.toString(),
+        });
 
     print('Its Done!!!');
   }
 
   static Future uploadFile(
-      File file, String tname, String taskname, String grade) async {
+    File file,
+    String tname,
+    String taskname,
+    String grade,
+  ) async {
     print('upload start');
     print(tname);
-    if (file == null) return;
     //gs://school-management-system-6b1c2.appspot.com/tasks/2/Ahmad Teacher
 
     final destination = '/tasks/$grade/$tname/$taskname';
     print(destination);
-    var task = await FirebaseStorage.instance.ref(destination);
+    var task = FirebaseStorage.instance.ref(destination);
     print('taskref  start');
     await task.putFile(file);
     print('file uploaded');
@@ -159,38 +156,41 @@ class TaskServices {
           .where('checked', isEqualTo: false)
           .get()
           .then((value) async {
-        for (var item in value.docs) {
-          var name, photoUrl;
-          await FirebaseFirestore.instance
-              .collection('students')
-              .doc(item.data()['student_id'].toString())
-              .get()
-              .then((value) {
-            name =
-                value.data()!['first_name'] + ' ' + value.data()!['last_name'];
-            photoUrl = value.data()!['urlAvatar'];
-          });
-          var dateStamp =
-              DateTime.parse(item.data()['uploadDate'].toDate().toString());
+            for (var item in value.docs) {
+              var name, photoUrl;
+              await FirebaseFirestore.instance
+                  .collection('students')
+                  .doc(item.data()['student_id'].toString())
+                  .get()
+                  .then((value) {
+                    name =
+                        value.data()!['first_name'] +
+                        ' ' +
+                        value.data()!['last_name'];
+                    photoUrl = value.data()!['urlAvatar'];
+                  });
+              var dateStamp = DateTime.parse(
+                item.data()['uploadDate'].toDate().toString(),
+              );
 
-          try {
-            StudentTaskInfoModel result = StudentTaskInfoModel(
-              id: item.data()['task_result_id'],
-              name: name,
-              photoUrl: photoUrl,
-              uploadeDate: dateStamp,
-              taskUrl: item.data()['url'],
-              task_id: item.data()['task_id'],
-              student_id: item.data()['student_id'],
-              class_id: item.data()['class_id'],
-            );
-            taskresult.add(result);
-          } catch (e) {
-            print("@#@#@#@#@#@#@#@#@#@#@#@#");
-            print(e);
-          }
-        }
-      });
+              try {
+                StudentTaskInfoModel result = StudentTaskInfoModel(
+                  id: item.data()['task_result_id'],
+                  name: name,
+                  photoUrl: photoUrl,
+                  uploadeDate: dateStamp,
+                  taskUrl: item.data()['url'],
+                  task_id: item.data()['task_id'],
+                  student_id: item.data()['student_id'],
+                  class_id: item.data()['class_id'],
+                );
+                taskresult.add(result);
+              } catch (e) {
+                print("@#@#@#@#@#@#@#@#@#@#@#@#");
+                print(e);
+              }
+            }
+          });
       return taskresult;
     } catch (e) {
       return taskresult;
@@ -206,35 +206,39 @@ class TaskServices {
           .where('checked', isEqualTo: true)
           .get()
           .then((value) async {
-        for (var item in value.docs) {
-          var name, photoUrl;
-          await FirebaseFirestore.instance
-              .collection('students')
-              .doc(item.data()['student_id'].toString())
-              .get()
-              .then((value) {
-            name =
-                value.data()!['first_name'] + ' ' + value.data()!['last_name'];
-            photoUrl = value.data()!['urlAvatar'];
-          });
-          var dateStamp =
-              DateTime.parse(item.data()['uploadDate'].toDate().toString());
+            for (var item in value.docs) {
+              var name, photoUrl;
+              await FirebaseFirestore.instance
+                  .collection('students')
+                  .doc(item.data()['student_id'].toString())
+                  .get()
+                  .then((value) {
+                    name =
+                        value.data()!['first_name'] +
+                        ' ' +
+                        value.data()!['last_name'];
+                    photoUrl = value.data()!['urlAvatar'];
+                  });
+              var dateStamp = DateTime.parse(
+                item.data()['uploadDate'].toDate().toString(),
+              );
 
-          try {
-            CheckedStudentTaskInfo result = CheckedStudentTaskInfo(
-                id: item.data()['task_result_id'],
-                name: name,
-                photoUrl: photoUrl,
-                uploadeDate: dateStamp,
-                mark: item.data()['mark'],
-                taskUrl: item.data()['url']);
-            taskresult.add(result);
-          } catch (e) {
-            print("@#@#@#@#@#@#@#@#@#@#@#@#");
-            print(e);
-          }
-        }
-      });
+              try {
+                CheckedStudentTaskInfo result = CheckedStudentTaskInfo(
+                  id: item.data()['task_result_id'],
+                  name: name,
+                  photoUrl: photoUrl,
+                  uploadeDate: dateStamp,
+                  mark: item.data()['mark'],
+                  taskUrl: item.data()['url'],
+                );
+                taskresult.add(result);
+              } catch (e) {
+                print("@#@#@#@#@#@#@#@#@#@#@#@#");
+                print(e);
+              }
+            }
+          });
       print('The List is here');
       print(taskresult);
       return taskresult;

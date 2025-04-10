@@ -1,58 +1,57 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, avoid_types_as_parameter_names, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:school_management_system/public/utils/constant.dart';
 
 import '../../../../public/utils/font_families.dart';
 
 class AnnouncementsCard extends StatelessWidget {
-  const AnnouncementsCard({
-    Key? key,
-    this.title,
-    this.date,
-    this.content,
-  }) : super(key: key);
+  const AnnouncementsCard({super.key, this.title, this.date, this.content});
 
-  @override
   final title;
   final content;
   final date;
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (() {
         showDialog(
           context: context,
-          builder: (BuildContext) => AlertDialog(
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  'Ok',
+          builder:
+              (BuildContext) => AlertDialog(
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Ok',
+                      style: TextStyle(
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+                scrollable: true,
+                title: Text(
+                  '$title',
                   style: TextStyle(
-                      color: primaryColor, fontWeight: FontWeight.bold),
+                    color: darkGray,
+                    fontFamily: RedHatDisplay.bold,
+                    fontSize: 24,
+                  ),
                 ),
-              )
-            ],
-            scrollable: true,
-            title: Text(
-              '$title',
-              style: TextStyle(
-                color: darkGray,
-                fontFamily: RedHatDisplay.bold,
-                fontSize: 24,
+                content: Text(
+                  '$content',
+                  style: TextStyle(
+                    color: gray,
+                    fontFamily: RedHatDisplay.medium,
+                    fontSize: 16,
+                  ),
+                ),
               ),
-            ),
-            content: Text(
-              '$content',
-              style: TextStyle(
-                color: gray,
-                fontFamily: RedHatDisplay.medium,
-                fontSize: 16,
-              ),
-            ),
-          ),
         );
       }),
       child: Padding(
@@ -85,9 +84,7 @@ class AnnouncementsCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 16.w,
-                    ),
+                    SizedBox(width: 16.w),
                     SizedBox(
                       height: 80.h,
                       width: 200.w,
@@ -136,10 +133,7 @@ class AnnouncementsCard extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
-                      padding: EdgeInsets.only(
-                        right: 8.w,
-                        bottom: 17.h,
-                      ),
+                      padding: EdgeInsets.only(right: 8.w, bottom: 17.h),
                       child: Text(
                         '$date',
                         maxLines: 1,

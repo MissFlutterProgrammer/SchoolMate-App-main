@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-
-
 import '../controllers/RefrencesController.dart';
 
 class RefrencesBinding implements Bindings {

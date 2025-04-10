@@ -1,18 +1,17 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class TQuizz extends StatefulWidget {
-  TQuizz({Key? key}) : super(key: key);
+  const TQuizz({super.key});
 
   @override
   State<TQuizz> createState() => _TQuizzState();
 }
 
 class _TQuizzState extends State<TQuizz> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Quizzes'),
-      ),
-    );
+    return Center(child: Text('Quizzes'));
   }
 }

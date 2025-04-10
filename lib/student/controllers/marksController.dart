@@ -1,15 +1,18 @@
+// ignore_for_file: avoid_print, file_names
+
 import 'package:get/state_manager.dart';
 import 'package:school_management_system/student/models/Subjects/SubjectsModel.dart';
 import 'package:school_management_system/student/resources/subject/marksServices.dart';
 
 class MarksController extends GetxController {
   var marksServices = MarkServices();
-  var marksList = [
-    /*MarksModel(title: 'Exam1', mark: 15, fmark: 30),
+  var marksList =
+      [
+        /*MarksModel(title: 'Exam1', mark: 15, fmark: 30),
     MarksModel(title: 'Quizz1', mark: 14, fmark: 20),
     MarksModel(title: 'HomeWorks', mark: 20, fmark: 20),
     MarksModel(title: 'Exam2', mark: 25, fmark: 30),*/
-  ].obs;
+      ].obs;
 
   var exam1 = MarksModel().obs;
   var tests = MarksModel().obs;
@@ -34,7 +37,6 @@ class MarksController extends GetxController {
 
   @override
   void onReady() {
-    // TODO: implement onReady
     print(subjectId.value);
     super.onReady();
   }

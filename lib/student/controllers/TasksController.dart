@@ -1,10 +1,10 @@
+// ignore_for_file: depend_on_referenced_packages, file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables, avoid_print
+
 import 'package:get/state_manager.dart';
 import 'package:school_management_system/public/config/user_information.dart';
 import 'package:school_management_system/student/models/task/taskMark_model.dart';
-import 'package:school_management_system/student/models/task/task_model.dart';
 import 'package:path/path.dart';
 import 'package:school_management_system/teacher/view/tasks/AddFiles/components/SelectFile.dart';
-
 import '../models/task/task_result_model.dart';
 import '../resources/task/task_api.dart';
 
@@ -52,12 +52,14 @@ class TasksController extends GetxController {
     print(UserInformation.User_uId);
     print(url);
     print(task_id.value);
-    await taskServ.uploadTaskResult(TaskResultModel(
-      classroom_id: UserInformation.classid,
-      student_id: UserInformation.User_uId,
-      url: url,
-      task_id: task_id.value,
-    ));
+    await taskServ.uploadTaskResult(
+      TaskResultModel(
+        classroom_id: UserInformation.classid,
+        student_id: UserInformation.User_uId,
+        url: url,
+        task_id: task_id.value,
+      ),
+    );
   }
 }
 

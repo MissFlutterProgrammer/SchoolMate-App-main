@@ -1,11 +1,13 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:get/get.dart';
-import 'package:school_management_system/student/models/Adjuncts/refrencesVideos.dart';
 import 'package:school_management_system/teacher/resources/TAdjunctsServices/TAdjunctsServices.dart';
 
 class TVideosController extends GetxController {
   var refServices = TAdjunctsServices();
-  var VideosList = [
-    /*RefrencesVideos(
+  var VideosList =
+      [
+        /*RefrencesVideos(
       url: '',
       subject: 'Math',
       videoName: 'any',
@@ -20,7 +22,7 @@ class TVideosController extends GetxController {
       subject: 'Math',
       videoName: 'any',
     ),*/
-  ].obs;
+      ].obs;
 
   getVideos() async {
     VideosList.value = await refServices.getVideos();

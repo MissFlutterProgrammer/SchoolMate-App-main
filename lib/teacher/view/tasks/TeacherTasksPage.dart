@@ -1,19 +1,16 @@
-import 'dart:io';
+// ignore_for_file: file_names, avoid_print, invalid_use_of_protected_member, avoid_types_as_parameter_names, non_constant_identifier_names, prefer_typing_uninitialized_variables
 
+import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart';
 import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_families.dart';
-import 'package:school_management_system/student/models/TasksInfo.dart';
-import 'package:school_management_system/teacher/controllers/RefrencesControllers/TPdfRefrencesController.dart';
 import 'package:school_management_system/teacher/controllers/TasksControllers/TeacherTaskController.dart';
 import 'package:school_management_system/teacher/controllers/TasksControllers/bottomSheetController.dart';
-import 'package:school_management_system/teacher/controllers/home_controller.dart';
 import 'package:school_management_system/teacher/view/tasks/AddFiles/components/SelectFile.dart';
 import 'package:school_management_system/teacher/view/tasks/AddFiles/components/TclassRoomSection.dart';
 import 'package:school_management_system/teacher/view/tasks/AddFiles/components/Tgrade.dart';
@@ -26,12 +23,12 @@ var bottomController = Get.put(BottomSheetController());
 var taskcontroller = Get.put(TeacherTasksController());
 
 class TeacherTasksPage extends StatelessWidget {
-  TeacherTasksPage({Key? key}) : super(key: key);
+  const TeacherTasksPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     print("Task is here");
-    var bottomController = Get.put(BottomSheetController());
+    Get.put(BottomSheetController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
@@ -43,81 +40,80 @@ class TeacherTasksPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: 24.h,
-              ),
+              SizedBox(height: 24.h),
               BottomSheetButton(),
-              Container(
+              SizedBox(
                 height: 718.h,
                 width: double.infinity,
                 child: Padding(
-                  padding: EdgeInsets.only(
-                    top: 24.h,
-                    left: 15.w,
-                    right: 15.w,
-                  ),
+                  padding: EdgeInsets.only(top: 24.h, left: 15.w, right: 15.w),
                   child: Padding(
                     padding: EdgeInsets.only(top: 20.h),
                     child: GetBuilder(
-                        init: TeacherTasksController(),
-                        builder: (controller) {
-                          return FutureBuilder(
-                            future: taskcontroller.getTasks(),
-                            builder:
-                                (BuildContext context, AsyncSnapshot snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Center(child: SimmerTaskLoading());
+                      init: TeacherTasksController(),
+                      builder: (controller) {
+                        return FutureBuilder(
+                          future: taskcontroller.getTasks(),
+                          builder: (
+                            BuildContext context,
+                            AsyncSnapshot snapshot,
+                          ) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(child: SimmerTaskLoading());
+                            } else {
+                              if (snapshot.hasError) {
+                                return Center(child: ErrorMessage());
                               } else {
-                                if (snapshot.hasError) {
-                                  return Center(child: ErrorMessage());
-                                } else {
-                                  return GridView.builder(
-                                      dragStartBehavior: DragStartBehavior.down,
-                                      itemCount:
-                                          taskcontroller.tasksList.value.length,
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 2,
-                                              crossAxisSpacing: 24.w,
-                                              mainAxisSpacing: 24.w),
-                                      itemBuilder: (BuildContext, index) {
-                                        var item = taskcontroller
-                                            .tasksList.value[index];
-                                        DateTime date = DateTime.parse(item
-                                            .uploadDate
-                                            .toDate()
-                                            .toString());
-                                        var uploadeDate =
-                                            DateFormat("yyyy/MM/dd")
-                                                .format(date);
-                                        date = DateTime.parse(
-                                            item.deadLine.toDate().toString());
-                                        var deadline = DateFormat("yyyy/MM/dd")
-                                            .format(date);
-                                        return Container(
-                                          height: 178.h,
-                                          width: 178.w,
-                                          decoration: BoxDecoration(
-                                            gradient: gradientColor,
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: TeacherTasksCard(
-                                            subjectName: item.taskSubjectName,
-                                            taskName: item.taskName,
-                                            uploadDate: uploadeDate,
-                                            deadline: deadline,
-                                            bcontext: context,
-                                            id: item.taskId,
-                                          ),
-                                        );
-                                      });
-                                }
+                                return GridView.builder(
+                                  dragStartBehavior: DragStartBehavior.down,
+                                  itemCount:
+                                      taskcontroller.tasksList.value.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 24.w,
+                                        mainAxisSpacing: 24.w,
+                                      ),
+                                  itemBuilder: (BuildContext, index) {
+                                    var item =
+                                        taskcontroller.tasksList.value[index];
+                                    DateTime date = DateTime.parse(
+                                      item.uploadDate.toDate().toString(),
+                                    );
+                                    var uploadeDate = DateFormat(
+                                      "yyyy/MM/dd",
+                                    ).format(date);
+                                    date = DateTime.parse(
+                                      item.deadLine.toDate().toString(),
+                                    );
+                                    var deadline = DateFormat(
+                                      "yyyy/MM/dd",
+                                    ).format(date);
+                                    return Container(
+                                      height: 178.h,
+                                      width: 178.w,
+                                      decoration: BoxDecoration(
+                                        gradient: gradientColor,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: TeacherTasksCard(
+                                        subjectName: item.taskSubjectName,
+                                        taskName: item.taskName,
+                                        uploadDate: uploadeDate,
+                                        deadline: deadline,
+                                        bcontext: context,
+                                        id: item.taskId,
+                                      ),
+                                    );
+                                  },
+                                );
                               }
-                            },
-                          );
-                        }),
+                            }
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -130,42 +126,45 @@ class TeacherTasksPage extends StatelessWidget {
 }
 
 class SimmerTaskLoadingCard extends StatelessWidget {
-  const SimmerTaskLoadingCard({Key? key}) : super(key: key);
+  const SimmerTaskLoadingCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Skilton(
-      decoration:
-          BoxDecoration(color: white, borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+        color: white,
+        borderRadius: BorderRadius.circular(20),
+      ),
     );
   }
 }
 
 class SimmerTaskLoading extends StatelessWidget {
-  const SimmerTaskLoading({Key? key}) : super(key: key);
+  const SimmerTaskLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-        child: GridView.builder(
-            dragStartBehavior: DragStartBehavior.down,
-            itemCount: 10,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 24.w,
-                mainAxisSpacing: 24.w),
-            itemBuilder: (BuildContext, index) {
-              return SimmerTaskLoadingCard();
-            }),
-        baseColor: Colors.grey.shade100,
-        highlightColor: loadingPrimarycolor);
+      baseColor: Colors.grey.shade100,
+      highlightColor: loadingPrimarycolor,
+      child: GridView.builder(
+        dragStartBehavior: DragStartBehavior.down,
+        itemCount: 10,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 24.w,
+          mainAxisSpacing: 24.w,
+        ),
+        itemBuilder: (BuildContext, index) {
+          return SimmerTaskLoadingCard();
+        },
+      ),
+    );
   }
 }
 
 class BottomSheetButton extends StatelessWidget {
-  const BottomSheetButton({
-    Key? key,
-  }) : super(key: key);
+  const BottomSheetButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -183,10 +182,7 @@ class BottomSheetButton extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 24.w,
-                            top: 24.h,
-                          ),
+                          padding: EdgeInsets.only(left: 24.w, top: 24.h),
                           child: SizedBox(
                             width: 73.w,
                             child: const Text(
@@ -199,23 +195,14 @@ class BottomSheetButton extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
+                        SizedBox(height: 24.h),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 30.w,
-                          ),
+                          padding: EdgeInsets.only(left: 30.w),
                           child: const ChosingGradeBar(),
                         ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
+                        SizedBox(height: 24.h),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 24.w,
-                            top: 24.h,
-                          ),
+                          padding: EdgeInsets.only(left: 24.w, top: 24.h),
                           child: SizedBox(
                             width: 73.w,
                             child: FittedBox(
@@ -231,23 +218,14 @@ class BottomSheetButton extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
+                        SizedBox(height: 24.h),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 30.w,
-                          ),
+                          padding: EdgeInsets.only(left: 30.w),
                           child: const ChosingClassSection(),
                         ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
+                        SizedBox(height: 24.h),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 24.w,
-                            top: 24.h,
-                          ),
+                          padding: EdgeInsets.only(left: 24.w, top: 24.h),
                           child: SizedBox(
                             width: 73.w,
                             child: FittedBox(
@@ -263,23 +241,20 @@ class BottomSheetButton extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
+                        SizedBox(height: 24.h),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 30.w,
-                          ),
+                          padding: EdgeInsets.only(left: 30.w),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GetBuilder(
-                                  init: BottomSheetController(),
-                                  builder: ((controller) {
-                                    return Text(
-                                      '${bottomController.deadline.value.year}/${bottomController.deadline.value.month}/${bottomController.deadline.value.day}',
-                                    );
-                                  })),
+                                init: BottomSheetController(),
+                                builder: ((controller) {
+                                  return Text(
+                                    '${bottomController.deadline.value.year}/${bottomController.deadline.value.month}/${bottomController.deadline.value.day}',
+                                  );
+                                }),
+                              ),
                               MaterialButton(
                                 onPressed: () {
                                   showDatePicker(
@@ -295,7 +270,7 @@ class BottomSheetButton extends StatelessWidget {
                                           ),
                                           textButtonTheme: TextButtonThemeData(
                                             style: TextButton.styleFrom(
-                                              primary:
+                                              backgroundColor:
                                                   primaryColor, // button text color
                                             ),
                                           ),
@@ -311,8 +286,9 @@ class BottomSheetButton extends StatelessWidget {
                                     if (pickedDate == null) {
                                       return;
                                     } else {
-                                      bottomController
-                                          .updateDeadline(pickedDate);
+                                      bottomController.updateDeadline(
+                                        pickedDate,
+                                      );
                                     }
                                   });
                                 },
@@ -325,14 +301,9 @@ class BottomSheetButton extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
+                        SizedBox(height: 24.h),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 20.w,
-                            top: 24.h,
-                          ),
+                          padding: EdgeInsets.only(left: 20.w, top: 24.h),
                           child: SizedBox(
                             width: 73.w,
                             child: FittedBox(
@@ -349,18 +320,16 @@ class BottomSheetButton extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 30.w,
-                          ),
+                          padding: EdgeInsets.only(left: 30.w),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GetBuilder(
-                                  init: BottomSheetController(),
-                                  builder: (controller) {
-                                    return Text(
-                                        '${bottomController.fileName.value}');
-                                  }),
+                                init: BottomSheetController(),
+                                builder: (controller) {
+                                  return Text(bottomController.fileName.value);
+                                },
+                              ),
                               MaterialButton(
                                 onPressed: () async {
                                   File file = await selectfile();
@@ -372,18 +341,13 @@ class BottomSheetButton extends StatelessWidget {
                                   size: 20,
                                   color: gray,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
+                        SizedBox(height: 24.h),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 24.w,
-                            top: 24.h,
-                          ),
+                          padding: EdgeInsets.only(left: 24.w, top: 24.h),
                           child: SizedBox(
                             width: 73.w,
                             child: FittedBox(
@@ -416,19 +380,19 @@ class BottomSheetButton extends StatelessWidget {
                               ),
                               fillColor: backgroundColor,
                               filled: true,
-                              border: new OutlineInputBorder(
-                                  borderRadius: new BorderRadius.circular(12.0),
-                                  borderSide: new BorderSide(
-                                      width: 0.0, color: backgroundColor)),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12.0),
+                                borderSide: BorderSide(
+                                  width: 0.0,
+                                  color: backgroundColor,
+                                ),
+                              ),
                               contentPadding: EdgeInsets.all(8.0),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 24.w,
-                            top: 24.h,
-                          ),
+                          padding: EdgeInsets.only(left: 24.w, top: 24.h),
                           child: SizedBox(
                             width: 73.w,
                             child: FittedBox(
@@ -449,13 +413,17 @@ class BottomSheetButton extends StatelessWidget {
                           child: DropdownButtonFormField<String>(
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: primaryColor, width: 2),
+                                borderSide: BorderSide(
+                                  color: primaryColor,
+                                  width: 2,
+                                ),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: primaryColor, width: 2),
+                                borderSide: BorderSide(
+                                  color: primaryColor,
+                                  width: 2,
+                                ),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -464,16 +432,20 @@ class BottomSheetButton extends StatelessWidget {
                               bottomController.updateSubjectDropmenu(newValue!);
                             },
                             items: List.generate(
-                                bottomController.teachersubject.length,
-                                (index) {
-                              return DropdownMenuItem<String>(
-                                  value: bottomController
-                                      .teachersubject.value[index]
-                                      .toString(),
+                              bottomController.teachersubject.length,
+                              (index) {
+                                return DropdownMenuItem<String>(
+                                  value:
+                                      bottomController
+                                          .teachersubject
+                                          .value[index]
+                                          .toString(),
                                   child: Text(
                                     '${bottomController.teachersubject.value[index]}',
-                                  ));
-                            }),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ],
@@ -508,11 +480,7 @@ class BottomSheetButton extends StatelessWidget {
 }
 
 class AddFileButton extends StatelessWidget {
-  const AddFileButton({
-    Key? key,
-    this.label,
-    this.onTap,
-  }) : super(key: key);
+  const AddFileButton({super.key, this.label, this.onTap});
 
   final label;
   final onTap;
@@ -520,10 +488,7 @@ class AddFileButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        left: 54.w,
-        right: 54.w,
-      ),
+      padding: EdgeInsets.only(left: 54.w, right: 54.w),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -539,20 +504,15 @@ class AddFileButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Add ${label}',
+                    'Add $label',
                     style: TextStyle(
-                        color: primaryColor,
-                        fontFamily: RedHatDisplay.medium,
-                        fontSize: 16),
+                      color: primaryColor,
+                      fontFamily: RedHatDisplay.medium,
+                      fontSize: 16,
+                    ),
                   ),
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Icon(
-                    Icons.add,
-                    size: 16,
-                    color: primaryColor,
-                  ),
+                  SizedBox(width: 5.w),
+                  Icon(Icons.add, size: 16, color: primaryColor),
                 ],
               ),
             ),
@@ -564,28 +524,28 @@ class AddFileButton extends StatelessWidget {
 }
 
 class AddButton extends StatelessWidget {
-  const AddButton({
-    Key? key,
-    this.Bcontext,
-    this.onpress,
-  }) : super(key: key);
+  const AddButton({super.key, this.Bcontext, this.onpress});
 
-  @override
   final Bcontext;
   final onpress;
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(36, 0, 36, 36),
       child: ElevatedButton(
-          style: ElevatedButton.styleFrom(primary: primaryColor),
-          onPressed: onpress,
-          child: Center(
-            child: Text(
-              'ADD',
-              style: TextStyle(
-                  color: white, fontSize: 20, fontFamily: RedHatDisplay.medium),
+        style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
+        onPressed: onpress,
+        child: Center(
+          child: Text(
+            'ADD',
+            style: TextStyle(
+              color: white,
+              fontSize: 20,
+              fontFamily: RedHatDisplay.medium,
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

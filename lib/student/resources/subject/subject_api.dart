@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:school_management_system/public/config/user_information.dart';
 import 'package:school_management_system/student/models/subject/subjectModel.dart';
@@ -14,33 +16,27 @@ class SubjectServices {
           .doc(UserInformation.grade.toString())
           .get()
           .then((value) {
-        print(value.data()!['subject']);
-        subjectRefrencesList = value.data()!['subject'];
-      });
+            subjectRefrencesList = value.data()!['subject'];
+          });
       for (var item in subjectRefrencesList) {
         var lessonsNumber = 0;
-        var takenLessons = 0;
         var subjectName = '';
         var teacherName;
-        var teacherRefrence;
         await FirebaseFirestore.instance
             .collection('subject')
             .doc(item.toString())
             .get()
             .then((value) {
-          subjectName = value.data()?['name'];
-          //lessonsNumber = value.data()?['lessons'].length ?? 0;
-        });
+              subjectName = value.data()?['name'];
+              //lessonsNumber = value.data()?['lessons'].length ?? 0;
+            });
         await FirebaseFirestore.instance
             .collection('lessons')
             .where('subject', isEqualTo: item.toString())
             .get()
             .then((value) {
-          lessonsNumber = value.docs.length;
-        });
-        print(UserInformation.classid);
-        print(item.toString());
-        print(UserInformation.grade.toString());
+              lessonsNumber = value.docs.length;
+            });
         await FirebaseFirestore.instance
             .collection('relation')
             .where('classrooms', arrayContains: UserInformation.classid)
@@ -48,25 +44,25 @@ class SubjectServices {
             .where('grade', isEqualTo: UserInformation.grade.toString())
             .get()
             .then((value) {
-          value.docs.forEach((element) {
-            teacherName = element.data()['teacher_name'];
-          });
-        });
+              for (var element in value.docs) {
+                teacherName = element.data()['teacher_name'];
+              }
+            });
         try {
-          subjectInfo.add(SubjectModel(
-            name: subjectName,
-            teacherName: teacherName,
-            id: item,
-            lessonsNumber: lessonsNumber,
-          ));
+          subjectInfo.add(
+            SubjectModel(
+              name: subjectName,
+              teacherName: teacherName,
+              id: item,
+              lessonsNumber: lessonsNumber,
+            ),
+          );
         } catch (e) {
-          print(e);
           return subjectInfo;
         }
       }
       return subjectInfo;
     } catch (e) {
-      print(e);
       return [];
     }
   }

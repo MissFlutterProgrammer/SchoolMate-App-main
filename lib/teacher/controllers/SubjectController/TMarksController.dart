@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, avoid_print
+
 import 'package:get/state_manager.dart';
 import 'package:school_management_system/teacher/model/subject/TMarksModel.dart';
 import 'package:school_management_system/teacher/resources/TsubjectsServices/TMarksServices.dart';
@@ -15,7 +17,10 @@ class TMarksController extends GetxController {
     print(subjectId);
     print(grade);
     print(classid);
-    studentsMarks.value = await service.getAllMarks(subjectId.value.toString(),
-        grade.value.toString(), classid.value.toString());
+    studentsMarks.value = await service.getAllMarks(
+      subjectId.value.toString(),
+      grade.value.toString(),
+      classid.value.toString(),
+    );
   }
 }

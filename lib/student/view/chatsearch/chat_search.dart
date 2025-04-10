@@ -1,16 +1,17 @@
+// ignore_for_file: avoid_print, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:school_management_system/student/controllers/SearchController.dart';
+import 'package:school_management_system/student/controllers/SearchController.dart'
+    as custom;
 import 'package:school_management_system/student/models/user.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../public/utils/constant.dart';
-import '../../Widgets/Chatappbar.dart';
 import '../../resources/chat/chat_api.dart';
 import '../Chat/chat_page.dart';
 
 class ChatSearch extends StatelessWidget {
-  ChatSearch({Key? key}) : super(key: key);
+  const ChatSearch({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +24,18 @@ class ChatSearch extends StatelessWidget {
           Row(
             children: [
               Padding(
-                  padding:
-                      EdgeInsets.only(right: 12.w, top: 10.h, bottom: 26.5.h),
-                  child: IconButton(
-                    onPressed: () {
-                      showSearch(
-                        context: context,
-                        delegate: MySearchDelegate(),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.search,
-                      size: 27,
-                      color: Colors.white,
-                    ),
-                  )),
+                padding: EdgeInsets.only(
+                  right: 12.w,
+                  top: 10.h,
+                  bottom: 26.5.h,
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    showSearch(context: context, delegate: MySearchDelegate());
+                  },
+                  icon: const Icon(Icons.search, size: 27, color: Colors.white),
+                ),
+              ),
             ],
           ),
         ],
@@ -50,7 +48,7 @@ class ChatSearch extends StatelessWidget {
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 default:
                   if (snapshot.hasError) {
                     print(snapshot.error);
@@ -60,19 +58,21 @@ class ChatSearch extends StatelessWidget {
 
                     if (users.isEmpty) {
                       return buildText('No Users Found');
-                    } else
+                    } else {
                       return ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
                           final user = users[index];
 
-                          return Container(
+                          return SizedBox(
                             height: 75,
                             child: ListTile(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ChatPage(user: user),
-                                ));
+                                Navigator.of(context).push<void>(
+                                  MaterialPageRoute<void>(
+                                    builder: (context) => ChatPage(user: user),
+                                  ),
+                                );
                               },
                               leading: CircleAvatar(
                                 radius: 25,
@@ -84,6 +84,7 @@ class ChatSearch extends StatelessWidget {
                         },
                         itemCount: users.length,
                       );
+                    }
                   }
               }
             },
@@ -94,36 +95,35 @@ class ChatSearch extends StatelessWidget {
   }
 
   Widget buildText(String text) => Center(
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 24, color: Colors.white),
-        ),
-      );
+    child: Text(text, style: TextStyle(fontSize: 24, color: Colors.white)),
+  );
 }
 
 class MySearchDelegate extends SearchDelegate {
-  SearchController controller = Get.put(SearchController());
+  var controller = Get.put(custom.SearchController());
   final teachersNames = ["Yassin", "osama"];
 
   final recentTeachers = [];
 
   @override
   List<Widget>? buildActions(BuildContext context) => [
-        IconButton(
-            onPressed: () {
-              if (query.isEmpty) {
-                close(context, null);
-              } else
-                query = '';
-            },
-            icon: Icon(Icons.clear))
-      ];
+    IconButton(
+      onPressed: () {
+        if (query.isEmpty) {
+          close(context, null);
+        } else {
+          query = '';
+        }
+      },
+      icon: Icon(Icons.clear),
+    ),
+  ];
 
   @override
-  Widget? buildLeading(BuildContext context) {
-    IconButton(
-        onPressed: () => close(context, null), icon: Icon(Icons.arrow_back));
-  }
+  Widget? buildLeading(BuildContext context) => IconButton(
+    onPressed: () => close(context, null),
+    icon: const Icon(Icons.arrow_back),
+  );
 
   @override
   Widget buildResults(BuildContext context) {
@@ -139,13 +139,15 @@ class MySearchDelegate extends SearchDelegate {
           print("hhhhhhhhhh");
           print(user.idUser);
 
-          return Container(
+          return SizedBox(
             height: 75,
             child: ListTile(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ChatPage(user: user),
-                ));
+                Navigator.of(context).push<void>(
+                  MaterialPageRoute<void>(
+                    builder: (context) => ChatPage(user: user),
+                  ),
+                );
               },
               leading: CircleAvatar(
                 radius: 25,
@@ -162,34 +164,34 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList = query.isEmpty
-        ? recentTeachers
-        : teachersNames.where((p) => p.startsWith(query)).toList();
+    final suggestionList =
+        query.isEmpty
+            ? recentTeachers
+            : teachersNames.where((p) => p.startsWith(query)).toList();
 
     return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        onTap: () {
-          showResults(context);
-        },
-        leading: Icon(Icons.school),
-        title: RichText(
-          text: TextSpan(
-            text: suggestionList[index].substring(0, query.length),
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-            children: [
-              TextSpan(
-                text: suggestionList[index].substring(query.length),
-                style: TextStyle(
-                  color: Colors.grey,
+      itemBuilder:
+          (context, index) => ListTile(
+            onTap: () {
+              showResults(context);
+            },
+            leading: Icon(Icons.school),
+            title: RichText(
+              text: TextSpan(
+                text: suggestionList[index].substring(0, query.length),
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
+                children: [
+                  TextSpan(
+                    text: suggestionList[index].substring(query.length),
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
       itemCount: suggestionList.length,
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 /*Map<String, dynamic> toJSON() {
   return <String, dynamic>{
     'text': text,
@@ -9,4 +11,3 @@
     'composingExtent': composing.end,
   };
 }*/
-

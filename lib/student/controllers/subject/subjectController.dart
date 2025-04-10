@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member, file_names
+
 import 'package:get/get.dart';
 import 'package:school_management_system/public/config/user_information.dart';
 import 'package:school_management_system/student/resources/subject/subject_api.dart';

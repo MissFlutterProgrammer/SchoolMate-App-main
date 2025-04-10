@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member, prefer_typing_uninitialized_variables, file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,14 +7,14 @@ import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_families.dart';
 import 'package:school_management_system/teacher/controllers/TasksControllers/bottomSheetController.dart';
 
-final _controller =
-    Get.put<BottomSheetController>(BottomSheetController(), permanent: true);
+final _controller = Get.put<BottomSheetController>(
+  BottomSheetController(),
+  permanent: true,
+);
 var gradeList = _controller.GradeNumber.value;
 
 class ChosingGradeBar extends StatelessWidget {
-  const ChosingGradeBar({
-    Key? key,
-  }) : super(key: key);
+  const ChosingGradeBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +23,12 @@ class ChosingGradeBar extends StatelessWidget {
       width: 428.w,
       child: GetBuilder(
         init: BottomSheetController(),
-        builder: ((controller) => ListView.builder(
+        builder:
+            ((controller) => ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: gradeList.length,
               itemBuilder: (BuildContext context, int index) {
-                return GradeOption(
-                  grade: gradeList[index],
-                  index: index + 1,
-                );
+                return GradeOption(grade: gradeList[index], index: index + 1);
               },
             )),
       ),
@@ -37,11 +37,7 @@ class ChosingGradeBar extends StatelessWidget {
 }
 
 class GradeOption extends StatelessWidget {
-  const GradeOption({
-    this.grade,
-    Key? key,
-    this.index,
-  }) : super(key: key);
+  const GradeOption({this.grade, super.key, this.index});
 
   final grade;
   final index;
@@ -63,9 +59,7 @@ class GradeOption extends StatelessWidget {
               activeColor: primaryColor,
             ),
           ),
-          SizedBox(
-            height: 5.h,
-          ),
+          SizedBox(height: 5.h),
           SizedBox(
             height: 25.h,
             width: 25.w,
@@ -79,7 +73,7 @@ class GradeOption extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

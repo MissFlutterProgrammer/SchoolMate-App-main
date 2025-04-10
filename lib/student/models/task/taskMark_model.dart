@@ -1,4 +1,4 @@
-import 'package:school_management_system/student/models/chat/student.dart';
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, non_constant_identifier_names
 
 class TaskMarkModel {
   final taskid;

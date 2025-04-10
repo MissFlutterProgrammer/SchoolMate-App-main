@@ -1,3 +1,5 @@
+// ignore_for_file: use_super_parameters, file_names, prefer_typing_uninitialized_variables, use_build_context_synchronously, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +9,6 @@ import 'package:school_management_system/public/utils/font_families.dart';
 import 'package:school_management_system/public/utils/font_style.dart';
 import 'package:school_management_system/routes/app_pages.dart';
 import 'package:school_management_system/teacher/view/tasks/TeacherTasksPage.dart';
-import 'package:school_management_system/teacher/view/tasks/studentsOfTask.dart';
 
 class TeacherTasksCard extends StatelessWidget {
   const TeacherTasksCard({
@@ -31,23 +32,19 @@ class TeacherTasksCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppPages.studentsOfTask, parameters: {
-          'id': id,
-          'taskName': taskName,
-        });
+        Get.toNamed(
+          AppPages.studentsOfTask,
+          parameters: {'id': id, 'taskName': taskName},
+        );
       },
-      child: Container(
+      child: SizedBox(
         width: 200.w,
         child: Stack(
           children: [
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: EdgeInsets.only(
-                  left: 24.w,
-                  top: 24.h,
-                  bottom: 2.h,
-                ),
+                padding: EdgeInsets.only(left: 24.w, top: 24.h, bottom: 2.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -56,21 +53,25 @@ class TeacherTasksCard extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          '${subjectName}',
+                          '$subjectName',
                           style: redHatBoldStyle(
-                              fontSize: 24, color: Colors.white),
+                            fontSize: 24,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
                     FittedBox(
                       fit: BoxFit.scaleDown,
-                      child: Text('$taskName',
-                          textAlign: TextAlign.start,
-                          style: redHatLightStyle(
-                            fontSize: 12,
-                            color: Colors.white,
-                          )),
-                    )
+                      child: Text(
+                        '$taskName',
+                        textAlign: TextAlign.start,
+                        style: redHatLightStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -78,26 +79,19 @@ class TeacherTasksCard extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: EdgeInsets.only(
-                  right: 15.w,
-                  top: 15.h,
-                ),
+                padding: EdgeInsets.only(right: 15.w, top: 15.h),
                 child: SizedBox(
                   height: 30.h,
                   child: DropdownButton(
                     underline: Text(''),
                     borderRadius: BorderRadius.circular(10),
-                    icon: const Icon(
-                      Icons.menu,
-                      size: 19,
-                      color: Colors.white,
-                    ),
+                    icon: const Icon(Icons.menu, size: 19, color: Colors.white),
                     items: [
                       DropdownMenuItem(
                         onTap: () async {
-                          await Get.dialog(Container(
-                            color: Colors.greenAccent,
-                          ));
+                          await Get.dialog(
+                            Container(color: Colors.greenAccent),
+                          );
                           print('is Open');
                           await showDialog(
                             context: context,
@@ -105,9 +99,10 @@ class TeacherTasksCard extends StatelessWidget {
                               return AlertDialog(
                                 title: Text("Delete task"),
                                 content: Text(
-                                    "Are you sure you want to delete the task?"),
+                                  "Are you sure you want to delete the task?",
+                                ),
                                 actions: [
-                                  FlatButton(
+                                  ElevatedButton(
                                     child: Text(
                                       "Dismiss",
                                       style: TextStyle(
@@ -120,14 +115,16 @@ class TeacherTasksCard extends StatelessWidget {
                                       Navigator.of(context).pop();
                                     },
                                   ),
-                                  FlatButton(
-                                    color: Colors.redAccent,
-                                    child: Text("Confirm",
-                                        style: TextStyle(
-                                          color: white,
-                                          fontSize: 18,
-                                          fontFamily: RedHatDisplay.medium,
-                                        )),
+                                  ElevatedButton(
+                                    // color: Colors.redAccent,
+                                    child: Text(
+                                      "Confirm",
+                                      style: TextStyle(
+                                        color: white,
+                                        fontSize: 18,
+                                        fontFamily: RedHatDisplay.medium,
+                                      ),
+                                    ),
                                     onPressed: () async {
                                       EasyLoading.show();
                                       await taskcontroller.deleteTask(id);
@@ -147,9 +144,7 @@ class TeacherTasksCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('Delete'),
-                            SizedBox(
-                              width: 4.w,
-                            ),
+                            SizedBox(width: 4.w),
                             Icon(
                               Icons.delete,
                               color: Colors.redAccent,
@@ -179,7 +174,7 @@ class TeacherTasksCard extends StatelessWidget {
                     padding: EdgeInsets.only(top: 35.h),
                     child: Column(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 70.w,
                           height: 13.h,
                           child: Row(
@@ -199,10 +194,8 @@ class TeacherTasksCard extends StatelessWidget {
                             ],
                           ),
                         ),
+                        SizedBox(height: 12.h),
                         SizedBox(
-                          height: 12.h,
-                        ),
-                        Container(
                           width: 70.w,
                           height: 13.h,
                           child: Row(

@@ -1,17 +1,17 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:school_management_system/public/utils/font_style.dart';
 import 'package:school_management_system/student/Widgets/animated_progress_indicator.dart';
-
 import '../../public/utils/constant.dart';
 
 class ProgressIndecator extends StatelessWidget {
-  ProgressIndecator({
+  const ProgressIndecator({
     required double precentage,
-    Key? key,
+    super.key,
     this.ontap,
     this.isShow,
-  })  : _precentage = precentage,
-        super(key: key);
+  }) : _precentage = precentage;
 
   final double _precentage;
   final ontap;
@@ -30,38 +30,31 @@ class ProgressIndecator extends StatelessWidget {
             SizedBox(
               height: 60,
               width: 50,
-              child: AnimatedCircularProgressIndacator(
-                percentage: _precentage,
-              ),
+              child: AnimatedCircularProgressIndacator(percentage: _precentage),
             ),
-            const SizedBox(
-              width: 10,
+            const SizedBox(width: 10),
+            Text(
+              "Grade Average",
+              style: redHatMediumStyle(fontSize: 15, color: primaryColor),
             ),
-            Text("Grade Average",
-                style: redHatMediumStyle(fontSize: 15, color: primaryColor)),
-            const SizedBox(
-              width: 30,
-            ),
+            const SizedBox(width: 30),
             Padding(
               padding: const EdgeInsets.only(top: 15),
               child: GestureDetector(
                 onTap: ontap,
-                child: Text("show details",
-                    style: redHatRegularStyle(fontSize: 12, color: gray)),
+                child: Text(
+                  "show details",
+                  style: redHatRegularStyle(fontSize: 12, color: gray),
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15),
-              child: isShow
-                  ? Icon(
-                      Icons.arrow_drop_up,
-                      color: gray,
-                    )
-                  : Icon(
-                      Icons.arrow_drop_down,
-                      color: gray,
-                    ),
-            )
+              child:
+                  isShow
+                      ? Icon(Icons.arrow_drop_up, color: gray)
+                      : Icon(Icons.arrow_drop_down, color: gray),
+            ),
           ],
         ),
       ),

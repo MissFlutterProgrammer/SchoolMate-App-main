@@ -7,7 +7,8 @@ const darkGray = Color(0xFF606060); //The main text color
 const gray = Color(0xFFA4A4A4);
 const lightGray = Color(0xFFD4D4D4);
 const black = Color(
-    0xFF333333); //used only once I guess, in the Subject Widejt "The total number of lessons at the top"
+  0xFF333333,
+); //used only once I guess, in the Subject Widejt "The total number of lessons at the top"
 const blue = Color(0xFF6FA8D7); //used only once
 const backgroundColor = Color(0xFFF6F6F6);
 const white = Color(0xFFFFFFFF);
@@ -39,16 +40,10 @@ class Pics {
 const gradientColor = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
-  colors: [
-    secondaryColor,
-    primaryColor,
-  ],
+  colors: [secondaryColor, primaryColor],
 );
 const gradientColor2 = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
-  colors: [
-    Colors.white,
-    Colors.white,
-  ],
+  colors: [Colors.white, Colors.white],
 );

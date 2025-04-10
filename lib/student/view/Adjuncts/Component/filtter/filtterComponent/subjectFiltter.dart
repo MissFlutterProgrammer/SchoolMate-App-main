@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member, file_names, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,9 +11,7 @@ final _controller = Get.put(RefrencesController());
 var subjectList = _controller.subjectsName.value;
 
 class ChosingSubjectBar extends StatelessWidget {
-  const ChosingSubjectBar({
-    Key? key,
-  }) : super(key: key);
+  const ChosingSubjectBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,8 @@ class ChosingSubjectBar extends StatelessWidget {
       width: 200.w,
       child: GetBuilder(
         init: RefrencesController(),
-        builder: ((controller) => ListView.builder(
+        builder:
+            ((controller) => ListView.builder(
               itemCount: subjectList.length,
               itemBuilder: (BuildContext context, int index) {
                 return SubjectRadioCard(
@@ -35,16 +36,12 @@ class ChosingSubjectBar extends StatelessWidget {
 }
 
 class SubjectRadioCard extends StatelessWidget {
-  const SubjectRadioCard({
-    Key? key,
-    this.subjectIndex,
-    this.subjectName,
-  }) : super(key: key);
+  const SubjectRadioCard({super.key, this.subjectIndex, this.subjectName});
 
-  @override
   final subjectIndex;
   final subjectName;
 
+  @override
   Widget build(BuildContext context) {
     return RadioListTile<int>(
       value: subjectIndex,

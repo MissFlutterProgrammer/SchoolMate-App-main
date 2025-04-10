@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, avoid_print, prefer_interpolation_to_compose_strings
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:school_management_system/teacher/model/subject/TMarksModel.dart';
 
@@ -15,22 +17,34 @@ class TMarksServices {
       for (var i = 0; i < studentsList.length; i++) {
         var testMark = await getTestMark(subjectId, grade, studentsList[i].id);
         print(testMark);
-        var homeworkMark =
-            await getHomeWorkMark(subjectId, grade, studentsList[i].id);
-        var exam1Mark =
-            await getExam1kMark(subjectId, grade, studentsList[i].id);
-        var exam2Mark =
-            await getExam2kMark(subjectId, grade, studentsList[i].id);
+        var homeworkMark = await getHomeWorkMark(
+          subjectId,
+          grade,
+          studentsList[i].id,
+        );
+        var exam1Mark = await getExam1kMark(
+          subjectId,
+          grade,
+          studentsList[i].id,
+        );
+        var exam2Mark = await getExam2kMark(
+          subjectId,
+          grade,
+          studentsList[i].id,
+        );
 
-        var finalMark = (testMark + homeworkMark + exam1Mark + exam2Mark) == 0
-            ? 0
-            : (testMark + homeworkMark + exam1Mark + exam2Mark) / 4;
-        studentMarkList.add(TMarksStudentModel(
-          mark: finalMark,
-          name: studentsList[i].fname + ' ' + studentsList[i].lname,
-          url: studentsList[i].photoUrl,
-          stdid: studentsList[i].id.toString(),
-        ));
+        var finalMark =
+            (testMark + homeworkMark + exam1Mark + exam2Mark) == 0
+                ? 0
+                : (testMark + homeworkMark + exam1Mark + exam2Mark) / 4;
+        studentMarkList.add(
+          TMarksStudentModel(
+            mark: finalMark,
+            name: studentsList[i].fname + ' ' + studentsList[i].lname,
+            url: studentsList[i].photoUrl,
+            stdid: studentsList[i].id.toString(),
+          ),
+        );
       }
       print('#######################');
       print(studentMarkList);
@@ -47,15 +61,12 @@ class TMarksServices {
       await FirebaseFirestore.instance
           .collection('tests')
           .where('subject_id', isEqualTo: subjectId)
-          .where(
-            'grade',
-            isEqualTo: grade.toString(),
-          )
+          .where('grade', isEqualTo: grade.toString())
           .where('student_id', isEqualTo: uid.toString())
           .get()
           .then((value) {
-        testMark = value.docs[0].data()['result'];
-      });
+            testMark = value.docs[0].data()['result'];
+          });
 
       return testMark;
     } catch (e) {
@@ -73,16 +84,13 @@ class TMarksServices {
       await FirebaseFirestore.instance
           .collection('homeworks')
           .where('subject_id', isEqualTo: subjectId)
-          .where(
-            'grade',
-            isEqualTo: grade.toString(),
-          )
+          .where('grade', isEqualTo: grade.toString())
           .where('student_id', isEqualTo: uid.toString())
           .get()
           .then((value) {
-        testMark = value.docs[0].data()['result'];
-        print(testMark);
-      });
+            testMark = value.docs[0].data()['result'];
+            print(testMark);
+          });
 
       return testMark;
     } catch (e) {
@@ -97,15 +105,12 @@ class TMarksServices {
       await FirebaseFirestore.instance
           .collection('exam1')
           .where('subject_id', isEqualTo: subjectId)
-          .where(
-            'grade',
-            isEqualTo: grade.toString(),
-          )
+          .where('grade', isEqualTo: grade.toString())
           .where('student_id', isEqualTo: uid.toString())
           .get()
           .then((value) {
-        testMark = value.docs[0].data()['result'];
-      });
+            testMark = value.docs[0].data()['result'];
+          });
 
       return testMark;
     } catch (e) {
@@ -119,15 +124,12 @@ class TMarksServices {
       await FirebaseFirestore.instance
           .collection('exam2')
           .where('subject_id', isEqualTo: subjectId)
-          .where(
-            'grade',
-            isEqualTo: grade.toString(),
-          )
+          .where('grade', isEqualTo: grade.toString())
           .where('student_id', isEqualTo: uid.toString())
           .get()
           .then((value) {
-        testMark = value.docs[0].data()['result'];
-      });
+            testMark = value.docs[0].data()['result'];
+          });
 
       return testMark;
     } catch (e) {
@@ -143,15 +145,17 @@ class TMarksServices {
           .where('class_id', isEqualTo: classid)
           .get()
           .then((value) {
-        value.docs.forEach((element) {
-          studentsList.add(StundentMarksModel(
-            fname: element.data()['first_name'],
-            lname: element.data()['last_name'],
-            id: element.data()['uid'],
-            photoUrl: element.data()['urlAvatar'],
-          ));
-        });
-      });
+            for (var element in value.docs) {
+              studentsList.add(
+                StundentMarksModel(
+                  fname: element.data()['first_name'],
+                  lname: element.data()['last_name'],
+                  id: element.data()['uid'],
+                  photoUrl: element.data()['urlAvatar'],
+                ),
+              );
+            }
+          });
 
       return studentsList;
     } catch (e) {

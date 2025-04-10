@@ -1,15 +1,11 @@
-import 'dart:io';
+// ignore_for_file: file_names, depend_on_referenced_packages, prefer_typing_uninitialized_variables, non_constant_identifier_names, avoid_print, invalid_use_of_protected_member
 
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:school_management_system/student/models/Adjuncts/filtter/gradeCircle.dart';
-import 'package:school_management_system/student/view/Adjuncts/Component/filtter/filtterComponent/subjectFiltter.dart';
-import 'package:school_management_system/teacher/model/Home/classroomSectionModel.dart';
 import 'package:school_management_system/teacher/model/Tasks/tasksModel.dart';
-import 'package:school_management_system/teacher/view/tasks/AddFiles/components/Tgrade.dart';
 import 'package:path/path.dart';
 import 'package:school_management_system/teacher/view/tasks/TeacherTasksPage.dart';
-
 import '../../resources/TaskServices/TaskServices.dart';
 
 class BottomSheetController extends GetxController {
@@ -33,34 +29,35 @@ class BottomSheetController extends GetxController {
     update();
   }
 
-  var classSection = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-  ].obs;
+  var classSection =
+      [
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z',
+      ].obs;
   var currentClassSection = 0.obs;
   updateClassSectionIndex(int? index) {
     currentClassSection.value = index!;
@@ -73,20 +70,20 @@ class BottomSheetController extends GetxController {
   }
 
   updateFile(File newfile) {
-    file = newfile == null ? file : newfile;
+    file = newfile;
     fileName.value = basename(newfile.path);
     update();
   }
 
   @override
   void onInit() async {
-    // TODO: implement onInit
     super.onInit();
     GradeNumber.value = await taskServices.getTeachergardes();
     print('Grades is ');
     print(GradeNumber.value);
-    teachersubject.value =
-        await taskServices.getTeacherSubject(GradeNumber.value);
+    teachersubject.value = await taskServices.getTeacherSubject(
+      GradeNumber.value,
+    );
   }
 
   addTask() async {

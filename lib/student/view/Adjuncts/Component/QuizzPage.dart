@@ -1,3 +1,5 @@
+// // ignore_for_file: file_names
+
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:school_management_system/routes/app_pages.dart';
@@ -40,6 +42,8 @@
 //       },
 //     ),
 //   }
+
+// ignore_for_file: file_names
 
 //   void checkAnswer(bool userPickedAnswer) {
 //     bool correctAnswer = quizBrain.getCorrectAnswer();

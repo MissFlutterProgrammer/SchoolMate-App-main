@@ -1,13 +1,11 @@
-import 'dart:async';
+// ignore_for_file: non_constant_identifier_names, unused_local_variable, avoid_print, unused_catch_clause
 
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:school_management_system/student/resources/chat/chat_data.dart';
 import 'package:school_management_system/teacher/model/message.dart';
-
-
 import 'dart:io';
-
 import 'package:school_management_system/teacher/model/user.dart';
 import 'package:school_management_system/teacher/resources/chat/chat_utils.dart';
 
@@ -21,8 +19,9 @@ class FirebaseApi {
       .transform(Utils.transformer(User.fromJson));
 
   static Future uploadMessage(String? idUser, String message) async {
-    final refMessages =
-        FirebaseFirestore.instance.collection('chats/$idUser/messages');
+    final refMessages = FirebaseFirestore.instance.collection(
+      'chats/$idUser/messages',
+    );
 
     final newMessage = Message(
       idUser: myId,
@@ -35,23 +34,21 @@ class FirebaseApi {
     await refMessages.add(newMessage.toJson());
 
     final refUsers = FirebaseFirestore.instance.collection('students');
-    await refUsers
-        .doc(idUser)
-        .update({UserField.lastMessageTime: DateTime.now()});
+    await refUsers.doc(idUser).update({
+      UserField.lastMessageTime: DateTime.now(),
+    });
   }
 
-  static Stream<List<Message>> getMessages(String? idUser) =>
-      FirebaseFirestore.instance
-          .collectionGroup('messages')
-          .where('uid', whereIn: [idUser, myId])
-          .orderBy(MessageField.createdAt, descending: true)
-          .snapshots()
-          .transform(Utils.transformer(Message.fromJson));
+  static Stream<List<Message>> getMessages(String? idUser) => FirebaseFirestore
+      .instance
+      .collectionGroup('messages')
+      .where('uid', whereIn: [idUser, myId])
+      .orderBy(MessageField.createdAt, descending: true)
+      .snapshots()
+      .transform(Utils.transformer(Message.fromJson));
 
   static Future addRandomUsers(List<User> users) async {
     final refUsers = FirebaseFirestore.instance.collection('students');
-
-    final allUsers = await refUsers.get();
 
     for (final user in users) {
       final userDoc = refUsers.doc();
@@ -68,17 +65,17 @@ class FirebaseApi {
         .where('first_name', isEqualTo: name)
         .get()
         .then((value) async {
-      for (var i = 0; i < value.docs.length; i++) {
-        founded.add(
-          User(
-            first_name: value.docs[i]['first_name'],
-            last_name: value.docs[i]['last_name'],
-            urlAvatar: value.docs[i]['urlAvatar'],
-            idUser: value.docs[i]['uid'],
-          ),
-        );
-      }
-    });
+          for (var i = 0; i < value.docs.length; i++) {
+            founded.add(
+              User(
+                first_name: value.docs[i]['first_name'],
+                last_name: value.docs[i]['last_name'],
+                urlAvatar: value.docs[i]['urlAvatar'],
+                idUser: value.docs[i]['uid'],
+              ),
+            );
+          }
+        });
 
     print(founded);
     return founded;

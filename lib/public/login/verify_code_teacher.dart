@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,12 +7,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:school_management_system/public/config/user_information.dart';
 import 'package:school_management_system/public/utils/constant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../utils/util.dart';
 import '../widgets/custom_verify_textfield.dart';
 
 class Otp extends StatefulWidget {
+  const Otp({super.key});
+
   @override
   _OtpState createState() => _OtpState();
 }
@@ -20,7 +22,6 @@ final TextEditingController _charB = TextEditingController();
 final TextEditingController _charC = TextEditingController();
 final TextEditingController _charD = TextEditingController();
 late String A, B, C, D;
-final FirebaseAuth _auth = FirebaseAuth.instance;
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 GetStorage storage = GetStorage();
 
@@ -38,10 +39,10 @@ final newteacher = {
   "date_left": Timestamp.now(),
   "date_start": Timestamp.now(),
   "subjects": [],
-  "University":"nothing",
-  "graduateYear":"nothing",
-  "specializtion":"nothing",
-  "study":"nothing",
+  "University": "nothing",
+  "graduateYear": "nothing",
+  "specializtion": "nothing",
+  "study": "nothing",
 };
 
 class _OtpState extends State<Otp> {
@@ -67,9 +68,7 @@ class _OtpState extends State<Otp> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 18.h,
-                ),
+                SizedBox(height: 18.h),
                 Container(
                   width: 200,
                   height: 200,
@@ -77,19 +76,12 @@ class _OtpState extends State<Otp> {
                     color: Colors.deepPurple.shade50,
                     shape: BoxShape.circle,
                   ),
-                  child: Image.asset(
-                    'assets/images/illustration-3.png',
-                  ),
+                  child: Image.asset('assets/images/illustration-3.png'),
                 ),
-                SizedBox(
-                  height: 24.h,
-                ),
+                SizedBox(height: 24.h),
                 const Text(
                   'Verification',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10.h),
                 const Text(
@@ -101,9 +93,7 @@ class _OtpState extends State<Otp> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
-                  height: 28.h,
-                ),
+                SizedBox(height: 28.h),
                 Container(
                   padding: EdgeInsets.all(28),
                   decoration: BoxDecoration(
@@ -158,9 +148,7 @@ class _OtpState extends State<Otp> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 22.h,
-                      ),
+                      SizedBox(height: 22.h),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -173,23 +161,27 @@ class _OtpState extends State<Otp> {
                                   .set(newteacher);
                               print("broooooooo");
                               await storage.write(
-                                  'uid', UserInformation.User_uId);
+                                'uid',
+                                UserInformation.User_uId,
+                              );
                               Get.offAllNamed('/teahome');
                             } else {
                               showSnackBar("Wrong Code", context);
                             }
                           },
                           style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.white),
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(primaryColor),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
+                            foregroundColor: WidgetStateProperty.all<Color>(
+                              Colors.white,
                             ),
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                              primaryColor,
+                            ),
+                            shape:
+                                WidgetStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(24.0),
+                                  ),
+                                ),
                           ),
                           child: const Padding(
                             padding: EdgeInsets.all(14.0),
@@ -199,13 +191,11 @@ class _OtpState extends State<Otp> {
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 18.h,
-                ),
+                SizedBox(height: 18.h),
               ],
             ),
           ),

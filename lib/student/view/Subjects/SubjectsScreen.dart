@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, invalid_use_of_protected_member, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,10 +13,7 @@ var _controller = Get.put<lessonsController>(lessonsController());
 var lessonList = _controller.lessonslist.value;
 
 class SubjectsScreen extends StatefulWidget {
-  const SubjectsScreen({
-    Key? key,
-    this.subjectId,
-  }) : super(key: key);
+  const SubjectsScreen({super.key, this.subjectId});
 
   final subjectId;
   @override
@@ -31,7 +30,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
           children: [
             const Text(
               'Subjects',
-              style: const TextStyle(
+              style: TextStyle(
                 color: white,
                 fontSize: 24,
                 fontFamily: RedHatDisplay.regular,
@@ -43,8 +42,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
           decoration: const BoxDecoration(
             gradient: gradientColor,
             image: DecorationImage(
-              image: const AssetImage(
-                  'assets/images/appbar-background-squares.png'),
+              image: AssetImage('assets/images/appbar-background-squares.png'),
               fit: BoxFit.cover,
             ),
           ),
@@ -54,9 +52,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
         length: 2,
         child: Column(
           children: [
-            SizedBox(
-              height: 24.h,
-            ),
+            SizedBox(height: 24.h),
             Center(
               child: Container(
                 height: 50.h,
@@ -66,56 +62,55 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: TabBar(
-                    unselectedLabelColor: gray,
-                    labelColor: white,
-                    indicator: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(5),
+                  unselectedLabelColor: gray,
+                  labelColor: white,
+                  indicator: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  tabs: [
+                    Tab(
+                      child: Container(
+                        height: 50.h,
+                        width: 160.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Contents',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: RedHatDisplay.medium,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    tabs: [
-                      Tab(
-                        child: Container(
-                          height: 50.h,
-                          width: 160.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Center(
-                            child: const Text(
-                              'Contents',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: RedHatDisplay.medium,
-                              ),
+                    Tab(
+                      child: Container(
+                        height: 50.h,
+                        width: 160.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Marks',
+                            style: TextStyle(
+                              letterSpacing: 2,
+                              fontSize: 12,
+                              fontFamily: RedHatDisplay.medium,
                             ),
                           ),
                         ),
                       ),
-                      Tab(
-                        child: Container(
-                          height: 50.h,
-                          width: 160.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Center(
-                            child: const Text(
-                              'Marks',
-                              style: TextStyle(
-                                letterSpacing: 2,
-                                fontSize: 12,
-                                fontFamily: RedHatDisplay.medium,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(
-              height: 22.h,
-            ),
+            SizedBox(height: 22.h),
             SizedBox(
               height: 30.h,
               width: 428.w,
@@ -126,22 +121,25 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
                   child: Row(
                     children: [
                       FutureBuilder(
-                        future:
-                            _controller.getTakenLessonNumber(widget.subjectId),
-                        builder: ((context, snapshot) => Obx(
+                        future: _controller.getTakenLessonNumber(
+                          widget.subjectId,
+                        ),
+                        builder:
+                            ((context, snapshot) => Obx(
                               (() => Text(
-                                    '${_controller.numberOftakenLessons.value.toString()}',
-                                    style: const TextStyle(
-                                      color: primaryColor,
-                                      fontSize: 20,
-                                      fontFamily: RedHatDisplay.medium,
-                                    ),
-                                  )),
+                                _controller.numberOftakenLessons.value
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: primaryColor,
+                                  fontSize: 20,
+                                  fontFamily: RedHatDisplay.medium,
+                                ),
+                              )),
                             )),
                       ),
                       const Text(
                         ' lesson',
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: primaryColor,
                           fontSize: 20,
                           fontFamily: RedHatDisplay.medium,
@@ -156,17 +154,21 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
                         ),
                       ),
                       FutureBuilder(
-                        future:
-                            _controller.getAllLessonNumber(widget.subjectId),
+                        future: _controller.getAllLessonNumber(
+                          widget.subjectId,
+                        ),
                         //_controller.getAllLessonNumber(),
-                        builder: ((context, snapshot) => Obx((() => Text(
-                              '${_controller.numberOfAllLessons.value.toString()}',
-                              style: const TextStyle(
-                                color: black,
-                                fontSize: 20,
-                                fontFamily: RedHatDisplay.medium,
-                              ),
-                            )))),
+                        builder:
+                            ((context, snapshot) => Obx(
+                              (() => Text(
+                                _controller.numberOfAllLessons.value.toString(),
+                                style: const TextStyle(
+                                  color: black,
+                                  fontSize: 20,
+                                  fontFamily: RedHatDisplay.medium,
+                                ),
+                              )),
+                            )),
                       ),
                       const Text(
                         ' lesson',
@@ -176,26 +178,17 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
                           fontFamily: RedHatDisplay.medium,
                         ),
                       ),
-                      SizedBox(
-                        height: 6.h,
-                      ),
+                      SizedBox(height: 6.h),
                     ],
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: 83.5.w,
-                right: 82.5.w,
-              ),
-              child: const Divider(
-                color: gray,
-              ),
+              padding: EdgeInsets.only(left: 83.5.w, right: 82.5.w),
+              child: const Divider(color: gray),
             ),
-            SizedBox(
-              height: 22.h,
-            ),
+            SizedBox(height: 22.h),
             SizedBox(
               height: 639.h,
               width: 428.w,

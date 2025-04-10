@@ -1,9 +1,10 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_families.dart';
-import 'package:school_management_system/student/controllers/lessonsController.dart';
 import 'package:school_management_system/teacher/controllers/SubjectController/SubjectMainScreenController.dart';
 import 'package:school_management_system/teacher/controllers/TasksControllers/bottomSheetController.dart';
 import 'package:school_management_system/teacher/view/TSubject/TMarkScreen.dart';
@@ -12,7 +13,7 @@ import 'package:school_management_system/teacher/view/TSubject/TlessonScreen.dar
 var _controller = Get.put(SubjectMainScreenController());
 
 class TSubjectScreen extends StatelessWidget {
-  const TSubjectScreen({Key? key, this.subjectId}) : super(key: key);
+  const TSubjectScreen({super.key, this.subjectId});
 
   final subjectId;
 
@@ -31,7 +32,7 @@ class TSubjectScreen extends StatelessWidget {
           children: [
             const Text(
               'Subjects',
-              style: const TextStyle(
+              style: TextStyle(
                 color: white,
                 fontSize: 24,
                 fontFamily: RedHatDisplay.regular,
@@ -43,8 +44,7 @@ class TSubjectScreen extends StatelessWidget {
           decoration: const BoxDecoration(
             gradient: gradientColor,
             image: DecorationImage(
-              image: const AssetImage(
-                  'assets/images/appbar-background-squares.png'),
+              image: AssetImage('assets/images/appbar-background-squares.png'),
               fit: BoxFit.cover,
             ),
           ),
@@ -54,9 +54,7 @@ class TSubjectScreen extends StatelessWidget {
         length: 2,
         child: Column(
           children: [
-            SizedBox(
-              height: 24.h,
-            ),
+            SizedBox(height: 24.h),
             Center(
               child: Container(
                 height: 50.h,
@@ -66,56 +64,55 @@ class TSubjectScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: TabBar(
-                    unselectedLabelColor: gray,
-                    labelColor: white,
-                    indicator: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(5),
+                  unselectedLabelColor: gray,
+                  labelColor: white,
+                  indicator: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  tabs: [
+                    Tab(
+                      child: Container(
+                        height: 50.h,
+                        width: 160.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Contents',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: RedHatDisplay.medium,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    tabs: [
-                      Tab(
-                        child: Container(
-                          height: 50.h,
-                          width: 160.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Center(
-                            child: const Text(
-                              'Contents',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: RedHatDisplay.medium,
-                              ),
+                    Tab(
+                      child: Container(
+                        height: 50.h,
+                        width: 160.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Marks',
+                            style: TextStyle(
+                              letterSpacing: 2,
+                              fontSize: 12,
+                              fontFamily: RedHatDisplay.medium,
                             ),
                           ),
                         ),
                       ),
-                      Tab(
-                        child: Container(
-                          height: 50.h,
-                          width: 160.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Center(
-                            child: const Text(
-                              'Marks',
-                              style: TextStyle(
-                                letterSpacing: 2,
-                                fontSize: 12,
-                                fontFamily: RedHatDisplay.medium,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(
-              height: 22.h,
-            ),
+            SizedBox(height: 22.h),
             SizedBox(
               height: 30.h,
               width: 428.w,
@@ -130,10 +127,12 @@ class TSubjectScreen extends StatelessWidget {
                         builder: ((controller) {
                           return FutureBuilder(
                             future: _controller.getlessonsNumer(),
-                            builder:
-                                (BuildContext context, AsyncSnapshot snapshot) {
+                            builder: (
+                              BuildContext context,
+                              AsyncSnapshot snapshot,
+                            ) {
                               return Text(
-                                '${_controller.takenLessonNumber.value.toString()}',
+                                _controller.takenLessonNumber.value.toString(),
                                 style: const TextStyle(
                                   color: primaryColor,
                                   fontSize: 20,
@@ -146,7 +145,7 @@ class TSubjectScreen extends StatelessWidget {
                       ),
                       const Text(
                         ' lesson',
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: primaryColor,
                           fontSize: 20,
                           fontFamily: RedHatDisplay.medium,
@@ -161,23 +160,26 @@ class TSubjectScreen extends StatelessWidget {
                         ),
                       ),
                       GetBuilder(
-                          init: BottomSheetController(),
-                          builder: (controller) {
-                            return FutureBuilder(
-                              future: _controller.getTakenlessonsNumer(),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot snapshot) {
-                                return Text(
-                                  '${_controller.lessonNumber.value.toString()}',
-                                  style: TextStyle(
-                                    color: black,
-                                    fontSize: 20,
-                                    fontFamily: RedHatDisplay.medium,
-                                  ),
-                                );
-                              },
-                            );
-                          }),
+                        init: BottomSheetController(),
+                        builder: (controller) {
+                          return FutureBuilder(
+                            future: _controller.getTakenlessonsNumer(),
+                            builder: (
+                              BuildContext context,
+                              AsyncSnapshot snapshot,
+                            ) {
+                              return Text(
+                                _controller.lessonNumber.value.toString(),
+                                style: TextStyle(
+                                  color: black,
+                                  fontSize: 20,
+                                  fontFamily: RedHatDisplay.medium,
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
                       const Text(
                         ' lesson',
                         style: TextStyle(
@@ -186,26 +188,17 @@ class TSubjectScreen extends StatelessWidget {
                           fontFamily: RedHatDisplay.medium,
                         ),
                       ),
-                      SizedBox(
-                        height: 6.h,
-                      ),
+                      SizedBox(height: 6.h),
                     ],
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: 83.5.w,
-                right: 82.5.w,
-              ),
-              child: const Divider(
-                color: gray,
-              ),
+              padding: EdgeInsets.only(left: 83.5.w, right: 82.5.w),
+              child: const Divider(color: gray),
             ),
-            SizedBox(
-              height: 22.h,
-            ),
+            SizedBox(height: 22.h),
             SizedBox(
               height: 639.h,
               width: 428.w,
@@ -224,6 +217,5 @@ class TSubjectScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

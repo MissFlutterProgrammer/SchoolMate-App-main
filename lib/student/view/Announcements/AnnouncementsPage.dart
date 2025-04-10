@@ -1,8 +1,9 @@
+// ignore_for_file: file_names, invalid_use_of_protected_member, avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:school_management_system/public/config/user_information.dart';
 import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_families.dart';
 import 'package:school_management_system/student/controllers/AnnouncementsController.dart';
@@ -17,7 +18,7 @@ AnnouncementsServeces _annServices = AnnouncementsServeces();
 String userIdclassroom = '';
 
 class AnnouncementsPage extends StatefulWidget {
-  const AnnouncementsPage({Key? key}) : super(key: key);
+  const AnnouncementsPage({super.key});
 
   @override
   State<AnnouncementsPage> createState() => _AnnouncementsPageState();
@@ -48,8 +49,9 @@ class _AnnouncementsPageState extends State<AnnouncementsPage> {
             decoration: BoxDecoration(
               gradient: gradientColor,
               image: DecorationImage(
-                image:
-                    AssetImage('assets/images/appbar-background-squares.png'),
+                image: AssetImage(
+                  'assets/images/appbar-background-squares.png',
+                ),
                 fit: BoxFit.cover,
               ),
             ),
@@ -69,54 +71,58 @@ class _AnnouncementsPageState extends State<AnnouncementsPage> {
                     builder: (controller) {
                       print('Helllllo');
                       return StreamBuilder<QuerySnapshot>(
-                          stream: FirebaseFirestore.instance
-                              .collection('announcement')
-                              .where('class-room',
-                                  isEqualTo: userIdclassroom.toString())
-                              .snapshots(),
-                          builder: (context, AsyncSnapshot snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return Center(
-                                child: const Text('Laoding...'),
-                              );
+                        stream:
+                            FirebaseFirestore.instance
+                                .collection('announcement')
+                                .where(
+                                  'class-room',
+                                  isEqualTo: userIdclassroom.toString(),
+                                )
+                                .snapshots(),
+                        builder: (context, AsyncSnapshot snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(child: const Text('Laoding...'));
+                          } else {
+                            if (snapshot.hasError) {
+                              return ErrorMessage();
                             } else {
-                              if (snapshot.hasError) {
-                                return ErrorMessage();
-                              } else {
-                                return ListView.builder(
-                                  itemCount: snapshot.data!.docs.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    print('UserId');
-                                    print(userIdclassroom);
+                              return ListView.builder(
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  print('UserId');
+                                  print(userIdclassroom);
 
-                                    print(snapshot.data!.docs[index]['date']
+                                  print(
+                                    snapshot.data!.docs[index]['date']
                                         .toDate()
-                                        .toString());
-                                    final DateTime docDateTime = DateTime.parse(
-                                        snapshot.data!.docs[index]['date']
-                                            .toDate()
-                                            .toString());
-                                    var annoDate = DateFormat("yyyy/MM/dd")
-                                        .format(docDateTime);
+                                        .toString(),
+                                  );
+                                  final DateTime docDateTime = DateTime.parse(
+                                    snapshot.data!.docs[index]['date']
+                                        .toDate()
+                                        .toString(),
+                                  );
+                                  var annoDate = DateFormat(
+                                    "yyyy/MM/dd",
+                                  ).format(docDateTime);
 
-                                    return AnnouncementsCard(
-                                      title: snapshot.data!.docs[index]
-                                          ['title'],
-                                      content: snapshot.data!.docs[index]
-                                          ['content'],
-                                      date: annoDate,
-                                    );
-                                  },
-                                );
-                              }
+                                  return AnnouncementsCard(
+                                    title: snapshot.data!.docs[index]['title'],
+                                    content:
+                                        snapshot.data!.docs[index]['content'],
+                                    date: annoDate,
+                                  );
+                                },
+                              );
                             }
-                          });
+                          }
+                        },
+                      );
                     },
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

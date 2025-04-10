@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, avoid_print, invalid_use_of_protected_member, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,7 +7,6 @@ import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_families.dart';
 import 'package:school_management_system/routes/app_pages.dart';
 import 'package:school_management_system/teacher/controllers/SubjectController/TeacherSubjectController.dart';
-import 'package:school_management_system/teacher/view/TSubject/TSubjectsInfo.dart';
 import 'package:school_management_system/teacher/widgets/ConnectionStateMessages.dart';
 import 'package:school_management_system/teacher/widgets/Skilton.dart';
 import 'package:shimmer/shimmer.dart';
@@ -13,7 +14,7 @@ import 'package:shimmer/shimmer.dart';
 var _controller = Get.put<TeacherSubjectController>(TeacherSubjectController());
 
 class SubjectsListScreen extends StatelessWidget {
-  const SubjectsListScreen({Key? key}) : super(key: key);
+  const SubjectsListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,21 +66,29 @@ class SubjectsListScreen extends StatelessWidget {
                     return const ErrorMessage();
                   } else {
                     return GridView.builder(
-                        itemCount: _controller.teacherSubjectsList.value.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 24.w,
-                            mainAxisSpacing: 24.w),
-                        itemBuilder: (context, index) {
-                          return TsubjectCard(
-                            subjectName: _controller
-                                .teacherSubjectsList.value[index].subjectName,
-                            subjectId: _controller
-                                .teacherSubjectsList.value[index].subjectId,
-                            grade: data['grade'].toString(),
-                            classId: data['classid'].toString(),
-                          );
-                        });
+                      itemCount: _controller.teacherSubjectsList.value.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 24.w,
+                        mainAxisSpacing: 24.w,
+                      ),
+                      itemBuilder: (context, index) {
+                        return TsubjectCard(
+                          subjectName:
+                              _controller
+                                  .teacherSubjectsList
+                                  .value[index]
+                                  .subjectName,
+                          subjectId:
+                              _controller
+                                  .teacherSubjectsList
+                                  .value[index]
+                                  .subjectId,
+                          grade: data['grade'].toString(),
+                          classId: data['classid'].toString(),
+                        );
+                      },
+                    );
                   }
                 }
               },
@@ -92,7 +101,7 @@ class SubjectsListScreen extends StatelessWidget {
 }
 
 class ShimmerSubjectLoading extends StatelessWidget {
-  const ShimmerSubjectLoading({Key? key}) : super(key: key);
+  const ShimmerSubjectLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -100,31 +109,35 @@ class ShimmerSubjectLoading extends StatelessWidget {
       baseColor: Colors.grey[300]!,
       highlightColor: loadingPrimarycolor,
       child: GridView.builder(
-          itemCount: 10,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, crossAxisSpacing: 24.w, mainAxisSpacing: 24.w),
-          itemBuilder: (context, index) {
-            return Skilton(
-              height: 250.h,
-              width: 200.w,
-              decoration: BoxDecoration(
-                color: white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-            );
-          }),
+        itemCount: 10,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 24.w,
+          mainAxisSpacing: 24.w,
+        ),
+        itemBuilder: (context, index) {
+          return Skilton(
+            height: 250.h,
+            width: 200.w,
+            decoration: BoxDecoration(
+              color: white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+          );
+        },
+      ),
     );
   }
 }
 
 class TsubjectCard extends StatelessWidget {
   const TsubjectCard({
-    Key? key,
+    super.key,
     this.subjectName,
     this.subjectId,
     this.grade,
     this.classId,
-  }) : super(key: key);
+  });
   final subjectName;
   final subjectId;
   final grade;
@@ -157,7 +170,10 @@ class TsubjectCard extends StatelessWidget {
             child: Text(
               '$subjectName',
               style: const TextStyle(
-                  color: white, fontFamily: RedHatDisplay.medium, fontSize: 35),
+                color: white,
+                fontFamily: RedHatDisplay.medium,
+                fontSize: 35,
+              ),
             ),
           ),
         ),

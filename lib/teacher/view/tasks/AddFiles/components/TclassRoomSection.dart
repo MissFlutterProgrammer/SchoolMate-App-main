@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member, use_super_parameters, prefer_typing_uninitialized_variables, file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,14 +7,14 @@ import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_families.dart';
 import 'package:school_management_system/teacher/controllers/TasksControllers/bottomSheetController.dart';
 
-final _controller =
-    Get.put<BottomSheetController>(BottomSheetController(), permanent: true);
+final _controller = Get.put<BottomSheetController>(
+  BottomSheetController(),
+  permanent: true,
+);
 var classSection = _controller.classSection.value;
 
 class ChosingClassSection extends StatelessWidget {
-  const ChosingClassSection({
-    Key? key,
-  }) : super(key: key);
+  const ChosingClassSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,8 @@ class ChosingClassSection extends StatelessWidget {
       width: 428.w,
       child: GetBuilder(
         init: BottomSheetController(),
-        builder: ((controller) => ListView.builder(
+        builder:
+            ((controller) => ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: classSection.length,
               itemBuilder: (BuildContext context, int index) {
@@ -37,11 +40,8 @@ class ChosingClassSection extends StatelessWidget {
 }
 
 class ClassRoomSectionOption extends StatelessWidget {
-  const ClassRoomSectionOption({
-    this.section,
-    Key? key,
-    this.index,
-  }) : super(key: key);
+  const ClassRoomSectionOption({this.section, Key? key, this.index})
+    : super(key: key);
 
   final section;
   final index;
@@ -63,9 +63,7 @@ class ClassRoomSectionOption extends StatelessWidget {
               activeColor: primaryColor,
             ),
           ),
-          SizedBox(
-            height: 5.h,
-          ),
+          SizedBox(height: 5.h),
           SizedBox(
             height: 25.h,
             width: 25.w,
@@ -79,7 +77,7 @@ class ClassRoomSectionOption extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

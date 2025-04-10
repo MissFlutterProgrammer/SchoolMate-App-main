@@ -1,17 +1,16 @@
+// ignore_for_file: file_names, invalid_use_of_protected_member, prefer_typing_uninitialized_variables, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:school_management_system/teacher/controllers/RefrencesControllers/TrefrenceBottomSheetController.dart';
-
 import '../../../../public/utils/constant.dart';
 import '../../../../public/utils/font_families.dart';
 
 var _controller = Get.find<TreferenceBottomsheetController>();
 
 class TrefChosingGradeBar extends StatelessWidget {
-  const TrefChosingGradeBar({
-    Key? key,
-  }) : super(key: key);
+  const TrefChosingGradeBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,8 @@ class TrefChosingGradeBar extends StatelessWidget {
       width: 428.w,
       child: GetBuilder<TreferenceBottomsheetController>(
         init: TreferenceBottomsheetController(),
-        builder: ((controller) => ListView.builder(
+        builder:
+            ((controller) => ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: _controller.gradeList.value.length,
               itemBuilder: (BuildContext context, int index) {
@@ -36,11 +36,7 @@ class TrefChosingGradeBar extends StatelessWidget {
 }
 
 class GradeOption extends StatelessWidget {
-  const GradeOption({
-    this.grade,
-    Key? key,
-    this.index,
-  }) : super(key: key);
+  const GradeOption({this.grade, super.key, this.index});
 
   final grade;
   final index;
@@ -63,9 +59,7 @@ class GradeOption extends StatelessWidget {
               activeColor: primaryColor,
             ),
           ),
-          SizedBox(
-            height: 5.h,
-          ),
+          SizedBox(height: 5.h),
           SizedBox(
             height: 25.h,
             width: 25.w,
@@ -79,7 +73,7 @@ class GradeOption extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,13 +1,12 @@
+// ignore_for_file: non_constant_identifier_names, avoid_print, prefer_interpolation_to_compose_strings
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:typed_data';
-
 import 'package:image_picker/image_picker.dart';
 import 'package:school_management_system/public/config/user_information.dart';
 import 'package:school_management_system/student/resources/student_services/stservices.dart';
-
-import '../../teacher/resources/ProfilesServices/SProfileservices.dart';
 import '../resources/stProfileServices/stProfileServices.dart';
 import '../resources/student_services/storage_methods.dart';
 
@@ -38,9 +37,10 @@ class StprofileController extends GetxController {
   getStudentMark() async {
     var proServices = StdProfileServices();
     studentMarks.value = await proServices.getStudentMarks(
-        UserInformation.grade.toString(),
-        UserInformation.classid.toString(),
-        UserInformation.User_uId.toString());
+      UserInformation.grade.toString(),
+      UserInformation.classid.toString(),
+      UserInformation.User_uId.toString(),
+    );
   }
 
   showDetails() {
@@ -49,22 +49,22 @@ class StprofileController extends GetxController {
   }
 
   pickImage(ImageSource source) async {
-    final ImagePicker _imagePicker = ImagePicker();
+    final ImagePicker imagePicker = ImagePicker();
 
-    XFile? _file = await _imagePicker.pickImage(source: source);
+    XFile? file = await imagePicker.pickImage(source: source);
 
-    if (_file != null) {
-      return await _file.readAsBytes();
+    if (file != null) {
+      return await file.readAsBytes();
     }
   }
 
   void selectImage() async {
     Uint8List im = await pickImage(ImageSource.gallery);
-    UserInformation.urlAvatr =
-        await StorageMethods().uploadImageToStorage('profilePics', im);
-    final data1 = <String, dynamic>{
-      "urlAvatar": UserInformation.urlAvatr,
-    };
+    UserInformation.urlAvatr = await StorageMethods().uploadImageToStorage(
+      'profilePics',
+      im,
+    );
+    final data1 = <String, dynamic>{"urlAvatar": UserInformation.urlAvatr};
     await FirebaseFirestore.instance
         .collection('students')
         .doc(UserInformation.User_uId)
@@ -75,11 +75,9 @@ class StprofileController extends GetxController {
   }
 
   showSnackBar(String content, BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(content),
-      ),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(content)));
   }
 
   getstudentdata(String studentid) async {

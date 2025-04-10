@@ -1,8 +1,8 @@
+// ignore_for_file: file_names, invalid_use_of_protected_member
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/state_manager.dart';
 import 'package:school_management_system/student/resources/RefrencesServices/RefrencesPdfServices.dart';
-
-import '../view/Adjuncts/Component/QuizBrain.dart';
 
 class QuizzController extends GetxController {
   getQuizzes() async {
@@ -20,10 +20,11 @@ class QuizzController extends GetxController {
 
   var scoreKeeper = <Widget>[].obs;
   checkAnswer(bool ans) {
-    if (ans == questions.value[currentIndex.value].ans)
+    if (ans == questions.value[currentIndex.value].ans) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   updateTonewQuestion() {

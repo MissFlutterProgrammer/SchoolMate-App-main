@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
+
 class UserInformation {
   static String User_uId = 'PAst7TbWWXcxEm5kf4SZJEHtoBZ2';
   static String teacherverifycode = '0597';

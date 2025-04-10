@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, unused_local_variable, prefer_interpolation_to_compose_strings, avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:school_management_system/student/models/Subjects/SubjectsModel.dart';
 
@@ -7,11 +9,9 @@ class LessonsServices {
     List lessonList = <lessonModel>[];
     lessonList.clear();
     lessonRefrenceList.clear();
-    await FirebaseFirestore.instance
-        .collection('subject')
-        .doc(id)
-        .get()
-        .then((value) {
+    await FirebaseFirestore.instance.collection('subject').doc(id).get().then((
+      value,
+    ) {
       lessonRefrenceList = value.data()?['lessons'];
     });
 
@@ -22,14 +22,11 @@ class LessonsServices {
           .doc('/lessons/${lessonRefrenceList[i].id}')
           .get()
           .then((value) {
-        isTaken = value.data()?['isTaken'] ?? false;
-        lessonName = value.data()!['name'] ?? '00';
-      });
+            isTaken = value.data()?['isTaken'] ?? false;
+            lessonName = value.data()!['name'] ?? '00';
+          });
 
-      lessonList.add(lessonModel(
-        title: lessonName,
-        checked: isTaken,
-      ));
+      lessonList.add(lessonModel(title: lessonName, checked: isTaken));
     }
 
     return lessonList;
@@ -39,11 +36,9 @@ class LessonsServices {
     int takenLessonNumber = 0;
     List lessonRefrenceList = [];
     lessonRefrenceList.clear();
-    await FirebaseFirestore.instance
-        .collection('subject')
-        .doc(id)
-        .get()
-        .then((value) {
+    await FirebaseFirestore.instance.collection('subject').doc(id).get().then((
+      value,
+    ) {
       lessonRefrenceList = value.data()?['lessons'];
     });
     for (var i = 0; i < lessonRefrenceList.length; i++) {
@@ -53,8 +48,8 @@ class LessonsServices {
           .doc('/lessons/${lessonRefrenceList[i].id}')
           .get()
           .then((value) {
-        if (value.data()?['isTaken'] == true) ++takenLessonNumber;
-      });
+            if (value.data()?['isTaken'] == true) ++takenLessonNumber;
+          });
     }
     print('here is the error' + takenLessonNumber.toString());
     return takenLessonNumber;
@@ -64,11 +59,9 @@ class LessonsServices {
     int numberOflessons = 0;
     List lessonRefrenceList = [];
     lessonRefrenceList.clear();
-    await FirebaseFirestore.instance
-        .collection('subject')
-        .doc(id)
-        .get()
-        .then((value) {
+    await FirebaseFirestore.instance.collection('subject').doc(id).get().then((
+      value,
+    ) {
       lessonRefrenceList = value.data()?['lessons'];
     });
     numberOflessons = lessonRefrenceList.length;

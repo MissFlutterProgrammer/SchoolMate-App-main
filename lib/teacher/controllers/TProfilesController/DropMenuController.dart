@@ -1,5 +1,6 @@
-import 'package:get/state_manager.dart';
+// ignore_for_file: file_names, invalid_use_of_protected_member
 
+import 'package:get/state_manager.dart';
 import '../../model/subject/TMarksModel.dart';
 import '../../resources/ProfilesServices/SProfileservices.dart';
 
@@ -8,7 +9,7 @@ class DropMenuController extends GetxController {
   var selectedValue = ''.obs;
   var dropdownItems = [].obs;
 
-  var subjectsDrop = Map<String, String>().obs;
+  var subjectsDrop = <String, String>{}.obs;
   var subjectNames = [].obs;
   var markType = ['Tests', 'HomeWorks', 'Exam1', 'Exam2'].obs;
   var selectedType = 'Tests'.obs;
@@ -28,12 +29,6 @@ class DropMenuController extends GetxController {
   }
 
   addMark() async {
-    print(subjectsDrop.value[selectedValue.value.toString()]);
-    print(selectedType.value.toLowerCase());
-    print(fmark.value);
-    print(mark.value);
-    print(uid.value);
-    print(grade.value);
     var item = AddingMarkModel(
       subject: subjectsDrop.value[selectedValue.value.toString()].toString(),
       type: selectedType.value.toLowerCase(),

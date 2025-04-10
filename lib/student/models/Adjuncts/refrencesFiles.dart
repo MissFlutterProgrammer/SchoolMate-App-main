@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, non_constant_identifier_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RefrencesFiles {
@@ -10,10 +12,7 @@ class RefrencesFiles {
   RefrencesFiles({this.fileName, this.subject, this.url});
 
   static fromJson(Map<String, dynamic> json) {
-    return RefrencesFiles(
-      fileName: json['name'],
-      subject: json['subject'],
-    );
+    return RefrencesFiles(fileName: json['name'], subject: json['subject']);
   }
 
   factory RefrencesFiles.fromFirestore(
@@ -21,10 +20,7 @@ class RefrencesFiles {
     SnapshotOptions? options,
   ) {
     final data = snapshot.data();
-    return RefrencesFiles(
-      fileName: data?['name'],
-      subject: data?['state'],
-    );
+    return RefrencesFiles(fileName: data?['name'], subject: data?['state']);
   }
 
   Map<String, dynamic> toFirestore() {

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:school_management_system/public/utils/font_style.dart';
-
 import '../../public/utils/constant.dart';
 
 class AnimatedCircularProgressIndacator extends StatelessWidget {
   const AnimatedCircularProgressIndacator({
-    Key? key,
+    super.key,
     required this.percentage,
-  
-  }) : super(key: key);
+  });
 
   final double percentage;
-
 
   @override
   Widget build(BuildContext context) {
@@ -22,26 +19,29 @@ class AnimatedCircularProgressIndacator extends StatelessWidget {
           child: TweenAnimationBuilder(
             tween: Tween<double>(begin: 0, end: percentage),
             duration: Duration(seconds: 1),
-            builder: (context, double value, child) => Stack(
-              fit: StackFit.expand,
-              children: [
-                CircularProgressIndicator(
-                  value: value,
-                  color: primaryColor,
-                  backgroundColor: Colors.white,
+            builder:
+                (context, double value, child) => Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    CircularProgressIndicator(
+                      value: value,
+                      color: primaryColor,
+                      backgroundColor: Colors.white,
+                    ),
+                    Center(
+                      child: Text(
+                        "${(value * 100).toInt()}%",
+                        style: redHatMediumStyle(
+                          fontSize: 12,
+                          color: primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Center(
-                  child: Text(
-                    (value * 100).toInt().toString() + "%",
-                    style: redHatMediumStyle(fontSize: 12,color: primaryColor),
-                  ),
-                )
-              ],
-            ),
           ),
         ),
-        SizedBox(height: 10,),
-      
+        SizedBox(height: 10),
       ],
     );
   }
@@ -49,10 +49,10 @@ class AnimatedCircularProgressIndacator extends StatelessWidget {
 
 class AnimatedLinearProgressIndicator extends StatelessWidget {
   const AnimatedLinearProgressIndicator({
-    Key? key,
+    super.key,
     required this.precentage,
     required this.label,
-  }) : super(key: key);
+  });
 
   final double precentage;
   final String label;
@@ -63,28 +63,30 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
       child: TweenAnimationBuilder(
         tween: Tween<double>(begin: 0, end: precentage),
         duration: Duration(seconds: 1),
-        builder: (context, double value, child) => Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        builder:
+            (context, double value, child) => Column(
               children: [
-                Text(
-                  label,
-                  style: redHatMediumStyle(fontSize: 10,color: primaryColor),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      label,
+                      style: redHatMediumStyle(
+                        fontSize: 10,
+                        color: primaryColor,
+                      ),
+                    ),
+                    Text("${(value * 100).toInt()}%"),
+                  ],
                 ),
-                Text(
-                  (value * 100).toInt().toString() + "%",
-                )
+                SizedBox(height: 10),
+                LinearProgressIndicator(
+                  value: value,
+                  color: primaryColor,
+                  backgroundColor: Colors.white,
+                ),
               ],
             ),
-            SizedBox(height:10),
-            LinearProgressIndicator(
-              value: value,
-              color: primaryColor,
-              backgroundColor: Colors.white,
-            ),
-          ],
-        ),
       ),
     );
   }

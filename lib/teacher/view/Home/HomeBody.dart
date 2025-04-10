@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, invalid_use_of_protected_member, avoid_print
+
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,10 +11,8 @@ import 'package:school_management_system/teacher/controllers/home_controller.dar
 import 'package:school_management_system/teacher/view/TAnnouncements/TAnnouncementsScreen.dart';
 import 'package:school_management_system/teacher/view/TProfile/TProfileScreen.dart';
 
-var _controller = TeacherHomeController();
-
 class HomeBody extends StatelessWidget {
-  HomeBody({Key? key}) : super(key: key);
+  const HomeBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,34 +20,38 @@ class HomeBody extends StatelessWidget {
       child: Scaffold(
         drawer: SideMenue(
           onPress: () {
-            Get.to(
-              () => TProfileScreen(),
-            );
+            Get.to(() => TProfileScreen());
           },
         ),
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60.0),
           child: GetBuilder<TeacherHomeController>(
             init: TeacherHomeController(),
-            builder: (controller) => CostumHomeAppBar(
-                title: controller
-                    .appBarTitles.value[controller.currentIndex.value],
-                style: redHatRegularStyle(fontSize: 20, color: Colors.white),
-                ontap: () {
-                  Get.to(() => TAnnouncementsScreen());
-                }),
+            builder:
+                (controller) => CostumHomeAppBar(
+                  title:
+                      controller.appBarTitles.value[controller
+                          .currentIndex
+                          .value],
+                  style: redHatRegularStyle(fontSize: 20, color: Colors.white),
+                  ontap: () {
+                    Get.to(() => TAnnouncementsScreen());
+                  },
+                ),
           ),
         ),
         body: GetBuilder<TeacherHomeController>(
           init: TeacherHomeController(),
           builder: (controller) {
-            return controller
-                .bottomNavgationBarPages.value[controller.currentIndex.value];
+            return controller.bottomNavgationBarPages.value[controller
+                .currentIndex
+                .value];
           },
         ),
         bottomNavigationBar: GetBuilder(
           init: TeacherHomeController(),
-          builder: ((TeacherHomeController controller) => CustomNavigationBar(
+          builder:
+              ((TeacherHomeController controller) => CustomNavigationBar(
                 iconSize: 23.0,
                 selectedColor: primaryColor,
                 strokeColor: Color(0x300c18fb),
@@ -60,42 +64,52 @@ class HomeBody extends StatelessWidget {
                     icon: const Icon(Icons.home),
                     title: Text(
                       "Home",
-                      style: controller.currentIndex.value == 0
-                          ? sfRegularStyle(fontSize: 10, color: primaryColor)
-                          : sfRegularStyle(fontSize: 10, color: gray),
+                      style:
+                          controller.currentIndex.value == 0
+                              ? sfRegularStyle(
+                                fontSize: 10,
+                                color: primaryColor,
+                              )
+                              : sfRegularStyle(fontSize: 10, color: gray),
                     ),
                   ),
                   CustomNavigationBarItem(
-                    icon: const Icon(
-                      Icons.task,
-                    ),
+                    icon: const Icon(Icons.task),
                     title: Text(
                       "Tasks",
-                      style: controller.currentIndex.value == 1
-                          ? sfRegularStyle(fontSize: 10, color: primaryColor)
-                          : sfRegularStyle(fontSize: 10, color: gray),
+                      style:
+                          controller.currentIndex.value == 1
+                              ? sfRegularStyle(
+                                fontSize: 10,
+                                color: primaryColor,
+                              )
+                              : sfRegularStyle(fontSize: 10, color: gray),
                     ),
                   ),
                   CustomNavigationBarItem(
-                    icon: const Icon(
-                      Icons.attachment,
-                    ),
+                    icon: const Icon(Icons.attachment),
                     title: Text(
                       "Adjuncts",
-                      style: controller.currentIndex.value == 2
-                          ? sfRegularStyle(fontSize: 10, color: primaryColor)
-                          : sfRegularStyle(fontSize: 10, color: gray),
+                      style:
+                          controller.currentIndex.value == 2
+                              ? sfRegularStyle(
+                                fontSize: 10,
+                                color: primaryColor,
+                              )
+                              : sfRegularStyle(fontSize: 10, color: gray),
                     ),
                   ),
                   CustomNavigationBarItem(
-                    icon: const Icon(
-                      Icons.message,
-                    ),
+                    icon: const Icon(Icons.message),
                     title: Text(
                       "Chats",
-                      style: controller.currentIndex.value == 3
-                          ? sfRegularStyle(fontSize: 10, color: primaryColor)
-                          : sfRegularStyle(fontSize: 10, color: gray),
+                      style:
+                          controller.currentIndex.value == 3
+                              ? sfRegularStyle(
+                                fontSize: 10,
+                                color: primaryColor,
+                              )
+                              : sfRegularStyle(fontSize: 10, color: gray),
                     ),
                   ),
                 ],

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import '../../resources/chat/chat_utils.dart';
 
 class MessageField {
@@ -24,20 +22,20 @@ class Message {
   });
 
   static Message fromJson(Map<String, dynamic> json) => Message(
-        idUser: json['idUser'],
-        urlAvatar: json['urlAvatar'],
-        username: json['username'],
-        message: json['message'],
-        createdAt: Utils.toDateTime(json['createdAt']),
-        uiD: json['uid']
-      );
+    idUser: json['idUser'],
+    urlAvatar: json['urlAvatar'],
+    username: json['username'],
+    message: json['message'],
+    createdAt: Utils.toDateTime(json['createdAt']),
+    uiD: json['uid'],
+  );
 
   Map<String, dynamic> toJson() => {
-        'idUser': idUser,
-        'urlAvatar': urlAvatar,
-        'username': username,
-        'message': message,
-        'createdAt': Utils.fromDateTimeToJson(createdAt!),
-        'uid':uiD
-      };
+    'idUser': idUser,
+    'urlAvatar': urlAvatar,
+    'username': username,
+    'message': message,
+    'createdAt': Utils.fromDateTimeToJson(createdAt!),
+    'uid': uiD,
+  };
 }

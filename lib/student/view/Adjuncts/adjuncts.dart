@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:school_management_system/public/utils/constant.dart';
-import 'package:school_management_system/public/utils/font_families.dart';
 import 'package:school_management_system/public/utils/font_style.dart';
-import 'package:school_management_system/student/Widgets/CustomAppBar.dart';
 import 'package:school_management_system/student/models/Adjuncts/refrencesChipsdata.dart';
 import 'package:school_management_system/student/view/Adjuncts/Quizz.dart';
 import 'package:school_management_system/student/view/Adjuncts/Videos.dart';
@@ -13,32 +10,22 @@ import 'package:school_management_system/student/view/Adjuncts/refrences.dart';
 import 'Component/filtter/filtterButton.dart';
 
 class Refrences extends StatefulWidget {
-  const Refrences({Key? key}) : super(key: key);
+  const Refrences({super.key});
 
   @override
   State<Refrences> createState() => _RefrencesState();
 }
 
 class _RefrencesState extends State<Refrences> {
-  @override
   int _index = 0;
-  final adjunctsPage = [
-    RefrencesPdf(),
-    Quizzes(),
-    Videos(),
-  ];
+  final adjunctsPage = [RefrencesPdf(), Quizzes(), Videos()];
 
   final _chips = [
-    ChipsData(
-      label: 'Refrences',
-    ),
-    ChipsData(
-      label: 'Quizzes',
-    ),
-    ChipsData(
-      label: 'Videos',
-    ),
+    ChipsData(label: 'Refrences'),
+    ChipsData(label: 'Quizzes'),
+    ChipsData(label: 'Videos'),
   ];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -55,11 +42,7 @@ class _RefrencesState extends State<Refrences> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                left: 40.w,
-                right: 40.w,
-                top: 24.h,
-              ),
+              padding: EdgeInsets.only(left: 40.w, right: 40.w, top: 24.h),
               child: chosePageBar(),
             ),
             Padding(
@@ -69,15 +52,11 @@ class _RefrencesState extends State<Refrences> {
                 top: 24.h,
                 bottom: 15.h,
               ),
-              child: const Divider(
-                color: Color(0xFFD4D4D4),
-              ),
+              child: const Divider(color: Color(0xFFD4D4D4)),
             ),
             FiltterButton(),
+            SizedBox(height: 24.h),
             SizedBox(
-              height: 24.h,
-            ),
-            Container(
               height: 555.h,
               child: adjunctsPage[_index], //adjunctsPage[_index],
             ),
@@ -98,18 +77,11 @@ class _RefrencesState extends State<Refrences> {
         children: List.generate(
           _chips.length,
           (index) => ChoiceChip(
-            label: Text(
-              '${_chips[index].label.toString()}',
-            ),
-            labelStyle: (_index == index)
-                ? redHatBoldStyle(
-                    fontSize: 12,
-                    color: Colors.white,
-                  )
-                : redHatBoldStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
+            label: Text(_chips[index].label.toString()),
+            labelStyle:
+                (_index == index)
+                    ? redHatBoldStyle(fontSize: 12, color: Colors.white)
+                    : redHatBoldStyle(fontSize: 12, color: Colors.grey),
             selected: _index == index,
             selectedColor: primaryColor,
             backgroundColor: Colors.white10,

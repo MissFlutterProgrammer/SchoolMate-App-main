@@ -1,5 +1,6 @@
+// ignore_for_file: file_names, avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dio/dio.dart';
 import 'package:school_management_system/public/config/user_information.dart';
 import 'package:school_management_system/teacher/view/tasks/AddFiles/components/SelectFile.dart';
 
@@ -14,11 +15,7 @@ class TProfileServices {
       await FirebaseFirestore.instance
           .collection('teacher')
           .doc(UserInformation.User_uId)
-          .update(
-        {
-          'urlAvatar': url,
-        },
-      );
+          .update({'urlAvatar': url});
       return url;
     } catch (e) {
       print('@#@#@#@#@#@#@#@#@#@#');

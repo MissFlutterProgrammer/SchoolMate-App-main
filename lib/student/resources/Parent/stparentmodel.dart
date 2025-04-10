@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 class StudentP {
   var id;
   String firstName;
@@ -22,19 +24,19 @@ class StudentP {
     required this.firstName,
     required this.lastName,
     this.email = '',
-     this.average,
-     this.fatherName,
-     this.motherName,
-     this.parentEmail,
-     this.parentPhone,
-     this.studentGrade,
-     this.studentClass,
+    this.average,
+    this.fatherName,
+    this.motherName,
+    this.parentEmail,
+    this.parentPhone,
+    this.studentGrade,
+    this.studentClass,
     this.additional = '',
     this.studentClassref,
     this.fees,
     this.id,
     this.phone,
-    this.exists=true,
+    this.exists = true,
     this.urlAvatar,
     this.classid,
   });

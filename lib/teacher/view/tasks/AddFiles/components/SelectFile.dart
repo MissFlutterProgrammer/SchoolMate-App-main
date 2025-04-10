@@ -1,12 +1,12 @@
+// ignore_for_file: file_names, avoid_print
+
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:school_management_system/public/utils/constant.dart';
-
 import '../../../../../main.dart';
 
 Future selectfile() async {
@@ -25,7 +25,7 @@ Future uploadfileToFirebase({var file, String? destination}) async {
   if (file == null) return;
 
   print(destination);
-  var task = await FirebaseStorage.instance.ref(destination);
+  var task = FirebaseStorage.instance.ref(destination);
   print('ref  start');
   await task.putFile(file);
   print('file uploaded');
@@ -45,24 +45,29 @@ uploadImageToStorage(String destination, Uint8List file) async {
 }
 
 pickImage(ImageSource source) async {
-  final ImagePicker _imagePicker = ImagePicker();
+  final ImagePicker imagePicker = ImagePicker();
 
-  XFile? _file = await _imagePicker.pickImage(source: source);
+  XFile? file = await imagePicker.pickImage(source: source);
 
-  if (_file != null) {
-    return await _file.readAsBytes();
+  if (file != null) {
+    return await file.readAsBytes();
   }
 }
 
 showNotification(String filename, String path) {
   flutterLocalNotificationsPlugin.show(
-      0,
-      filename,
-      "The file has been downloaded\n$path",
-      NotificationDetails(
-          android: AndroidNotificationDetails(channel.id, channel.name,
-              importance: Importance.high,
-              color: primaryColor,
-              playSound: true,
-              icon: '@mipmap/ic_launcher')));
+    0,
+    filename,
+    "The file has been downloaded\n$path",
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        channel.id,
+        channel.name,
+        importance: Importance.high,
+        color: primaryColor,
+        playSound: true,
+        icon: '@mipmap/ic_launcher',
+      ),
+    ),
+  );
 }

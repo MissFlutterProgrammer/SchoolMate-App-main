@@ -1,10 +1,10 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoadingCircle extends StatelessWidget {
-  const LoadingCircle({
-    Key? key,
-  }) : super(key: key);
+  const LoadingCircle({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,7 @@ class LoadingCircle extends StatelessWidget {
         child: Column(
           children: [
             CircularProgressIndicator(),
-            SizedBox(
-              height: 20.h,
-            ),
+            SizedBox(height: 20.h),
             Text('Loading...'),
           ],
         ),
@@ -27,14 +25,10 @@ class LoadingCircle extends StatelessWidget {
 }
 
 class ErrorMessage extends StatelessWidget {
-  const ErrorMessage({
-    Key? key,
-  }) : super(key: key);
+  const ErrorMessage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Somthing goes wrong please try again'),
-    );
+    return Center(child: Text('Somthing goes wrong please try again'));
   }
 }

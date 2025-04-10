@@ -1,34 +1,26 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:school_management_system/public/utils/constant.dart';
 import 'package:school_management_system/public/utils/font_families.dart';
 import 'package:school_management_system/student/Widgets/animated_progress_indicator.dart';
-import 'package:school_management_system/student/Widgets/custom_progress_indecator.dart';
 import 'package:school_management_system/teacher/controllers/SubjectController/TMarksController.dart';
 import 'package:school_management_system/teacher/view/SProfile/SProfileScreen.dart';
 import 'package:school_management_system/teacher/widgets/ConnectionStateMessages.dart';
 import 'package:school_management_system/teacher/widgets/Skilton.dart';
 import 'package:shimmer/shimmer.dart';
 
-var _controller = Get.put(TMarksController());
 var data = Get.arguments;
 
 class TMarkScreen extends StatelessWidget {
-  const TMarkScreen({
-    Key? key,
-    this.subjectId,
-    this.grade,
-    this.classId,
-  }) : super(key: key);
+  const TMarkScreen({super.key, this.subjectId, this.grade, this.classId});
   final subjectId;
   final grade;
   final classId;
   @override
   Widget build(BuildContext context) {
-    var data = Get.arguments;
-
     print('=======================');
 
     print(subjectId);
@@ -39,121 +31,115 @@ class TMarkScreen extends StatelessWidget {
     print(_controller.grade.value = data[1]);
     print(_controller.classid.value = data[2]);*/
     return Scaffold(
-        backgroundColor: backgroundColor,
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Filtter',
-                    style: TextStyle(
-                      color: primaryColor,
-                      fontFamily: RedHatDisplay.medium,
-                      fontSize: 15,
-                    ),
+      backgroundColor: backgroundColor,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Filtter',
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontFamily: RedHatDisplay.medium,
+                    fontSize: 15,
                   ),
                 ),
-                SizedBox(
-                  height: 500.h,
-                  child: GetBuilder(
-                      init: TMarksController(),
-                      builder: (TMarksController controller) {
-                        controller.subjectId.value = subjectId;
-                        controller.grade.value = grade;
-                        controller.classid.value = classId;
-                        return FutureBuilder(
-                          future: controller.getMarksForstudentsInSubject(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return ListView.separated(
-                                itemCount: controller.studentsMarks.length,
-                                separatorBuilder:
-                                    (BuildContext context, int index) {
-                                  return SizedBox(height: 10.h);
-                                },
-                                itemBuilder: (BuildContext context, int index) {
-                                  return ShimmerMarksLoading();
-                                  ;
-                                },
-                              );
-                            } else {
-                              if (snapshot.hasError) {
-                                return ErrorMessage();
-                              } else {
-                                return ListView.builder(
-                                  itemCount: controller.studentsMarks.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    controller.subjectId.value = subjectId;
-                                    controller.grade.value = grade;
-                                    controller.classid.value = classId;
-                                    return StudentsMarksCard(
-                                      name:
-                                          controller.studentsMarks[index].name,
-                                      mark:
-                                          controller.studentsMarks[index].mark,
-                                      url: controller.studentsMarks[index].url,
-                                      id: controller.studentsMarks[index].stdid,
-                                    );
-                                  },
+              ),
+              SizedBox(
+                height: 500.h,
+                child: GetBuilder(
+                  init: TMarksController(),
+                  builder: (TMarksController controller) {
+                    controller.subjectId.value = subjectId;
+                    controller.grade.value = grade;
+                    controller.classid.value = classId;
+                    return FutureBuilder(
+                      future: controller.getMarksForstudentsInSubject(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return ListView.separated(
+                            itemCount: controller.studentsMarks.length,
+                            separatorBuilder: (
+                              BuildContext context,
+                              int index,
+                            ) {
+                              return SizedBox(height: 10.h);
+                            },
+                            itemBuilder: (BuildContext context, int index) {
+                              return ShimmerMarksLoading();
+                            },
+                          );
+                        } else {
+                          if (snapshot.hasError) {
+                            return ErrorMessage();
+                          } else {
+                            return ListView.builder(
+                              itemCount: controller.studentsMarks.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                controller.subjectId.value = subjectId;
+                                controller.grade.value = grade;
+                                controller.classid.value = classId;
+                                return StudentsMarksCard(
+                                  name: controller.studentsMarks[index].name,
+                                  mark: controller.studentsMarks[index].mark,
+                                  url: controller.studentsMarks[index].url,
+                                  id: controller.studentsMarks[index].stdid,
                                 );
-                              }
-                            }
-                          },
-                        );
-                      }),
+                              },
+                            );
+                          }
+                        }
+                      },
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
 class ShimmerMarksLoading extends StatelessWidget {
-  const ShimmerMarksLoading({Key? key}) : super(key: key);
+  const ShimmerMarksLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-        child: Container(
-          width: 404.5.w,
-          height: 110.h,
-          decoration: BoxDecoration(
-            color: white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Skilton(
-              height: 100.h,
-              width: 100.w,
-              decoration: BoxDecoration(
-                color: Colors.redAccent,
-                shape: BoxShape.circle,
-              ),
+      baseColor: Colors.grey.shade100,
+      highlightColor: loadingPrimarycolor,
+      child: Container(
+        width: 404.5.w,
+        height: 110.h,
+        decoration: BoxDecoration(
+          color: white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: Skilton(
+            height: 100.h,
+            width: 100.w,
+            decoration: BoxDecoration(
+              color: Colors.redAccent,
+              shape: BoxShape.circle,
             ),
           ),
         ),
-        baseColor: Colors.grey.shade100,
-        highlightColor: loadingPrimarycolor);
+      ),
+    );
   }
 }
 
 class StudentsMarksCard extends StatelessWidget {
-  const StudentsMarksCard({
-    Key? key,
-    this.mark,
-    this.name,
-    this.url,
-    this.id,
-  }) : super(key: key);
+  const StudentsMarksCard({super.key, this.mark, this.name, this.url, this.id});
 
   final name;
   final mark;
@@ -204,19 +190,18 @@ class StudentsMarksCard extends StatelessWidget {
                           child: Text(
                             '$name',
                             style: TextStyle(
-                                color: darkGray,
-                                fontSize: 18,
-                                fontFamily: RedHatDisplay.medium),
+                              color: darkGray,
+                              fontSize: 18,
+                              fontFamily: RedHatDisplay.medium,
+                            ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
-                    top: 5.h,
-                  ),
+                  padding: EdgeInsets.only(top: 5.h),
                   child: SizedBox(
                     height: 150.h,
                     width: 50.w,

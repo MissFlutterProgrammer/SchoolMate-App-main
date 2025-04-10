@@ -1,9 +1,5 @@
 import 'package:get/get.dart';
-
 import '../controllers/AnnouncementsController.dart';
-
-
-
 
 class AnnouncementsBinding implements Bindings {
   @override
