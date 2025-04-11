@@ -13,14 +13,14 @@ class DividerParent extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Container(
-            margin: const EdgeInsets.only(left: 18.0, right: 20.0),
+            margin: const EdgeInsets.only(left: 18, right: 20),
             child: const Divider(color: black, height: 36),
           ),
         ),
         Text(_text, style: sfMediumStyle(fontSize: 12, color: black)),
         Expanded(
           child: Container(
-            margin: const EdgeInsets.only(left: 20.0, right: 18.0),
+            margin: const EdgeInsets.only(left: 20, right: 18),
             child: const Divider(color: black, height: 36),
           ),
         ),

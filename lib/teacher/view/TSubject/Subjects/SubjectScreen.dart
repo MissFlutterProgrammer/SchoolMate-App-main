@@ -51,7 +51,7 @@ class SubjectsListScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: SingleChildScrollView(
           child: SizedBox(
             height: 718.h,

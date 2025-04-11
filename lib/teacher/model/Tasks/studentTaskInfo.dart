@@ -9,6 +9,7 @@ class StudentTaskInfoModel {
   var task_id;
   var student_id;
   var class_id;
+
   StudentTaskInfoModel({
     this.name,
     this.photoUrl,

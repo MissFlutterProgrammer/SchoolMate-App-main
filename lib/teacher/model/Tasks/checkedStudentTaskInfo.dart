@@ -10,6 +10,7 @@ class CheckedStudentTaskInfo {
   var student_id;
   var class_id;
   var mark;
+
   CheckedStudentTaskInfo({
     this.name,
     this.photoUrl,

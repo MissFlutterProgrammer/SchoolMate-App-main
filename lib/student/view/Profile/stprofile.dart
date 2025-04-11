@@ -262,7 +262,7 @@ class StudentProfile extends StatelessWidget {
                       return LoadingCircle();
                     } else {
                       return Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8),
                         child: GetBuilder(
                           init: StprofileController(),
                           builder: (controller) {

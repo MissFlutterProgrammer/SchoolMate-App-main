@@ -38,11 +38,11 @@ class HomeScreen extends StatelessWidget {
             height: 255,
             width: 300,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(12),
               color: Colors.white,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(12),
               child: TableCalendar(
                 rowHeight: 52,
                 firstDay: DateTime.utc(2022, 7, 1),
@@ -146,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                             height: 150,
                             width: 150,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
+                              borderRadius: BorderRadius.circular(12),
                               gradient: gradientColor,
                             ),
                             child: SubjectDetails(
@@ -190,7 +190,7 @@ class ShimmerSubjectsLoading extends StatelessWidget {
         width: 150,
         decoration: BoxDecoration(
           color: white,
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
     );

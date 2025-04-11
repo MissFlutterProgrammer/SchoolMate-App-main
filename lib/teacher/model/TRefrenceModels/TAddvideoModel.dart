@@ -7,6 +7,7 @@ class AddVideoModel {
   var subject_id;
   var type;
   var url;
+
   AddVideoModel({
     this.grade,
     this.name,

@@ -381,7 +381,7 @@ class StudenOfTaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     uncontroller.task_id.value = taskId.toString();
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: GestureDetector(
         onTap: () async {
           var data = Get.parameters;
@@ -542,7 +542,7 @@ class StudenOfTaskCard extends StatelessWidget {
                                         EasyLoading.showSuccess('Done');
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        padding: EdgeInsets.all(0.0),
+                                        padding: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(
                                             80,
@@ -555,13 +555,13 @@ class StudenOfTaskCard extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           gradient: gradientColor,
                                           borderRadius: BorderRadius.circular(
-                                            30.0,
+                                            30,
                                           ),
                                         ),
                                         child: Container(
                                           constraints: BoxConstraints(
-                                            maxWidth: 250.0,
-                                            minHeight: 50.0,
+                                            maxWidth: 250,
+                                            minHeight: 50,
                                           ),
                                           alignment: Alignment.center,
                                           child: Align(
@@ -603,9 +603,7 @@ class StudenOfTaskCard extends StatelessWidget {
                                           },
                                           decoration: InputDecoration(
                                             label: Padding(
-                                              padding: const EdgeInsets.all(
-                                                8.0,
-                                              ),
+                                              padding: const EdgeInsets.all(8),
                                               child: Text('Enter mark'),
                                             ),
                                             labelStyle: TextStyle(
@@ -616,13 +614,13 @@ class StudenOfTaskCard extends StatelessWidget {
                                             filled: true,
                                             border: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(12.0),
+                                                  BorderRadius.circular(12),
                                               borderSide: BorderSide(
-                                                width: 0.0,
+                                                width: 0,
                                                 color: backgroundColor,
                                               ),
                                             ),
-                                            contentPadding: EdgeInsets.all(8.0),
+                                            contentPadding: EdgeInsets.all(8),
                                           ),
                                         ),
                                       ],

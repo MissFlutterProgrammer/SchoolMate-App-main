@@ -371,7 +371,7 @@ class BottomSheetButton extends StatelessWidget {
                             },
                             decoration: InputDecoration(
                               label: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8),
                                 child: Text('Enter task name'),
                               ),
                               labelStyle: TextStyle(
@@ -381,13 +381,13 @@ class BottomSheetButton extends StatelessWidget {
                               fillColor: backgroundColor,
                               filled: true,
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12.0),
+                                borderRadius: BorderRadius.circular(12),
                                 borderSide: BorderSide(
                                   width: 0.0,
                                   color: backgroundColor,
                                 ),
                               ),
-                              contentPadding: EdgeInsets.all(8.0),
+                              contentPadding: EdgeInsets.all(8),
                             ),
                           ),
                         ),

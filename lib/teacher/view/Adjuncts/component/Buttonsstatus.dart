@@ -83,7 +83,7 @@ class ButtonsFunctions {
                             },
                             decoration: InputDecoration(
                               label: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8),
                                 child: Text('Enter reference name'),
                               ),
                               labelStyle: TextStyle(
@@ -93,13 +93,13 @@ class ButtonsFunctions {
                               fillColor: backgroundColor,
                               filled: true,
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12.0),
+                                borderRadius: BorderRadius.circular(12),
                                 borderSide: BorderSide(
-                                  width: 0.0,
+                                  width: 0,
                                   color: backgroundColor,
                                 ),
                               ),
-                              contentPadding: EdgeInsets.all(8.0),
+                              contentPadding: EdgeInsets.all(8),
                             ),
                           ),
                         ),
@@ -278,7 +278,7 @@ class ButtonsFunctions {
                           },
                           decoration: InputDecoration(
                             label: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8),
                               child: Text('Enter reference name'),
                             ),
                             labelStyle: TextStyle(
@@ -288,13 +288,13 @@ class ButtonsFunctions {
                             fillColor: backgroundColor,
                             filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12.0),
+                              borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide(
-                                width: 0.0,
+                                width: 0,
                                 color: backgroundColor,
                               ),
                             ),
-                            contentPadding: EdgeInsets.all(8.0),
+                            contentPadding: EdgeInsets.all(8),
                           ),
                         ),
                       ),
@@ -400,7 +400,7 @@ class ButtonsFunctions {
                             },
                             decoration: InputDecoration(
                               label: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8),
                                 child: Text('Enter video name'),
                               ),
                               labelStyle: TextStyle(
@@ -410,13 +410,13 @@ class ButtonsFunctions {
                               fillColor: backgroundColor,
                               filled: true,
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12.0),
+                                borderRadius: BorderRadius.circular(12),
                                 borderSide: BorderSide(
-                                  width: 0.0,
+                                  width: 0,
                                   color: backgroundColor,
                                 ),
                               ),
-                              contentPadding: EdgeInsets.all(8.0),
+                              contentPadding: EdgeInsets.all(8),
                             ),
                           ),
                         ),
@@ -530,7 +530,7 @@ class ButtonsFunctions {
                                     },
                                     decoration: InputDecoration(
                                       label: Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(8),
                                         child: Text('Enter video url'),
                                       ),
                                       labelStyle: TextStyle(
@@ -540,15 +540,13 @@ class ButtonsFunctions {
                                       fillColor: backgroundColor,
                                       filled: true,
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          12.0,
-                                        ),
+                                        borderRadius: BorderRadius.circular(12),
                                         borderSide: BorderSide(
-                                          width: 0.0,
+                                          width: 0,
                                           color: backgroundColor,
                                         ),
                                       ),
-                                      contentPadding: EdgeInsets.all(8.0),
+                                      contentPadding: EdgeInsets.all(8),
                                     ),
                                   ),
                                 ),

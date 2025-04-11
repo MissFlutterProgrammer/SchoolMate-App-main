@@ -16,7 +16,7 @@ class SendEmail extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 1.3,
         height: 52,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(12),
           gradient: gradientColor,
         ),
         child: Row(

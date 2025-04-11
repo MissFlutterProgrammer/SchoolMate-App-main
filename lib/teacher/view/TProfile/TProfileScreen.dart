@@ -147,7 +147,7 @@ class TProfileScreen extends StatelessWidget {
                                   gradient: gradientColor,
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8),
                                   child: Center(
                                     child: Text(
                                       '${_controller.teacherInfo.value.subjects[index].subjectName}',

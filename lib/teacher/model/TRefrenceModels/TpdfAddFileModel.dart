@@ -7,6 +7,7 @@ class TpdfAddFileModel {
   var subject_id;
   var type;
   var file;
+
   TpdfAddFileModel({
     this.grade,
     this.name,

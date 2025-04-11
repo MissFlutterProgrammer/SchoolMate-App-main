@@ -167,7 +167,7 @@ class SideMenue extends StatelessWidget {
                                     hintMaxLines: 1,
                                   ),
                                 ),
-                                SizedBox(height: 10.0),
+                                SizedBox(height: 10),
                                 TextField(
                                   onChanged: (value) {},
                                   controller: contentController,
@@ -178,7 +178,7 @@ class SideMenue extends StatelessWidget {
                                     hintMaxLines: 1,
                                   ),
                                 ),
-                                SizedBox(height: 20.0),
+                                SizedBox(height: 20),
                                 Center(
                                   child: Row(
                                     mainAxisAlignment:
@@ -231,7 +231,7 @@ class SideMenue extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            radius: 10.0,
+                            radius: 10,
                           );
                         },
                         child: Text(

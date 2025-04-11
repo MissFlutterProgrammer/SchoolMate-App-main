@@ -210,7 +210,7 @@ class SProfileScreen extends StatelessWidget {
                           const Divider(indent: 65),
                           const SizedBox(height: 30),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8),
                             child: Container(
                               color: white,
                               height: 370.h,
@@ -298,7 +298,7 @@ class SProfileScreen extends StatelessWidget {
                                             ) {
                                               return Padding(
                                                 padding: const EdgeInsets.all(
-                                                  8.0,
+                                                  8,
                                                 ),
                                                 child: ListView.builder(
                                                   itemCount:
@@ -351,13 +351,13 @@ class SProfileScreen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8),
                             child: SizedBox(
                               height: 100.h,
                               width: 200.w,
                               child: Container(
                                 alignment: Alignment.centerRight,
-                                height: 50.0,
+                                height: 50,
                                 margin: EdgeInsets.all(10),
                                 child: ElevatedButton(
                                   onPressed: () {
@@ -495,7 +495,7 @@ class SProfileScreen extends StatelessWidget {
                                                     label: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
-                                                            8.0,
+                                                            8,
                                                           ),
                                                       child: Text('Enter mark'),
                                                     ),
@@ -508,15 +508,15 @@ class SProfileScreen extends StatelessWidget {
                                                     border: OutlineInputBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                            12.0,
+                                                            12,
                                                           ),
                                                       borderSide: BorderSide(
-                                                        width: 0.0,
+                                                        width: 0,
                                                         color: backgroundColor,
                                                       ),
                                                     ),
                                                     contentPadding:
-                                                        EdgeInsets.all(8.0),
+                                                        EdgeInsets.all(8),
                                                   ),
                                                 ),
                                               ),
@@ -531,7 +531,7 @@ class SProfileScreen extends StatelessWidget {
                                                     label: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
-                                                            8.0,
+                                                            8,
                                                           ),
                                                       child: Text(
                                                         'Enter full mark',
@@ -546,15 +546,15 @@ class SProfileScreen extends StatelessWidget {
                                                     border: OutlineInputBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                            12.0,
+                                                            12,
                                                           ),
                                                       borderSide: BorderSide(
-                                                        width: 0.0,
+                                                        width: 0,
                                                         color: backgroundColor,
                                                       ),
                                                     ),
                                                     contentPadding:
-                                                        EdgeInsets.all(8.0),
+                                                        EdgeInsets.all(8),
                                                   ),
                                                 ),
                                               ),
@@ -565,9 +565,9 @@ class SProfileScreen extends StatelessWidget {
                                     );
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(0.0),
+                                    padding: EdgeInsets.all(0),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(80.0),
+                                      borderRadius: BorderRadius.circular(80),
                                     ),
                                     backgroundColor: Colors.transparent,
                                     shadowColor: Colors.transparent,
@@ -575,12 +575,12 @@ class SProfileScreen extends StatelessWidget {
                                   child: Ink(
                                     decoration: BoxDecoration(
                                       gradient: gradientColor,
-                                      borderRadius: BorderRadius.circular(30.0),
+                                      borderRadius: BorderRadius.circular(30),
                                     ),
                                     child: Container(
                                       constraints: BoxConstraints(
-                                        maxWidth: 250.0,
-                                        minHeight: 50.0,
+                                        maxWidth: 250,
+                                        minHeight: 50,
                                       ),
                                       alignment: Alignment.center,
                                       child: Align(
@@ -733,10 +733,11 @@ class SubjectMarksCard extends StatelessWidget {
   final homework;
   final exam1;
   final exam2;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Row(
         children: [
           SizedBox(

@@ -6,6 +6,7 @@ class TpdfFilesModel {
   var file_id;
   var subject_id;
   var url;
+
   TpdfFilesModel({
     this.file_name,
     this.subject_name,

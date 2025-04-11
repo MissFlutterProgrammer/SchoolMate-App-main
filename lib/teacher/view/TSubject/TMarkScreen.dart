@@ -34,7 +34,7 @@ class TMarkScreen extends StatelessWidget {
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

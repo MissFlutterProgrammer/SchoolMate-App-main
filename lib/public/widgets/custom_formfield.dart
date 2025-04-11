@@ -40,11 +40,11 @@ Widget customFormField({
             : null,
     border: const OutlineInputBorder(),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
+      borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(color: lightGray),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12.0),
+      borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(color: secondaryColor),
     ),
     floatingLabelStyle: const TextStyle(color: secondaryColor),

@@ -9,7 +9,6 @@ import 'package:school_management_system/teacher/view/Adjuncts/TeacherAdjuncts.d
 import 'package:school_management_system/teacher/view/Chat/chats_page.dart';
 import 'package:school_management_system/teacher/view/Home/teacher_home.dart';
 import 'package:school_management_system/teacher/view/tasks/TeacherTasksPage.dart';
-
 import '../resources/TsubjectsServices/TsubjectsServices.dart';
 
 class TeacherHomeController extends GetxController {

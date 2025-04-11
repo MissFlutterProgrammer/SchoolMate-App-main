@@ -19,8 +19,8 @@ class CustomDialog extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black26,
-            blurRadius: 10.0,
-            offset: const Offset(0.0, 10.0),
+            blurRadius: 10,
+            offset: const Offset(0, 10),
           ),
         ],
       ),
@@ -49,7 +49,7 @@ class CustomDialog extends StatelessWidget {
               height: 35,
 
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.0),
+                borderRadius: BorderRadius.circular(12),
                 gradient: gradientColor,
               ),
               child: Center(
@@ -71,7 +71,7 @@ class CustomDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      elevation: 0.0,
+      elevation: 0,
       backgroundColor: Colors.transparent,
       child: dialogContent(context),
     );

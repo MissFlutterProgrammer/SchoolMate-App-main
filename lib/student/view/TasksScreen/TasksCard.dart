@@ -154,7 +154,7 @@ class TasksCard extends StatelessWidget {
                                 return AlertDialog(
                                   title: Text("Upload task solution"),
                                   content: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8),
                                     child: SizedBox(
                                       height: 100.h,
                                       width: 300.w,
