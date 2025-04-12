@@ -15,107 +15,105 @@ class ChatSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(gradient: gradientColor),
-        ),
-        actions: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  right: 12.w,
-                  top: 10.h,
-                  bottom: 26.5.h,
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    showSearch(context: context, delegate: MySearchDelegate());
-                  },
-                  icon: const Icon(Icons.search, size: 27, color: Colors.white),
-                ),
-              ),
-            ],
-          ),
-        ],
+    return Scaffold(appBar: _buildAppBar(), body: _buildBody());
+  }
+
+  PreferredSizeWidget _buildAppBar() {
+    return AppBar(
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(gradient: gradientColor),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 15),
-        child: SafeArea(
-          child: StreamBuilder<List<User>>(
-            stream: FirebaseApi.getUsers(),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.waiting:
-                  return const Center(child: CircularProgressIndicator());
-                default:
-                  if (snapshot.hasError) {
-                    print(snapshot.error);
-                    return buildText('Something Went Wrong Try later');
-                  } else {
-                    final users = snapshot.data!;
-
-                    if (users.isEmpty) {
-                      return buildText('No Users Found');
-                    } else {
-                      return ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          final user = users[index];
-
-                          return SizedBox(
-                            height: 75,
-                            child: ListTile(
-                              onTap: () {
-                                Navigator.of(context).push<void>(
-                                  MaterialPageRoute<void>(
-                                    builder: (context) => ChatPage(user: user),
-                                  ),
-                                );
-                              },
-                              leading: CircleAvatar(
-                                radius: 25,
-                                backgroundImage: NetworkImage(user.urlAvatar!),
-                              ),
-                              title: Text(user.first_name!),
-                            ),
-                          );
-                        },
-                        itemCount: users.length,
-                      );
-                    }
-                  }
-              }
-            },
+      actions: [
+        Padding(
+          padding: EdgeInsets.only(right: 12.w, top: 10.h, bottom: 26.5.h),
+          child: IconButton(
+            onPressed:
+                () => showSearch(
+                  context: Get.context!,
+                  delegate: MySearchDelegate(),
+                ),
+            icon: const Icon(Icons.search, size: 27, color: Colors.white),
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBody() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: SafeArea(
+        child: StreamBuilder<List<User>>(
+          stream: FirebaseApi.getUsers(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (snapshot.hasError) {
+              return _buildErrorText('Something Went Wrong Try later');
+            }
+
+            final users = snapshot.data ?? [];
+            if (users.isEmpty) {
+              return _buildErrorText('No Users Found');
+            }
+
+            return _buildUserList(users);
+          },
         ),
       ),
     );
   }
 
-  Widget buildText(String text) => Center(
-    child: Text(text, style: TextStyle(fontSize: 24, color: Colors.white)),
-  );
+  Widget _buildUserList(List<User> users) {
+    return ListView.builder(
+      physics: const BouncingScrollPhysics(),
+      itemCount: users.length,
+      itemBuilder: (context, index) => _buildUserTile(users[index]),
+    );
+  }
+
+  Widget _buildUserTile(User user) {
+    return SizedBox(
+      height: 75,
+      child: ListTile(
+        onTap: () => _navigateToChat(user),
+        leading: CircleAvatar(
+          radius: 25,
+          backgroundImage: NetworkImage(user.urlAvatar ?? ''),
+        ),
+        title: Text(user.first_name ?? ''),
+      ),
+    );
+  }
+
+  void _navigateToChat(User user) {
+    Navigator.of(Get.context!).push<void>(
+      MaterialPageRoute<void>(builder: (context) => ChatPage(user: user)),
+    );
+  }
+
+  Widget _buildErrorText(String text) {
+    return Center(
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 24, color: Colors.white),
+      ),
+    );
+  }
 }
 
 class MySearchDelegate extends SearchDelegate {
-  var controller = Get.put(custom.SearchController());
-  final teachersNames = ["Yassin", "osama"];
-
-  final recentTeachers = [];
+  final controller = Get.put(custom.SearchController());
+  static const teachersNames = ["Yassin", "osama"];
+  static const recentTeachers = [];
 
   @override
   List<Widget>? buildActions(BuildContext context) => [
     IconButton(
-      onPressed: () {
-        if (query.isEmpty) {
-          close(context, null);
-        } else {
-          query = '';
-        }
-      },
-      icon: Icon(Icons.clear),
+      onPressed: () => query.isEmpty ? close(context, null) : query = '',
+      icon: const Icon(Icons.clear),
     ),
   ];
 
@@ -127,38 +125,36 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    print("nowwwwwwwwww");
-    print(query);
-    OnClickSearch(query);
+    _onClickSearch(query);
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          final user = controller.searchResult[index];
-          print("hhhhhhhhhh");
-          print(user.idUser);
-
-          return SizedBox(
-            height: 75,
-            child: ListTile(
-              onTap: () {
-                Navigator.of(context).push<void>(
-                  MaterialPageRoute<void>(
-                    builder: (context) => ChatPage(user: user),
-                  ),
-                );
-              },
-              leading: CircleAvatar(
-                radius: 25,
-                backgroundImage: NetworkImage(user.urlAvatar),
-              ),
-              title: Text(user.first_name),
-            ),
-          );
-        },
         itemCount: controller.searchResult.length,
+        itemBuilder:
+            (context, index) =>
+                _buildSearchResultTile(controller.searchResult[index]),
       ),
+    );
+  }
+
+  Widget _buildSearchResultTile(User user) {
+    return SizedBox(
+      height: 75,
+      child: ListTile(
+        onTap: () => _navigateToChat(user),
+        leading: CircleAvatar(
+          radius: 25,
+          backgroundImage: NetworkImage(user.urlAvatar ?? ''),
+        ),
+        title: Text(user.first_name ?? ''),
+      ),
+    );
+  }
+
+  void _navigateToChat(User user) {
+    Navigator.of(Get.context!).push<void>(
+      MaterialPageRoute<void>(builder: (context) => ChatPage(user: user)),
     );
   }
 
@@ -170,37 +166,35 @@ class MySearchDelegate extends SearchDelegate {
             : teachersNames.where((p) => p.startsWith(query)).toList();
 
     return ListView.builder(
-      itemBuilder:
-          (context, index) => ListTile(
-            onTap: () {
-              showResults(context);
-            },
-            leading: Icon(Icons.school),
-            title: RichText(
-              text: TextSpan(
-                text: suggestionList[index].substring(0, query.length),
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                children: [
-                  TextSpan(
-                    text: suggestionList[index].substring(query.length),
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-          ),
       itemCount: suggestionList.length,
+      itemBuilder:
+          (context, index) => _buildSuggestionTile(suggestionList[index]),
     );
   }
 
-  void OnClickSearch(String query) async {
+  Widget _buildSuggestionTile(String suggestion) {
+    return ListTile(
+      onTap: () => showResults(Get.context!),
+      leading: const Icon(Icons.school),
+      title: RichText(
+        text: TextSpan(
+          text: suggestion.substring(0, query.length),
+          style: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+          children: [
+            TextSpan(
+              text: suggestion.substring(query.length),
+              style: const TextStyle(color: Colors.grey),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _onClickSearch(String query) async {
     await controller.loadSearchByName(query);
-    if (controller.searchStatus) {
-      print('success');
-      print(controller.searchResult);
-    }
   }
 }

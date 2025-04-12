@@ -14,8 +14,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
-  'high_importance_channel', // id
-  'High Importance Notifications', // title
+  'high_importance_channel',
+  'High Importance Notifications',
   importance: Importance.high,
   playSound: true,
 );
@@ -25,41 +25,57 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print('A bg message just showed up :  ${message.messageId}');
 }
 
 Future<void> main() async {
+  try {
+    await _initializeApp();
+    runApp(Phoenix(child: const MyApp()));
+  } catch (e) {
+    debugPrint('Error initializing app: $e');
+  }
+}
+
+Future<void> _initializeApp() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
+
   if (kIsWeb) {
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: 'AIzaSyBrqsWGI_6CrOkZnG1qTM7CiUcpWUtv2Rw',
-        appId: '1:276187423017:web:c977a55eb9088fbff11738',
-        messagingSenderId: '276187423017',
-        projectId: 'school-management-system-6b1c2',
-        storageBucket: 'school-management-system-6b1c2.appspot.com',
-      ),
-    );
+    await _initializeFirebaseWeb();
   } else {
-    await Firebase.initializeApp();
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin
-        >()
-        ?.createNotificationChannel(channel);
-
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
-    await FlutterDownloader.initialize(debug: true);
+    await _initializeFirebaseMobile();
   }
-  runApp(Phoenix(child: const MyApp()));
+}
+
+Future<void> _initializeFirebaseWeb() async {
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: 'AIzaSyBrqsWGI_6CrOkZnG1qTM7CiUcpWUtv2Rw',
+      appId: '1:276187423017:web:c977a55eb9088fbff11738',
+      messagingSenderId: '276187423017',
+      projectId: 'school-management-system-6b1c2',
+      storageBucket: 'school-management-system-6b1c2.appspot.com',
+    ),
+  );
+}
+
+Future<void> _initializeFirebaseMobile() async {
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin
+      >()
+      ?.createNotificationChannel(channel);
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+
+  await FlutterDownloader.initialize(debug: true);
 }
 
 class MyApp extends StatefulWidget {
@@ -73,61 +89,45 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      RemoteNotification notification = message.notification!;
-      AndroidNotification? android = message.notification?.android;
-      if (android != null) {
-        flutterLocalNotificationsPlugin.show(
-          notification.hashCode,
-          notification.title,
-          notification.body,
-          NotificationDetails(
-            android: AndroidNotificationDetails(
-              channel.id,
-              channel.name,
-              color: Colors.blue,
-              playSound: true,
-              icon: '@mipmap/ic_launcher',
-            ),
-          ),
-        );
-      }
-    });
-
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('A new onMessageOpenedApp event was published!');
-      RemoteNotification? notification = message.notification;
-      AndroidNotification? android = message.notification?.android;
-      if (notification != null && android != null) {
-        showDialog(
-          context: context,
-          builder: (_) {
-            return AlertDialog(
-              title: Text(notification.title!),
-              content: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text(notification.body!)],
-                ),
-              ),
-            );
-          },
-        );
-      }
-    });
+    _setupFirebaseMessaging();
   }
 
-  void showNotification() {
+  void _setupFirebaseMessaging() {
+    FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
+    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessageOpened);
+  }
+
+  void _handleForegroundMessage(RemoteMessage message) {
+    final notification = message.notification;
+    final android = message.notification?.android;
+
+    if (notification != null && android != null) {
+      _showNotification(
+        notification.hashCode,
+        notification.title,
+        notification.body,
+      );
+    }
+  }
+
+  void _handleMessageOpened(RemoteMessage message) {
+    final notification = message.notification;
+    final android = message.notification?.android;
+
+    if (notification != null && android != null) {
+      _showMessageDialog(notification);
+    }
+  }
+
+  void _showNotification(int id, String? title, String? body) {
     flutterLocalNotificationsPlugin.show(
-      0,
-      "Testing ",
-      "How you doin ?",
+      id,
+      title,
+      body,
       NotificationDetails(
         android: AndroidNotificationDetails(
           channel.id,
           channel.name,
-          importance: Importance.high,
           color: Colors.blue,
           playSound: true,
           icon: '@mipmap/ic_launcher',
@@ -136,21 +136,37 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  void _showMessageDialog(RemoteNotification notification) {
+    showDialog(
+      context: context,
+      builder:
+          (_) => AlertDialog(
+            title: Text(notification.title ?? ''),
+            content: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [Text(notification.body ?? '')],
+              ),
+            ),
+          ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(428, 926),
-      builder:
-          () => GetMaterialApp(
-            initialRoute: AppPages.Splashscreen,
-            getPages: AppPages.routes,
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              fontFamily: 'RedHatDisplay-Medium',
-              // backgroundColor: backgroundColor,
-            ),
-            builder: EasyLoading.init(),
-          ),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          initialRoute: AppPages.Splashscreen,
+          getPages: AppPages.routes,
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(fontFamily: 'RedHatDisplay-Medium'),
+          builder: EasyLoading.init(),
+        );
+      },
     );
   }
 }

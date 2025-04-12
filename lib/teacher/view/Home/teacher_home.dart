@@ -229,7 +229,7 @@ class _programCardState extends State<programCard> {
       setState(() {});
     });
 
-    FlutterDownloader.registerCallback(downloadCallback);
+    FlutterDownloader.registerCallback(downloadCallback as DownloadCallback);
   }
 
   @override
