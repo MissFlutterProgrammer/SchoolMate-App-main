@@ -31,10 +31,10 @@ dependencies:
   intl: ^0.20.2
   open_file: ^3.2.1
   path_provider: ^2.0.11
-  permission_handler: ^11.4.0
-  rounded_loading_button: ^2.0.9
+  permission_handler: ^12.0.0+1
+  rounded_loading_button: ^2.1.0
   shimmer: ^3.0.0
-  table_calendar: ^3.0.6
+  table_calendar: ^3.2.0
   url_launcher: ^6.1.4
   youtube_player_flutter: ^9.1.1
 
