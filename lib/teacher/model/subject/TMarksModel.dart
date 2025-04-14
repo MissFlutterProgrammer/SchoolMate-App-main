@@ -45,6 +45,7 @@ class AddingMarkModel {
   var grade;
   var uid;
   var type;
+
   AddingMarkModel({
     this.mark,
     this.fmark,

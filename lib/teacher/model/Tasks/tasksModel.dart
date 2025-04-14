@@ -31,6 +31,7 @@ class UploadTaskModel {
   var classId;
   var teacherId;
   var grade;
+
   UploadTaskModel({
     this.classId,
     this.deadLine,

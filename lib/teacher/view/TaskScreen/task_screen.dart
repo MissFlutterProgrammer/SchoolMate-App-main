@@ -14,7 +14,7 @@ class TaskScreen extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.only(top: 40.0),
+                padding: EdgeInsets.only(top: 40),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: white,

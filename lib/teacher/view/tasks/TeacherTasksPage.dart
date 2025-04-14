@@ -263,15 +263,13 @@ class BottomSheetButton extends StatelessWidget {
                                       return Theme(
                                         data: Theme.of(context).copyWith(
                                           colorScheme: ColorScheme.light(
-                                            primary:
-                                                primaryColor, // <-- SEE HERE
-                                            onPrimary: white, // <-- SEE HERE
-                                            onSurface: black, // <-- SEE HERE
+                                            primary: primaryColor,
+                                            onPrimary: white,
+                                            onSurface: black,
                                           ),
                                           textButtonTheme: TextButtonThemeData(
                                             style: TextButton.styleFrom(
-                                              backgroundColor:
-                                                  primaryColor, // button text color
+                                              backgroundColor: primaryColor,
                                             ),
                                           ),
                                         ),
@@ -383,7 +381,7 @@ class BottomSheetButton extends StatelessWidget {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                                 borderSide: BorderSide(
-                                  width: 0.0,
+                                  width: 0,
                                   color: backgroundColor,
                                 ),
                               ),

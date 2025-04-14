@@ -7,6 +7,7 @@ class TProfileInfoModel {
   var email;
   var about;
   var photoUrl;
+
   TProfileInfoModel({
     this.about,
     this.email,

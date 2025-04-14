@@ -44,7 +44,7 @@ class HomeStudent extends StatelessWidget {
         ),
         bottomNavigationBar: Obx(
           () => CustomNavigationBar(
-            iconSize: 23.0,
+            iconSize: 23,
             selectedColor: primaryColor,
             strokeColor: Color(0x300c18fb),
             unSelectedColor: Colors.grey[600],

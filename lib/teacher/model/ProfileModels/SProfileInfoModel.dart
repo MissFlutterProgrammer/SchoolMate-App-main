@@ -11,6 +11,7 @@ class SProfileInfoModel {
   var classroom;
   var classId;
   var uid;
+
   SProfileInfoModel({
     this.avrg,
     this.fname,

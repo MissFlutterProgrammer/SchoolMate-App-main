@@ -258,7 +258,7 @@ class _programCardState extends State<programCard> {
         height: 60,
         width: 320,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(17.0),
+          borderRadius: BorderRadius.circular(17),
           color: Colors.white,
         ),
         child: Row(

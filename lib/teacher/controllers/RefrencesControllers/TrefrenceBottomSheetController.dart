@@ -61,7 +61,6 @@ class TreferenceBottomsheetController extends GetxController {
     update();
   }
 
-  ////////////////Video/////////
   var video_name = ''.obs;
   var video_url = ''.obs;
 

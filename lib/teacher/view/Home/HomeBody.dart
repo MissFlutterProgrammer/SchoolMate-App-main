@@ -52,7 +52,7 @@ class HomeBody extends StatelessWidget {
           init: TeacherHomeController(),
           builder:
               ((TeacherHomeController controller) => CustomNavigationBar(
-                iconSize: 23.0,
+                iconSize: 23,
                 selectedColor: primaryColor,
                 strokeColor: Color(0x300c18fb),
                 unSelectedColor: Colors.grey[600],

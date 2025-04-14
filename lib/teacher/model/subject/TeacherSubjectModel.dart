@@ -5,6 +5,7 @@ class TeacherSubjectModel {
   final subjectId;
   final lessons;
   final grade;
+
   TeacherSubjectModel({
     this.subjectId,
     this.subjectName,
