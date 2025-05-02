@@ -6,6 +6,7 @@ class SubjectModel {
   final teacherName;
   final lessonsNumber;
   final takenLessons;
+
   SubjectModel({
     this.id,
     this.name,

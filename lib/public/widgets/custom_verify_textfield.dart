@@ -11,7 +11,7 @@ Widget textFieldOTP({
   height: 85.h,
   width: 55.w,
   child: AspectRatio(
-    aspectRatio: 1.0,
+    aspectRatio: 1,
     child: TextField(
       controller: controller,
       autofocus: true,

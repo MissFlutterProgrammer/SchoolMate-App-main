@@ -6,6 +6,7 @@ class QuizzModel {
   var question;
   var def;
   var name;
+
   QuizzModel({
     this.def,
     this.question,
