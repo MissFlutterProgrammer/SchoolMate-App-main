@@ -9,7 +9,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   custom_navigation_bar: ^0.8.2
   dio: ^5.8.0+1
-  file_picker: ^10.1.2
+  file_picker: ^10.1.7
   firebase_auth: ^5.5.3
   firebase_messaging: ^15.2.5
   firebase_storage: ^12.4.5
