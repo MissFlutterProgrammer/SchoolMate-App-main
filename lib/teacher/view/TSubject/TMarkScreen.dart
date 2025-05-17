@@ -139,7 +139,13 @@ class ShimmerMarksLoading extends StatelessWidget {
 }
 
 class StudentsMarksCard extends StatelessWidget {
-  const StudentsMarksCard({super.key, this.mark, this.name, this.url, this.id});
+  const StudentsMarksCard({
+    super.key,
+    this.mark,
+    this.name,
+    this.url,
+    this.id,
+  });
 
   final name;
   final mark;

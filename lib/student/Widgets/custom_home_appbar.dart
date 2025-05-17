@@ -27,13 +27,21 @@ class CustomHomeAppbar extends StatelessWidget {
               const SizedBox(width: 24),
               Text(
                 "Home",
-                style: redHatRegularStyle(fontSize: 20, color: Colors.white),
+                style: redHatRegularStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(width: 160),
-              const Icon(Icons.notifications, color: Colors.white),
+              const Icon(
+                Icons.notifications,
+                color: Colors.white,
+              ),
               const SizedBox(width: 20),
-
-              const Icon(Icons.people, color: Colors.white),
+              const Icon(
+                Icons.people,
+                color: Colors.white,
+              ),
             ],
           ),
         ),

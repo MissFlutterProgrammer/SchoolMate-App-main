@@ -20,9 +20,8 @@ class taskStorage {
       var imageName = basename(fileicked.path);
       print(imageName);
       //load
-      var refStorage = _storage
-          .ref("task/$imageName")
-          .child(_auth.currentUser!.uid);
+      var refStorage =
+          _storage.ref("task/$imageName").child(_auth.currentUser!.uid);
       await refStorage.putFile(file);
       String Url = await refStorage.getDownloadURL();
       print("Url=============: $Url");

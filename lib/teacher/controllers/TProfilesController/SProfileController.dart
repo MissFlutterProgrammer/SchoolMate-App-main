@@ -8,9 +8,8 @@ import 'package:school_management_system/teacher/view/SProfile/SProfileScreen.da
 
 class SProfileController extends GetxController {
   var services = SprofileServices();
-  var studentInfo =
-      SProfileInfoModel(
-        /* fname: 'Jojo',
+  var studentInfo = SProfileInfoModel(
+          /* fname: 'Jojo',
     lname: 'Jostar',
     phone: '0954850462',
     paretnPhone: '0900000000',
@@ -18,7 +17,8 @@ class SProfileController extends GetxController {
     classroom: 'A',
     url: '5dscksn',
     avrg: 80.0,*/
-      ).obs;
+          )
+      .obs;
   var stId = ''.obs;
   var studentMarks = [].obs;
   getStudentsInfoForTeacher() async {

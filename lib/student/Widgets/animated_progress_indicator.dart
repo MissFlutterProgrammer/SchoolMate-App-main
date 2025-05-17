@@ -19,26 +19,25 @@ class AnimatedCircularProgressIndacator extends StatelessWidget {
           child: TweenAnimationBuilder(
             tween: Tween<double>(begin: 0, end: percentage),
             duration: Duration(seconds: 1),
-            builder:
-                (context, double value, child) => Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    CircularProgressIndicator(
-                      value: value,
-                      color: primaryColor,
-                      backgroundColor: Colors.white,
-                    ),
-                    Center(
-                      child: Text(
-                        "${(value * 100).toInt()}%",
-                        style: redHatMediumStyle(
-                          fontSize: 12,
-                          color: primaryColor,
-                        ),
-                      ),
-                    ),
-                  ],
+            builder: (context, double value, child) => Stack(
+              fit: StackFit.expand,
+              children: [
+                CircularProgressIndicator(
+                  value: value,
+                  color: primaryColor,
+                  backgroundColor: Colors.white,
                 ),
+                Center(
+                  child: Text(
+                    "${(value * 100).toInt()}%",
+                    style: redHatMediumStyle(
+                      fontSize: 12,
+                      color: primaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         SizedBox(height: 10),
@@ -63,30 +62,29 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
       child: TweenAnimationBuilder(
         tween: Tween<double>(begin: 0, end: precentage),
         duration: Duration(seconds: 1),
-        builder:
-            (context, double value, child) => Column(
+        builder: (context, double value, child) => Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      label,
-                      style: redHatMediumStyle(
-                        fontSize: 10,
-                        color: primaryColor,
-                      ),
-                    ),
-                    Text("${(value * 100).toInt()}%"),
-                  ],
+                Text(
+                  label,
+                  style: redHatMediumStyle(
+                    fontSize: 10,
+                    color: primaryColor,
+                  ),
                 ),
-                SizedBox(height: 10),
-                LinearProgressIndicator(
-                  value: value,
-                  color: primaryColor,
-                  backgroundColor: Colors.white,
-                ),
+                Text("${(value * 100).toInt()}%"),
               ],
             ),
+            SizedBox(height: 10),
+            LinearProgressIndicator(
+              value: value,
+              color: primaryColor,
+              backgroundColor: Colors.white,
+            ),
+          ],
+        ),
       ),
     );
   }

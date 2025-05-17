@@ -5,12 +5,11 @@ import '../../resources/TAdjunctsServices/TAdjunctsServices.dart';
 
 class TRefrencesPdfController extends GetxController {
   var refServicses = TAdjunctsServices();
-  var pdfList =
-      [
-        /* RefrencesFiles(fileName: 'Hell', subject: 'programming'),
+  var pdfList = [
+    /* RefrencesFiles(fileName: 'Hell', subject: 'programming'),
     RefrencesFiles(fileName: 'Nothings', subject: 'Math'),
     RefrencesFiles(fileName: 'bruh', subject: 'Art'),*/
-      ].obs;
+  ].obs;
 
   getPdfFiles() async {
     pdfList.value = await refServicses.getPdfFiles();

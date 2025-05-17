@@ -18,40 +18,39 @@ class AnnouncementsCard extends StatelessWidget {
       onTap: (() {
         showDialog(
           context: context,
-          builder:
-              (BuildContext) => AlertDialog(
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Ok',
-                      style: TextStyle(
-                        color: primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-                scrollable: true,
-                title: Text(
-                  '$title',
+          builder: (BuildContext) => AlertDialog(
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Ok',
                   style: TextStyle(
-                    color: darkGray,
-                    fontFamily: RedHatDisplay.bold,
-                    fontSize: 24,
-                  ),
-                ),
-                content: Text(
-                  '$content',
-                  style: TextStyle(
-                    color: gray,
-                    fontFamily: RedHatDisplay.medium,
-                    fontSize: 16,
+                    color: primaryColor,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
+            ],
+            scrollable: true,
+            title: Text(
+              '$title',
+              style: TextStyle(
+                color: darkGray,
+                fontFamily: RedHatDisplay.bold,
+                fontSize: 24,
+              ),
+            ),
+            content: Text(
+              '$content',
+              style: TextStyle(
+                color: gray,
+                fontFamily: RedHatDisplay.medium,
+                fontSize: 16,
+              ),
+            ),
+          ),
         );
       }),
       child: Padding(

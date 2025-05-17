@@ -164,17 +164,15 @@ class TasksCard extends StatelessWidget {
                                         children: [
                                           GetBuilder(
                                             init: TasksController(),
-                                            builder:
-                                                (_) => SizedBox(
-                                                  width: 150.w,
-                                                  child: Text(
-                                                    _controller.file_name.value
-                                                        .toString(),
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ),
+                                            builder: (_) => SizedBox(
+                                              width: 150.w,
+                                              child: Text(
+                                                _controller.file_name.value
+                                                    .toString(),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
                                           ),
                                           MaterialButton(
                                             padding: EdgeInsets.all(0),

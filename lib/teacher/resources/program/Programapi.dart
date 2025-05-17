@@ -13,17 +13,17 @@ class ProgramApiT {
         .where('teacher', isEqualTo: UserInformation.User_uId)
         .get()
         .then((value) async {
-          for (var i = 0; i < value.docs.length; i++) {
-            allPrograms.add(
-              Program(
-                id: value.docs[i]['id'],
-                type: value.docs[i]['type'],
-                url: value.docs[i]['url'],
-                date: value.docs[i]['date'],
-              ),
-            );
-          }
-        });
+      for (var i = 0; i < value.docs.length; i++) {
+        allPrograms.add(
+          Program(
+            id: value.docs[i]['id'],
+            type: value.docs[i]['type'],
+            url: value.docs[i]['url'],
+            date: value.docs[i]['date'],
+          ),
+        );
+      }
+    });
     return allPrograms;
   }
 }

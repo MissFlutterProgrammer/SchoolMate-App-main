@@ -38,14 +38,13 @@ class RefrencesController extends GetxController {
   }
 
   //filtter
-  var GradeNumber =
-      [
-        /*GradeCircle(grade: 1),
+  var GradeNumber = [
+    /*GradeCircle(grade: 1),
     GradeCircle(grade: 2),
     GradeCircle(grade: 3),
     GradeCircle(grade: 4),
     GradeCircle(grade: 5),*/
-      ].obs;
+  ].obs;
   //Grade  Filtter
   var currentGrade = 0.obs;
   updateGreadeIndex(int index) {
@@ -54,13 +53,12 @@ class RefrencesController extends GetxController {
   }
 
   //Subject Filtter
-  var subjectsName =
-      [
-        /* SubjectFiltter(subjectName: 'Art'),
+  var subjectsName = [
+    /* SubjectFiltter(subjectName: 'Art'),
     SubjectFiltter(subjectName: 'Math'),
     SubjectFiltter(subjectName: 'Music'),
     SubjectFiltter(subjectName: 'programming'),*/
-      ].obs;
+  ].obs;
 
   var currentSubjectIndex = 0.obs;
   var currentSubject = ''.obs;
@@ -70,12 +68,11 @@ class RefrencesController extends GetxController {
   }
 
   //Diffcult Filtter
-  var difficulty =
-      [
-        DifficultyFiltter(difficulty: 'Easy'),
-        DifficultyFiltter(difficulty: 'Medium'),
-        DifficultyFiltter(difficulty: 'Hard'),
-      ].obs;
+  var difficulty = [
+    DifficultyFiltter(difficulty: 'Easy'),
+    DifficultyFiltter(difficulty: 'Medium'),
+    DifficultyFiltter(difficulty: 'Hard'),
+  ].obs;
 
   var currenDifficulty = 0.obs;
   updateDifficultyIndex(int index) {

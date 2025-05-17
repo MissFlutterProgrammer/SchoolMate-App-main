@@ -29,6 +29,8 @@ class ErrorMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Somthing goes wrong please try again'));
+    return Center(
+      child: Text('Somthing goes wrong please try again'),
+    );
   }
 }

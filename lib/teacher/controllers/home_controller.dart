@@ -13,12 +13,11 @@ import '../resources/TsubjectsServices/TsubjectsServices.dart';
 
 class TeacherHomeController extends GetxController {
   var classesServices = TClassesServices();
-  var classesList =
-      [
-        /*ClassRoomModel(section: 'A', grade: '8', numberOfstudents: 35),
+  var classesList = [
+    /*ClassRoomModel(section: 'A', grade: '8', numberOfstudents: 35),
     ClassRoomModel(section: 'B', grade: '4', numberOfstudents: 20),
     ClassRoomModel(section: 'Q', grade: '2', numberOfstudents: 18),*/
-      ].obs;
+  ].obs;
 
   getTeacherClasses() async {
     classesList.value = await classesServices.getTeacherClasses();

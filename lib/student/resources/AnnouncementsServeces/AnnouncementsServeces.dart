@@ -12,12 +12,12 @@ class AnnouncementsServeces {
         .doc(userId)
         .get()
         .then((value) {
-          if (value.data() != null) {
-            userclassroomId = value.data()!["class"].id;
-          }
-          print('Serverss');
-          print(userclassroomId);
-        });
+      if (value.data() != null) {
+        userclassroomId = value.data()!["class"].id;
+      }
+      print('Serverss');
+      print(userclassroomId);
+    });
     print(userclassroomId.toString());
     return userclassroomId;
   }

@@ -75,7 +75,10 @@ class _OtpParentState extends State<OtpParent> {
                 SizedBox(height: 24.h),
                 const Text(
                   'Verification',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 SizedBox(height: 10.h),
                 const Text(
@@ -173,10 +176,10 @@ class _OtpParentState extends State<OtpParent> {
                             ),
                             shape:
                                 WidgetStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(24),
-                                  ),
-                                ),
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
                           ),
                           child: const Padding(
                             padding: EdgeInsets.all(14),

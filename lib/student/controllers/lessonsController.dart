@@ -6,13 +6,12 @@ import 'package:school_management_system/student/resources/subject/lessonsServic
 
 class lessonsController extends GetxController {
   var lessonsServices = LessonsServices();
-  RxList lessonslist =
-      <lessonModel>[
-        lessonModel(title: 'equation', checked: false),
-        /*lessonModel(title: 'Squres and tringles', checked: false),
+  RxList lessonslist = <lessonModel>[
+    lessonModel(title: 'equation', checked: false),
+    /*lessonModel(title: 'Squres and tringles', checked: false),
     lessonModel(title: 'Power of varibles ', checked: false),
     lessonModel(title: 'Examples', checked: false),*/
-      ].obs;
+  ].obs;
 
   var subjectId = ''.obs;
   var numberOftakenLessons = 0.obs;

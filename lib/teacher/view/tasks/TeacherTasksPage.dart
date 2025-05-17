@@ -60,7 +60,9 @@ class TeacherTasksPage extends StatelessWidget {
                           ) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return Center(child: SimmerTaskLoading());
+                              return Center(
+                                child: SimmerTaskLoading(),
+                              );
                             } else {
                               if (snapshot.hasError) {
                                 return Center(child: ErrorMessage());
@@ -71,10 +73,10 @@ class TeacherTasksPage extends StatelessWidget {
                                       taskcontroller.tasksList.value.length,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 24.w,
-                                        mainAxisSpacing: 24.w,
-                                      ),
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 24.w,
+                                    mainAxisSpacing: 24.w,
+                                  ),
                                   itemBuilder: (BuildContext, index) {
                                     var item =
                                         taskcontroller.tasksList.value[index];
@@ -433,11 +435,9 @@ class BottomSheetButton extends StatelessWidget {
                               bottomController.teachersubject.length,
                               (index) {
                                 return DropdownMenuItem<String>(
-                                  value:
-                                      bottomController
-                                          .teachersubject
-                                          .value[index]
-                                          .toString(),
+                                  value: bottomController
+                                      .teachersubject.value[index]
+                                      .toString(),
                                   child: Text(
                                     '${bottomController.teachersubject.value[index]}',
                                   ),
@@ -510,7 +510,11 @@ class AddFileButton extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 5.w),
-                  Icon(Icons.add, size: 16, color: primaryColor),
+                  Icon(
+                    Icons.add,
+                    size: 16,
+                    color: primaryColor,
+                  ),
                 ],
               ),
             ),

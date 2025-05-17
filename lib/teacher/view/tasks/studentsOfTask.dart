@@ -47,7 +47,9 @@ class StudentsOfTask extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: gradientColor,
             image: DecorationImage(
-              image: AssetImage('assets/images/appbar-background-squares.png'),
+              image: AssetImage(
+                'assets/images/appbar-background-squares.png',
+              ),
               fit: BoxFit.cover,
             ),
           ),
@@ -98,25 +100,14 @@ class StudentsOfTask extends StatelessWidget {
                                 uncontroller.studentsTaskList.value[index].name,
                             uploadDate: DateFormat("yyyy/MM/dd").format(
                               uncontroller
-                                  .studentsTaskList
-                                  .value[index]
-                                  .uploadeDate,
+                                  .studentsTaskList.value[index].uploadeDate,
                             ),
-                            taskId:
-                                uncontroller
-                                    .studentsTaskList
-                                    .value[index]
-                                    .task_id,
-                            taskUrl:
-                                uncontroller
-                                    .studentsTaskList
-                                    .value[index]
-                                    .taskUrl,
-                            photoUrl:
-                                uncontroller
-                                    .studentsTaskList
-                                    .value[index]
-                                    .photoUrl,
+                            taskId: uncontroller
+                                .studentsTaskList.value[index].task_id,
+                            taskUrl: uncontroller
+                                .studentsTaskList.value[index].taskUrl,
+                            photoUrl: uncontroller
+                                .studentsTaskList.value[index].photoUrl,
                             index: index,
                             task_result_id:
                                 uncontroller.studentsTaskList.value[index].id,
@@ -136,7 +127,10 @@ class StudentsOfTask extends StatelessWidget {
               top: 10.h,
               bottom: 10.h,
             ),
-            child: Divider(color: gray, thickness: 2),
+            child: Divider(
+              color: gray,
+              thickness: 2,
+            ),
           ),
           SizedBox(
             height: 340.h,
@@ -168,11 +162,8 @@ class StudentsOfTask extends StatelessWidget {
                                 chcontroller.studentList.value[index].task_id,
                             class_id:
                                 chcontroller.studentList.value[index].class_id,
-                            student_id:
-                                chcontroller
-                                    .studentList
-                                    .value[index]
-                                    .student_id,
+                            student_id: chcontroller
+                                .studentList.value[index].student_id,
                           );
                         },
                       );
@@ -454,11 +445,11 @@ class StudenOfTaskCard extends StatelessWidget {
                                                   color: primaryColor,
                                                   borderRadius:
                                                       BorderRadius.only(
-                                                        topLeft:
-                                                            Radius.circular(10),
-                                                        topRight:
-                                                            Radius.circular(10),
-                                                      ),
+                                                    topLeft:
+                                                        Radius.circular(10),
+                                                    topRight:
+                                                        Radius.circular(10),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -554,9 +545,8 @@ class StudenOfTaskCard extends StatelessWidget {
                                       child: Ink(
                                         decoration: BoxDecoration(
                                           gradient: gradientColor,
-                                          borderRadius: BorderRadius.circular(
-                                            30,
-                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                         ),
                                         child: Container(
                                           constraints: BoxConstraints(
@@ -578,7 +568,10 @@ class StudenOfTaskCard extends StatelessWidget {
                                                     fontSize: 15,
                                                   ),
                                                 ),
-                                                Icon(Icons.add, color: white),
+                                                Icon(
+                                                  Icons.add,
+                                                  color: white,
+                                                ),
                                               ],
                                             ),
                                           ),

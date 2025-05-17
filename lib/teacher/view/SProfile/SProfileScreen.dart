@@ -71,7 +71,9 @@ class SProfileScreen extends StatelessWidget {
                                   width: 35,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    border: Border.all(color: Colors.white),
+                                    border: Border.all(
+                                      color: Colors.white,
+                                    ),
                                     gradient: gradientColor,
                                   ),
                                   child: IconButton(
@@ -118,7 +120,11 @@ class SProfileScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Row(
                                   children: <Widget>[
-                                    Icon(Icons.school, color: gray, size: 27),
+                                    Icon(
+                                      Icons.school,
+                                      color: gray,
+                                      size: 27,
+                                    ),
                                     const SizedBox(width: 20),
                                     Column(
                                       crossAxisAlignment:
@@ -155,7 +161,11 @@ class SProfileScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Row(
                                   children: <Widget>[
-                                    Icon(Icons.class_, color: gray, size: 27),
+                                    Icon(
+                                      Icons.class_,
+                                      color: gray,
+                                      size: 27,
+                                    ),
                                     const SizedBox(width: 20),
                                     Column(
                                       crossAxisAlignment:
@@ -173,9 +183,7 @@ class SProfileScreen extends StatelessWidget {
                                           width: 100.w,
                                           child: Text(
                                             _controller
-                                                .studentInfo
-                                                .value
-                                                .classroom
+                                                .studentInfo.value.classroom
                                                 .toString(),
                                             maxLines: 10,
                                             overflow: TextOverflow.ellipsis,
@@ -202,9 +210,8 @@ class SProfileScreen extends StatelessWidget {
                           const Divider(indent: 65),
                           GlobalInfo(
                             fullname: "Parent",
-                            name:
-                                _controller.studentInfo.value.paretnPhone
-                                    .toString(),
+                            name: _controller.studentInfo.value.paretnPhone
+                                .toString(),
                             icon: Icons.people,
                           ),
                           const Divider(indent: 65),
@@ -289,9 +296,8 @@ class SProfileScreen extends StatelessWidget {
                                         init: DropMenuController(),
                                         builder: (controller) {
                                           return FutureBuilder(
-                                            future:
-                                                _controller
-                                                    .getStudentsInfoForTeacher(),
+                                            future: _controller
+                                                .getStudentsInfoForTeacher(),
                                             builder: (
                                               BuildContext context,
                                               AsyncSnapshot snapshot,
@@ -301,40 +307,33 @@ class SProfileScreen extends StatelessWidget {
                                                   8,
                                                 ),
                                                 child: ListView.builder(
-                                                  itemCount:
-                                                      _controller
-                                                          .studentMarks
-                                                          .length,
+                                                  itemCount: _controller
+                                                      .studentMarks.length,
                                                   itemBuilder: (
                                                     BuildContext context,
                                                     int index,
                                                   ) {
                                                     return SubjectMarksCard(
-                                                      subjectname:
-                                                          _controller
-                                                              .studentMarks
-                                                              .value[index]
-                                                              .subjectname,
-                                                      test:
-                                                          _controller
-                                                              .studentMarks
-                                                              .value[index]
-                                                              .test,
-                                                      homework:
-                                                          _controller
-                                                              .studentMarks
-                                                              .value[index]
-                                                              .homework,
-                                                      exam1:
-                                                          _controller
-                                                              .studentMarks
-                                                              .value[index]
-                                                              .exam1,
-                                                      exam2:
-                                                          _controller
-                                                              .studentMarks
-                                                              .value[index]
-                                                              .exam2,
+                                                      subjectname: _controller
+                                                          .studentMarks
+                                                          .value[index]
+                                                          .subjectname,
+                                                      test: _controller
+                                                          .studentMarks
+                                                          .value[index]
+                                                          .test,
+                                                      homework: _controller
+                                                          .studentMarks
+                                                          .value[index]
+                                                          .homework,
+                                                      exam1: _controller
+                                                          .studentMarks
+                                                          .value[index]
+                                                          .exam1,
+                                                      exam2: _controller
+                                                          .studentMarks
+                                                          .value[index]
+                                                          .exam2,
                                                     );
                                                   },
                                                 ),
@@ -365,9 +364,9 @@ class SProfileScreen extends StatelessWidget {
                                       textConfirm: 'Add',
                                       onConfirm: () {
                                         print('confirm');
-                                        dropController.grade.value =
-                                            _controller.studentInfo.value.grade
-                                                .toString();
+                                        dropController.grade.value = _controller
+                                            .studentInfo.value.grade
+                                            .toString();
                                         dropController.uid.value =
                                             _controller.studentInfo.value.uid;
                                         dropController.addMark();
@@ -400,17 +399,14 @@ class SProfileScreen extends StatelessWidget {
                                               ),
                                             ),
                                             dropdownColor: backgroundColor,
-                                            value:
-                                                dropController
-                                                    .selectedValue
-                                                    .value,
+                                            value: dropController
+                                                .selectedValue.value,
                                             onChanged: (newValue) {
                                               dropController.updateUI(newValue);
                                             },
                                             items: List.generate(
                                               dropController
-                                                  .subjectNames
-                                                  .length,
+                                                  .subjectNames.length,
                                               (index) {
                                                 print(
                                                   'this is drop item ' +
@@ -420,11 +416,9 @@ class SProfileScreen extends StatelessWidget {
                                                           .toString(),
                                                 );
                                                 return DropdownMenuItem<String>(
-                                                  value:
-                                                      dropController
-                                                          .subjectNames
-                                                          .value[index]
-                                                          .toString(),
+                                                  value: dropController
+                                                      .subjectNames.value[index]
+                                                      .toString(),
                                                   child: Text(
                                                     '${dropController.subjectNames.value[index]}',
                                                   ),
@@ -453,10 +447,8 @@ class SProfileScreen extends StatelessWidget {
                                               ),
                                             ),
                                             dropdownColor: backgroundColor,
-                                            value:
-                                                dropController
-                                                    .selectedType
-                                                    .value,
+                                            value: dropController
+                                                .selectedType.value,
                                             onChanged: (newValue) {
                                               dropController.updatetype(
                                                 newValue,
@@ -466,15 +458,12 @@ class SProfileScreen extends StatelessWidget {
                                               dropController.markType.length,
                                               (index) {
                                                 return DropdownMenuItem<String>(
-                                                  value:
-                                                      dropController
-                                                          .markType
-                                                          .value[index]
-                                                          .toString(),
+                                                  value: dropController
+                                                      .markType.value[index]
+                                                      .toString(),
                                                   child: Text(
                                                     dropController
-                                                        .markType
-                                                        .value[index],
+                                                        .markType.value[index],
                                                   ),
                                                 );
                                               },
@@ -495,8 +484,7 @@ class SProfileScreen extends StatelessWidget {
                                                     label: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
-                                                            8,
-                                                          ),
+                                                              8),
                                                       child: Text('Enter mark'),
                                                     ),
                                                     labelStyle: TextStyle(
@@ -508,8 +496,7 @@ class SProfileScreen extends StatelessWidget {
                                                     border: OutlineInputBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                            12,
-                                                          ),
+                                                              12),
                                                       borderSide: BorderSide(
                                                         width: 0,
                                                         color: backgroundColor,
@@ -531,8 +518,8 @@ class SProfileScreen extends StatelessWidget {
                                                     label: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
-                                                            8,
-                                                          ),
+                                                        8,
+                                                      ),
                                                       child: Text(
                                                         'Enter full mark',
                                                       ),
@@ -546,8 +533,7 @@ class SProfileScreen extends StatelessWidget {
                                                     border: OutlineInputBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                            12,
-                                                          ),
+                                                              12),
                                                       borderSide: BorderSide(
                                                         width: 0,
                                                         color: backgroundColor,
@@ -597,7 +583,10 @@ class SProfileScreen extends StatelessWidget {
                                                 fontSize: 15,
                                               ),
                                             ),
-                                            Icon(Icons.add, color: white),
+                                            Icon(
+                                              Icons.add,
+                                              color: white,
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -644,7 +633,9 @@ class SProfileShimmerLoading extends StatelessWidget {
                     width: 135.w,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white),
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),

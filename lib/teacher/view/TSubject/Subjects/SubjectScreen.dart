@@ -74,16 +74,10 @@ class SubjectsListScreen extends StatelessWidget {
                       ),
                       itemBuilder: (context, index) {
                         return TsubjectCard(
-                          subjectName:
-                              _controller
-                                  .teacherSubjectsList
-                                  .value[index]
-                                  .subjectName,
-                          subjectId:
-                              _controller
-                                  .teacherSubjectsList
-                                  .value[index]
-                                  .subjectId,
+                          subjectName: _controller
+                              .teacherSubjectsList.value[index].subjectName,
+                          subjectId: _controller
+                              .teacherSubjectsList.value[index].subjectId,
                           grade: data['grade'].toString(),
                           classId: data['classid'].toString(),
                         );

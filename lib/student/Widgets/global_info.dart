@@ -9,9 +9,9 @@ class GlobalInfo extends StatelessWidget {
     required String name,
     required IconData? icon,
     super.key,
-  }) : _fullname = fullname,
-       _name = name,
-       _icon = icon;
+  })  : _fullname = fullname,
+        _name = name,
+        _icon = icon;
 
   final String _fullname;
   final String _name;
@@ -30,7 +30,10 @@ class GlobalInfo extends StatelessWidget {
             children: <Widget>[
               Text(
                 _fullname,
-                style: redHatMediumStyle(fontSize: 11, color: gray),
+                style: redHatMediumStyle(
+                  fontSize: 11,
+                  color: gray,
+                ),
               ),
               const SizedBox(height: 5),
               SizedBox(
@@ -39,7 +42,10 @@ class GlobalInfo extends StatelessWidget {
                   _name,
                   maxLines: 10,
                   overflow: TextOverflow.ellipsis,
-                  style: redHatMediumStyle(fontSize: 16, color: Colors.black),
+                  style: redHatMediumStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ],

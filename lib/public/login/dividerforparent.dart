@@ -17,11 +17,20 @@ class DividerParent extends StatelessWidget {
             child: const Divider(color: black, height: 36),
           ),
         ),
-        Text(_text, style: sfMediumStyle(fontSize: 12, color: black)),
+        Text(
+          _text,
+          style: sfMediumStyle(
+            fontSize: 12,
+            color: black,
+          ),
+        ),
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(left: 20, right: 18),
-            child: const Divider(color: black, height: 36),
+            child: const Divider(
+              color: black,
+              height: 36,
+            ),
           ),
         ),
       ],

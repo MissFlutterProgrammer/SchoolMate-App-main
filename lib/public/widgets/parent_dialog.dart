@@ -31,23 +31,23 @@ class CustomDialog extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8),
             child: Text(
               "Note",
-              style: sfBoldStyle(fontSize: 16, color: primaryColor),
+              style: sfBoldStyle(
+                fontSize: 16,
+                color: primaryColor,
+              ),
             ),
           ),
           SizedBox(height: 24),
-
           Text(
             "In case you didn't sign your account into\nthe school, or you need to UPDATE it,\nsend an Email contains your details,\nyour email account and your children\ninformation.",
             style: sfRegularStyle(fontSize: 13, color: black),
           ),
           SizedBox(height: 15),
-
           InkWell(
             onTap: _launchUrl,
             child: Container(
               width: MediaQuery.of(context).size.width / 1.8,
               height: 35,
-
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 gradient: gradientColor,
@@ -55,12 +55,14 @@ class CustomDialog extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Send',
-                  style: sfMediumStyle(fontSize: 16, color: white),
+                  style: sfMediumStyle(
+                    fontSize: 16,
+                    color: white,
+                  ),
                 ),
               ),
             ),
           ),
-
           SizedBox(height: 15),
         ],
       ),

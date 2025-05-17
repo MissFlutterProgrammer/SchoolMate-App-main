@@ -17,13 +17,13 @@ class TClassesServices {
           .where('teacher', isEqualTo: UserInformation.User_uId)
           .get()
           .then((value) {
-            for (var element in value.docs) {
-              var list = element.data()['classrooms'];
-              for (var item in list) {
-                classesListId.add(item.toString());
-              }
-            }
-          });
+        for (var element in value.docs) {
+          var list = element.data()['classrooms'];
+          for (var item in list) {
+            classesListId.add(item.toString());
+          }
+        }
+      });
       print('classes is');
       for (var element in classesListId) {
         print(element);
@@ -34,19 +34,19 @@ class TClassesServices {
             .doc(item.toString())
             .get()
             .then((value) {
-              try {
-                var item = ClassRoomModel(
-                  classroomID: value.data()!['uid'],
-                  grade: value.data()!['acadimic_year'],
-                  section: value.data()!['section'],
-                  numberOfstudents: value.data()!['number_of_students'],
-                );
-                classesList.add(item);
-                TeacherClasses.classesList.add(item);
-              } catch (e) {
-                print(e);
-              }
-            });
+          try {
+            var item = ClassRoomModel(
+              classroomID: value.data()!['uid'],
+              grade: value.data()!['acadimic_year'],
+              section: value.data()!['section'],
+              numberOfstudents: value.data()!['number_of_students'],
+            );
+            classesList.add(item);
+            TeacherClasses.classesList.add(item);
+          } catch (e) {
+            print(e);
+          }
+        });
       }
       return classesList;
     } catch (e) {

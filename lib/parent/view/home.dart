@@ -8,7 +8,9 @@ class HomeParent extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        child: Center(child: Text("Parent")),
+        child: Center(
+          child: Text("Parent"),
+        ),
       ),
     );
   }

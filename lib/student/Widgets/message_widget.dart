@@ -27,14 +27,13 @@ class MessageWidget extends StatelessWidget {
           constraints: BoxConstraints(maxWidth: 140),
           decoration: BoxDecoration(
             color: isMe ? secondaryColor : primaryColor,
-            borderRadius:
-                isMe
-                    ? borderRadius.subtract(
-                      BorderRadius.only(bottomRight: radius),
-                    )
-                    : borderRadius.subtract(
-                      BorderRadius.only(bottomLeft: radius),
-                    ),
+            borderRadius: isMe
+                ? borderRadius.subtract(
+                    BorderRadius.only(bottomRight: radius),
+                  )
+                : borderRadius.subtract(
+                    BorderRadius.only(bottomLeft: radius),
+                  ),
           ),
           child: buildMessage(),
         ),
@@ -43,14 +42,16 @@ class MessageWidget extends StatelessWidget {
   }
 
   Widget buildMessage() => Column(
-    crossAxisAlignment:
-        isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        message.message!,
-        style: TextStyle(color: isMe ? Colors.white : Colors.white),
-        textAlign: isMe ? TextAlign.end : TextAlign.start,
-      ),
-    ],
-  );
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            message.message!,
+            style: TextStyle(
+              color: isMe ? Colors.white : Colors.white,
+            ),
+            textAlign: isMe ? TextAlign.end : TextAlign.start,
+          ),
+        ],
+      );
 }

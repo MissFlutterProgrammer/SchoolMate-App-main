@@ -50,10 +50,9 @@ class RefrencesPdf extends StatelessWidget {
                   );
                 } else {
                   return ListView.builder(
-                    itemCount:
-                        _controller.isFiltred
-                            ? _controller.filtredDataListPdf.value.length
-                            : _controller.filesinfo.value.length,
+                    itemCount: _controller.isFiltred
+                        ? _controller.filtredDataListPdf.value.length
+                        : _controller.filesinfo.value.length,
                     itemBuilder: (BuildContext context, int index) {
                       _controller.getPdfFiles();
                       if (_controller.filesinfo.isEmpty) {
@@ -69,24 +68,17 @@ class RefrencesPdf extends StatelessWidget {
                         } else {
                           if (_controller.filtredDataListPdf.isNotEmpty) {
                             return RefrenecesFileCard(
-                              filename:
-                                  _controller
-                                      .filtredDataListPdf
-                                      .value[index]
-                                      .fileName,
-                              subject:
-                                  _controller
-                                      .filtredDataListPdf
-                                      .value[index]
-                                      .subject,
-                              url:
-                                  _controller
-                                      .filtredDataListPdf
-                                      .value[index]
-                                      .url,
+                              filename: _controller
+                                  .filtredDataListPdf.value[index].fileName,
+                              subject: _controller
+                                  .filtredDataListPdf.value[index].subject,
+                              url: _controller
+                                  .filtredDataListPdf.value[index].url,
                             );
                           } else {
-                            return Center(child: Text('Nothing to show'));
+                            return Center(
+                              child: Text('Nothing to show'),
+                            );
                           }
                         }
                       }
@@ -131,7 +123,12 @@ class ShimmerPdfLoading extends StatelessWidget {
 }
 
 class RefrenecesFileCard extends StatelessWidget {
-  const RefrenecesFileCard({super.key, this.filename, this.subject, this.url});
+  const RefrenecesFileCard({
+    super.key,
+    this.filename,
+    this.subject,
+    this.url,
+  });
 
   final filename;
   final subject;
@@ -244,7 +241,11 @@ class RefrenecesFileCard extends StatelessWidget {
                       await openFile(url: url, fileName: filename);
                       EasyLoading.showSuccess('Done!');
                     },
-                    icon: const Icon(Icons.downloading, color: gray, size: 25),
+                    icon: const Icon(
+                      Icons.downloading,
+                      color: gray,
+                      size: 25,
+                    ),
                   ),
                   const Text(
                     'Download',

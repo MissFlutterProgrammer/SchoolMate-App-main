@@ -33,10 +33,9 @@ class TMarksServices {
           studentsList[i].id,
         );
 
-        var finalMark =
-            (testMark + homeworkMark + exam1Mark + exam2Mark) == 0
-                ? 0
-                : (testMark + homeworkMark + exam1Mark + exam2Mark) / 4;
+        var finalMark = (testMark + homeworkMark + exam1Mark + exam2Mark) == 0
+            ? 0
+            : (testMark + homeworkMark + exam1Mark + exam2Mark) / 4;
         studentMarkList.add(
           TMarksStudentModel(
             mark: finalMark,
@@ -65,8 +64,8 @@ class TMarksServices {
           .where('student_id', isEqualTo: uid.toString())
           .get()
           .then((value) {
-            testMark = value.docs[0].data()['result'];
-          });
+        testMark = value.docs[0].data()['result'];
+      });
 
       return testMark;
     } catch (e) {
@@ -88,9 +87,9 @@ class TMarksServices {
           .where('student_id', isEqualTo: uid.toString())
           .get()
           .then((value) {
-            testMark = value.docs[0].data()['result'];
-            print(testMark);
-          });
+        testMark = value.docs[0].data()['result'];
+        print(testMark);
+      });
 
       return testMark;
     } catch (e) {
@@ -109,8 +108,8 @@ class TMarksServices {
           .where('student_id', isEqualTo: uid.toString())
           .get()
           .then((value) {
-            testMark = value.docs[0].data()['result'];
-          });
+        testMark = value.docs[0].data()['result'];
+      });
 
       return testMark;
     } catch (e) {
@@ -128,8 +127,8 @@ class TMarksServices {
           .where('student_id', isEqualTo: uid.toString())
           .get()
           .then((value) {
-            testMark = value.docs[0].data()['result'];
-          });
+        testMark = value.docs[0].data()['result'];
+      });
 
       return testMark;
     } catch (e) {
@@ -145,17 +144,17 @@ class TMarksServices {
           .where('class_id', isEqualTo: classid)
           .get()
           .then((value) {
-            for (var element in value.docs) {
-              studentsList.add(
-                StundentMarksModel(
-                  fname: element.data()['first_name'],
-                  lname: element.data()['last_name'],
-                  id: element.data()['uid'],
-                  photoUrl: element.data()['urlAvatar'],
-                ),
-              );
-            }
-          });
+        for (var element in value.docs) {
+          studentsList.add(
+            StundentMarksModel(
+              fname: element.data()['first_name'],
+              lname: element.data()['last_name'],
+              id: element.data()['uid'],
+              photoUrl: element.data()['urlAvatar'],
+            ),
+          );
+        }
+      });
 
       return studentsList;
     } catch (e) {

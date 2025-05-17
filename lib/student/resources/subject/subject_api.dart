@@ -16,8 +16,8 @@ class SubjectServices {
           .doc(UserInformation.grade.toString())
           .get()
           .then((value) {
-            subjectRefrencesList = value.data()!['subject'];
-          });
+        subjectRefrencesList = value.data()!['subject'];
+      });
       for (var item in subjectRefrencesList) {
         var lessonsNumber = 0;
         var subjectName = '';
@@ -27,16 +27,16 @@ class SubjectServices {
             .doc(item.toString())
             .get()
             .then((value) {
-              subjectName = value.data()?['name'];
-              //lessonsNumber = value.data()?['lessons'].length ?? 0;
-            });
+          subjectName = value.data()?['name'];
+          //lessonsNumber = value.data()?['lessons'].length ?? 0;
+        });
         await FirebaseFirestore.instance
             .collection('lessons')
             .where('subject', isEqualTo: item.toString())
             .get()
             .then((value) {
-              lessonsNumber = value.docs.length;
-            });
+          lessonsNumber = value.docs.length;
+        });
         await FirebaseFirestore.instance
             .collection('relation')
             .where('classrooms', arrayContains: UserInformation.classid)
@@ -44,10 +44,10 @@ class SubjectServices {
             .where('grade', isEqualTo: UserInformation.grade.toString())
             .get()
             .then((value) {
-              for (var element in value.docs) {
-                teacherName = element.data()['teacher_name'];
-              }
-            });
+          for (var element in value.docs) {
+            teacherName = element.data()['teacher_name'];
+          }
+        });
         try {
           subjectInfo.add(
             SubjectModel(

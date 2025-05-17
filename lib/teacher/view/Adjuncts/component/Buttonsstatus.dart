@@ -143,12 +143,9 @@ class ButtonsFunctions {
                                       'this is drop item ${_pdfController.subjectList.value[index].subjectName}',
                                     );
                                     return DropdownMenuItem<String>(
-                                      value:
-                                          _pdfController
-                                              .subjectList
-                                              .value[index]
-                                              .subjectName
-                                              .toString(),
+                                      value: _pdfController
+                                          .subjectList.value[index].subjectName
+                                          .toString(),
                                       child: Text(
                                         '${_pdfController.subjectList.value[index].subjectName}',
                                       ),
@@ -475,12 +472,9 @@ class ButtonsFunctions {
                                   _pdfController.subjectList.value.length,
                                   (index) {
                                     return DropdownMenuItem<String>(
-                                      value:
-                                          _pdfController
-                                              .subjectList
-                                              .value[index]
-                                              .subjectName
-                                              .toString(),
+                                      value: _pdfController
+                                          .subjectList.value[index].subjectName
+                                          .toString(),
                                       child: Text(
                                         '${_pdfController.subjectList.value[index].subjectName}',
                                       ),

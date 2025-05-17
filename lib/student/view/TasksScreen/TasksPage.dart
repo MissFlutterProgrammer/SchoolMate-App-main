@@ -66,10 +66,10 @@ class TasksPage extends StatelessWidget {
                               itemCount: mona.length,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 24.w,
-                                    mainAxisSpacing: 24.w,
-                                  ),
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 24.w,
+                                mainAxisSpacing: 24.w,
+                              ),
                               itemBuilder: (BuildContext, index) {
                                 return Container(
                                   height: 178.h,
@@ -82,16 +82,10 @@ class TasksPage extends StatelessWidget {
                                     name: controller.tasks.value[index].name,
                                     deadline:
                                         controller.tasks.value[index].deadline,
-                                    subjectName:
-                                        controller
-                                            .tasks
-                                            .value[index]
-                                            .subjectName,
-                                    uploadDate:
-                                        controller
-                                            .tasks
-                                            .value[index]
-                                            .uploadDate,
+                                    subjectName: controller
+                                        .tasks.value[index].subjectName,
+                                    uploadDate: controller
+                                        .tasks.value[index].uploadDate,
                                     task_id: controller.tasks.value[index].id,
                                   ),
                                 );

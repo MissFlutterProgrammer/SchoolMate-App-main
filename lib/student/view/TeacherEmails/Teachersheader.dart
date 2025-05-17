@@ -11,43 +11,43 @@ class TeachersHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-    width: double.infinity,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.75,
-          child: Text(
-            'Teachers',
-            style: sfBoldStyle(fontSize: 24, color: Colors.white),
-          ),
-        ),
-        SizedBox(height: 12),
-        SizedBox(
-          height: 60,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              final user = users[index];
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.75,
+              child: Text(
+                'Teachers',
+                style: sfBoldStyle(fontSize: 24, color: Colors.white),
+              ),
+            ),
+            SizedBox(height: 12),
+            SizedBox(
+              height: 60,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: users.length,
+                itemBuilder: (context, index) {
+                  final user = users[index];
 
-              return Container(
-                margin: const EdgeInsets.only(right: 12),
-                child: GestureDetector(
-                  onTap: () {
-                    print(user.idUser);
-                  },
-                  child: CircleAvatar(
-                    radius: 24,
-                    backgroundImage: NetworkImage(user.urlAvatar!),
-                  ),
-                ),
-              );
-            },
-          ),
+                  return Container(
+                    margin: const EdgeInsets.only(right: 12),
+                    child: GestureDetector(
+                      onTap: () {
+                        print(user.idUser);
+                      },
+                      child: CircleAvatar(
+                        radius: 24,
+                        backgroundImage: NetworkImage(user.urlAvatar!),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 }

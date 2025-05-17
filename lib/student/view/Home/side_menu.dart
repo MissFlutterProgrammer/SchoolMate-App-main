@@ -69,7 +69,10 @@ class SideMenue extends StatelessWidget {
               onPressed: onPress,
               child: Text(
                 UserInformation.first_name,
-                style: redHatMediumStyle(fontSize: 20, color: Colors.grey),
+                style: redHatMediumStyle(
+                  fontSize: 20,
+                  color: Colors.grey,
+                ),
               ),
             ),
             const SizedBox(height: 30),
@@ -83,49 +86,51 @@ class SideMenue extends StatelessWidget {
 
                 return homeController.mychilds.isEmpty
                     ? SizedBox(
-                      height: 25,
-                      child: Center(child: Text('NO childs')),
-                    )
+                        height: 25,
+                        child: Center(child: Text('NO childs')),
+                      )
                     : ListView.separated(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      separatorBuilder: (context, index) => SizedBox(height: 5),
-                      itemCount: homeController.mychilds.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final user = homeController.mychilds[index];
-                        return SizedBox(
-                          height: 75,
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              radius: 25,
-                              backgroundImage: NetworkImage(user.urlAvatar),
-                            ),
-                            title: TextButton(
-                              onPressed: () {
-                                UserInformation.fees =
-                                    UserInformation.classid = user.classid;
-                                UserInformation.first_name = user.firstName;
-                                UserInformation.last_name = user.lastName;
-                                UserInformation.phone = user.phone;
-                                UserInformation.parentphone = user.parentPhone;
-                                UserInformation.classroom = user.studentClass;
-                                UserInformation.clasname = user.studentClass;
-                                UserInformation.urlAvatr = user.urlAvatar;
-                                /* UserInformation.grade_average =
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 5),
+                        itemCount: homeController.mychilds.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final user = homeController.mychilds[index];
+                          return SizedBox(
+                            height: 75,
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                radius: 25,
+                                backgroundImage: NetworkImage(user.urlAvatar),
+                              ),
+                              title: TextButton(
+                                onPressed: () {
+                                  UserInformation.fees =
+                                      UserInformation.classid = user.classid;
+                                  UserInformation.first_name = user.firstName;
+                                  UserInformation.last_name = user.lastName;
+                                  UserInformation.phone = user.phone;
+                                  UserInformation.parentphone =
+                                      user.parentPhone;
+                                  UserInformation.classroom = user.studentClass;
+                                  UserInformation.clasname = user.studentClass;
+                                  UserInformation.urlAvatr = user.urlAvatar;
+                                  /* UserInformation.grade_average =
                                         user.average;
                                    UserInformation.grade = user.studentGrade;*/
-                                UserInformation.User_uId = user.id;
-                                UserInformation.email = user.email;
-                                UserInformation.uParent = false;
-                                Phoenix.rebirth(context);
-                                Get.toNamed(AppPages.Splashscreen);
-                              },
-                              child: Text(user.firstName),
+                                  UserInformation.User_uId = user.id;
+                                  UserInformation.email = user.email;
+                                  UserInformation.uParent = false;
+                                  Phoenix.rebirth(context);
+                                  Get.toNamed(AppPages.Splashscreen);
+                                },
+                                child: Text(user.firstName),
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    );
+                          );
+                        },
+                      );
               }),
             ),
             const SizedBox(height: 10),
@@ -137,111 +142,114 @@ class SideMenue extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(left: 20),
-                    child: Icon(Icons.line_weight_rounded, color: Colors.grey),
+                    child: Icon(
+                      Icons.line_weight_rounded,
+                      color: Colors.grey,
+                    ),
                   ),
                   SizedBox(width: 20),
                   UserInformation.uParent
                       ? SizedBox(height: 1)
                       : TextButton(
-                        onPressed: () {
-                          Get.defaultDialog(
-                            backgroundColor: backgroundColor,
-                            title: 'Add Report',
-                            titleStyle: redHatMediumStyle(
-                              color: darkGray,
-                              fontSize: 28,
-                            ),
-                            contentPadding: EdgeInsets.all(20),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                TextField(
-                                  onChanged: (value) {
-                                    print(value);
-                                  },
-                                  controller: titleController,
-                                  keyboardType: TextInputType.text,
-                                  maxLines: 1,
-                                  decoration: InputDecoration(
-                                    labelText: 'Title',
-                                    hintMaxLines: 1,
+                          onPressed: () {
+                            Get.defaultDialog(
+                              backgroundColor: backgroundColor,
+                              title: 'Add Report',
+                              titleStyle: redHatMediumStyle(
+                                color: darkGray,
+                                fontSize: 28,
+                              ),
+                              contentPadding: EdgeInsets.all(20),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextField(
+                                    onChanged: (value) {
+                                      print(value);
+                                    },
+                                    controller: titleController,
+                                    keyboardType: TextInputType.text,
+                                    maxLines: 1,
+                                    decoration: InputDecoration(
+                                      labelText: 'Title',
+                                      hintMaxLines: 1,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 10),
-                                TextField(
-                                  onChanged: (value) {},
-                                  controller: contentController,
-                                  keyboardType: TextInputType.text,
-                                  maxLines: 1,
-                                  decoration: InputDecoration(
-                                    labelText: 'Content',
-                                    hintMaxLines: 1,
+                                  SizedBox(height: 10),
+                                  TextField(
+                                    onChanged: (value) {},
+                                    controller: contentController,
+                                    keyboardType: TextInputType.text,
+                                    maxLines: 1,
+                                    decoration: InputDecoration(
+                                      labelText: 'Content',
+                                      hintMaxLines: 1,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 20),
-                                Center(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          // c.update();
-                                          addcomplaintapi(
-                                            contentController.text,
-                                            titleController.text,
-                                            UserInformation.User_uId,
-                                          );
-                                          Get.back();
-                                        },
-                                        child: Container(
-                                          height: 40,
-                                          width: 110,
-                                          color: primaryColor,
-                                          child: Center(
-                                            child: Text(
-                                              'submit',
-                                              style: redHatBoldStyle(
-                                                color: Colors.white,
+                                  SizedBox(height: 20),
+                                  Center(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            // c.update();
+                                            addcomplaintapi(
+                                              contentController.text,
+                                              titleController.text,
+                                              UserInformation.User_uId,
+                                            );
+                                            Get.back();
+                                          },
+                                          child: Container(
+                                            height: 40,
+                                            width: 110,
+                                            color: primaryColor,
+                                            child: Center(
+                                              child: Text(
+                                                'submit',
+                                                style: redHatBoldStyle(
+                                                  color: Colors.white,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          Get.back();
-                                        },
-                                        child: Container(
-                                          height: 40,
-                                          width: 110,
-                                          color: Colors.white,
-                                          child: Center(
-                                            child: Text(
-                                              'cancel',
-                                              style: redHatBoldStyle(
-                                                color: Colors.grey,
+                                        InkWell(
+                                          onTap: () {
+                                            Get.back();
+                                          },
+                                          child: Container(
+                                            height: 40,
+                                            width: 110,
+                                            color: Colors.white,
+                                            child: Center(
+                                              child: Text(
+                                                'cancel',
+                                                style: redHatBoldStyle(
+                                                  color: Colors.grey,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
+                              radius: 10,
+                            );
+                          },
+                          child: Text(
+                            "Report (write a complaint)",
+                            style: sfMediumStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
                             ),
-                            radius: 10,
-                          );
-                        },
-                        child: Text(
-                          "Report (write a complaint)",
-                          style: sfMediumStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
                           ),
                         ),
-                      ),
                 ],
               ),
             ),
@@ -254,7 +262,10 @@ class SideMenue extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(left: 20),
-                    child: Icon(Icons.logout, color: Colors.grey),
+                    child: Icon(
+                      Icons.logout,
+                      color: Colors.grey,
+                    ),
                   ),
                   SizedBox(width: 20),
                   TextButton(
@@ -263,7 +274,10 @@ class SideMenue extends StatelessWidget {
                     },
                     child: Text(
                       "log out",
-                      style: sfMediumStyle(fontSize: 16, color: Colors.grey),
+                      style: sfMediumStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ],

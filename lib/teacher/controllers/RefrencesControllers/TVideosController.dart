@@ -5,9 +5,8 @@ import 'package:school_management_system/teacher/resources/TAdjunctsServices/TAd
 
 class TVideosController extends GetxController {
   var refServices = TAdjunctsServices();
-  var VideosList =
-      [
-        /*RefrencesVideos(
+  var VideosList = [
+    /*RefrencesVideos(
       url: '',
       subject: 'Math',
       videoName: 'any',
@@ -22,7 +21,7 @@ class TVideosController extends GetxController {
       subject: 'Math',
       videoName: 'any',
     ),*/
-      ].obs;
+  ].obs;
 
   getVideos() async {
     VideosList.value = await refServices.getVideos();

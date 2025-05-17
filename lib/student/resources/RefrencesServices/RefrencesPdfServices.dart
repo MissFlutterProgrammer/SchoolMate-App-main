@@ -16,16 +16,16 @@ class RefrencesPdfServices {
           .where('type', isEqualTo: 'book')
           .get()
           .then((value) {
-            for (var element in value.docs) {
-              pdfList.add(
-                RefrencesFiles(
-                  fileName: element.data()['name'],
-                  subject: element.data()['subjectName'],
-                  url: element.data()['url'],
-                ),
-              );
-            }
-          });
+        for (var element in value.docs) {
+          pdfList.add(
+            RefrencesFiles(
+              fileName: element.data()['name'],
+              subject: element.data()['subjectName'],
+              url: element.data()['url'],
+            ),
+          );
+        }
+      });
       return pdfList;
     } catch (e) {
       print('@#@#@#@#@#@#@#@#');
@@ -41,16 +41,16 @@ class RefrencesPdfServices {
         .where('type', isEqualTo: 'video')
         .get()
         .then((value) async {
-          for (var element in value.docs) {
-            videosList.add(
-              RefrencesVideos(
-                videoName: element.data()['name'],
-                subject: element.data()['name'],
-                url: element.data()['url'],
-              ),
-            );
-          }
-        });
+      for (var element in value.docs) {
+        videosList.add(
+          RefrencesVideos(
+            videoName: element.data()['name'],
+            subject: element.data()['name'],
+            url: element.data()['url'],
+          ),
+        );
+      }
+    });
     return videosList;
   }
 
@@ -64,15 +64,15 @@ class RefrencesPdfServices {
         .where('type', isEqualTo: 'book')
         .get()
         .then((value) {
-          for (var i = 0; i < value.docs.length; i++) {
-            filtredDataList.add(
-              RefrencesFiles(
-                fileName: value.docs[i].data()["name"],
-                subject: value.docs[i].data()["subjectName"],
-              ),
-            );
-          }
-        });
+      for (var i = 0; i < value.docs.length; i++) {
+        filtredDataList.add(
+          RefrencesFiles(
+            fileName: value.docs[i].data()["name"],
+            subject: value.docs[i].data()["subjectName"],
+          ),
+        );
+      }
+    });
 
     return filtredDataList;
   }
@@ -87,16 +87,16 @@ class RefrencesPdfServices {
         .where('type', isEqualTo: 'video')
         .get()
         .then((value) {
-          for (var i = 0; i < value.docs.length; i++) {
-            filtredDataList.add(
-              RefrencesVideos(
-                videoName: value.docs[i].data()["name"],
-                subject: value.docs[i].data()["subjectName"],
-                url: value.docs[i].data()["url"],
-              ),
-            );
-          }
-        });
+      for (var i = 0; i < value.docs.length; i++) {
+        filtredDataList.add(
+          RefrencesVideos(
+            videoName: value.docs[i].data()["name"],
+            subject: value.docs[i].data()["subjectName"],
+            url: value.docs[i].data()["url"],
+          ),
+        );
+      }
+    });
 
     return filtredDataList;
   }

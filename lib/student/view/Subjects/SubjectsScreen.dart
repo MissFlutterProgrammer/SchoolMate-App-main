@@ -42,7 +42,9 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
           decoration: const BoxDecoration(
             gradient: gradientColor,
             image: DecorationImage(
-              image: AssetImage('assets/images/appbar-background-squares.png'),
+              image: AssetImage(
+                'assets/images/appbar-background-squares.png',
+              ),
               fit: BoxFit.cover,
             ),
           ),
@@ -124,17 +126,16 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
                         future: _controller.getTakenLessonNumber(
                           widget.subjectId,
                         ),
-                        builder:
-                            ((context, snapshot) => Obx(
+                        builder: ((context, snapshot) => Obx(
                               (() => Text(
-                                _controller.numberOftakenLessons.value
-                                    .toString(),
-                                style: const TextStyle(
-                                  color: primaryColor,
-                                  fontSize: 20,
-                                  fontFamily: RedHatDisplay.medium,
-                                ),
-                              )),
+                                    _controller.numberOftakenLessons.value
+                                        .toString(),
+                                    style: const TextStyle(
+                                      color: primaryColor,
+                                      fontSize: 20,
+                                      fontFamily: RedHatDisplay.medium,
+                                    ),
+                                  )),
                             )),
                       ),
                       const Text(
@@ -158,16 +159,16 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
                           widget.subjectId,
                         ),
                         //_controller.getAllLessonNumber(),
-                        builder:
-                            ((context, snapshot) => Obx(
+                        builder: ((context, snapshot) => Obx(
                               (() => Text(
-                                _controller.numberOfAllLessons.value.toString(),
-                                style: const TextStyle(
-                                  color: black,
-                                  fontSize: 20,
-                                  fontFamily: RedHatDisplay.medium,
-                                ),
-                              )),
+                                    _controller.numberOfAllLessons.value
+                                        .toString(),
+                                    style: const TextStyle(
+                                      color: black,
+                                      fontSize: 20,
+                                      fontFamily: RedHatDisplay.medium,
+                                    ),
+                                  )),
                             )),
                       ),
                       const Text(

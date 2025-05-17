@@ -85,7 +85,11 @@ class TeacherTasksCard extends StatelessWidget {
                   child: DropdownButton(
                     underline: Text(''),
                     borderRadius: BorderRadius.circular(10),
-                    icon: const Icon(Icons.menu, size: 19, color: Colors.white),
+                    icon: const Icon(
+                      Icons.menu,
+                      size: 19,
+                      color: Colors.white,
+                    ),
                     items: [
                       DropdownMenuItem(
                         onTap: () async {

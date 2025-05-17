@@ -23,8 +23,7 @@ class ChosingClassSection extends StatelessWidget {
       width: 428.w,
       child: GetBuilder(
         init: BottomSheetController(),
-        builder:
-            ((controller) => ListView.builder(
+        builder: ((controller) => ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: classSection.length,
               itemBuilder: (BuildContext context, int index) {
@@ -41,7 +40,7 @@ class ChosingClassSection extends StatelessWidget {
 
 class ClassRoomSectionOption extends StatelessWidget {
   const ClassRoomSectionOption({this.section, Key? key, this.index})
-    : super(key: key);
+      : super(key: key);
 
   final section;
   final index;

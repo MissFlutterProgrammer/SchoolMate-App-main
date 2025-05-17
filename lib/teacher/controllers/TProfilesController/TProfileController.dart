@@ -8,9 +8,8 @@ import '../../resources/ProfilesServices/TprofileServices.dart';
 
 class TProfileController extends GetxController {
   var PrServices = TProfileServices();
-  var teacherInfo =
-      TProfileInfoModel(
-        /* fname: 'Georno',
+  var teacherInfo = TProfileInfoModel(
+          /* fname: 'Georno',
     lname: 'Geovana',
     subjects: [
       'Math',
@@ -20,7 +19,8 @@ class TProfileController extends GetxController {
     ],
     about: 'My Name is Georno Geovana and i have dream!!',
     email: 'modamode@gmail.com',*/
-      ).obs;
+          )
+      .obs;
 
   updateImage(img) async {
     teacherInfo.value.photoUrl = await PrServices.updateImage(img);

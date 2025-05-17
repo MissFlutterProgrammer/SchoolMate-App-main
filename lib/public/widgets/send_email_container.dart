@@ -30,7 +30,10 @@ class SendEmail extends StatelessWidget {
             SizedBox(width: 10.w),
             Text(
               'Send Email',
-              style: sfMediumStyle(fontSize: 20, color: white),
+              style: sfMediumStyle(
+                fontSize: 20,
+                color: white,
+              ),
             ),
           ],
         ),

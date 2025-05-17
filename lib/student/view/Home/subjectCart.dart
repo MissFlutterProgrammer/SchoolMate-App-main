@@ -19,12 +19,18 @@ class SubjectDetails extends StatelessWidget {
         children: [
           Text(
             "$subjectName",
-            style: sfBoldStyle(fontSize: 18, color: Colors.white),
+            style: sfBoldStyle(
+              fontSize: 18,
+              color: Colors.white,
+            ),
           ),
           SizedBox(height: 3),
           Text(
             "$teacherName",
-            style: sfBoldStyle(fontSize: 10, color: Colors.white),
+            style: sfBoldStyle(
+              fontSize: 10,
+              color: Colors.white,
+            ),
           ),
         ],
       ),

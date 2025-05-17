@@ -31,7 +31,11 @@ AppBar CostumHomeAppBar({String? title, TextStyle? style, Function()? ontap}) {
             ),
             child: IconButton(
               onPressed: ontap,
-              icon: Icon(Icons.notifications, size: 32.w, color: Colors.white),
+              icon: Icon(
+                Icons.notifications,
+                size: 32.w,
+                color: Colors.white,
+              ),
             ),
           ),
           Padding(
@@ -40,7 +44,11 @@ AppBar CostumHomeAppBar({String? title, TextStyle? style, Function()? ontap}) {
               onPressed: () {
                 Get.to(() => TLessonScreen());
               },
-              icon: const Icon(Icons.people_alt, size: 27, color: Colors.white),
+              icon: const Icon(
+                Icons.people_alt,
+                size: 27,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

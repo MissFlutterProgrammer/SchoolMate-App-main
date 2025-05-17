@@ -52,7 +52,9 @@ class _RefrencesState extends State<Refrences> {
                 top: 24.h,
                 bottom: 15.h,
               ),
-              child: const Divider(color: Color(0xFFD4D4D4)),
+              child: const Divider(
+                color: Color(0xFFD4D4D4),
+              ),
             ),
             FiltterButton(),
             SizedBox(height: 24.h),
@@ -78,10 +80,15 @@ class _RefrencesState extends State<Refrences> {
           _chips.length,
           (index) => ChoiceChip(
             label: Text(_chips[index].label.toString()),
-            labelStyle:
-                (_index == index)
-                    ? redHatBoldStyle(fontSize: 12, color: Colors.white)
-                    : redHatBoldStyle(fontSize: 12, color: Colors.grey),
+            labelStyle: (_index == index)
+                ? redHatBoldStyle(
+                    fontSize: 12,
+                    color: Colors.white,
+                  )
+                : redHatBoldStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
             selected: _index == index,
             selectedColor: primaryColor,
             backgroundColor: Colors.white10,

@@ -97,11 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
         if (student) {
           bool okst = false;
 
-          QuerySnapshot snap =
-              await FirebaseFirestore.instance
-                  .collection('students')
-                  .where("uid", isEqualTo: UserInformation.User_uId)
-                  .get();
+          QuerySnapshot snap = await FirebaseFirestore.instance
+              .collection('students')
+              .where("uid", isEqualTo: UserInformation.User_uId)
+              .get();
 
           if (snap.docs.isNotEmpty) {
             okst = true;
@@ -120,29 +119,28 @@ class _LoginScreenState extends State<LoginScreen> {
                 .where('email', isEqualTo: _emailController.text)
                 .get()
                 .then((value) async {
-                  for (var i = 0; i < value.docs.length; i++) {
-                    UserInformation.fees = value.docs[i]['fees'];
-                    UserInformation.classid = value.docs[i]['class_id'];
-                    UserInformation.first_name = value.docs[i]['first_name'];
-                    UserInformation.last_name = value.docs[i]['last_name'];
-                    UserInformation.phone = value.docs[i]['phone'];
-                    UserInformation.parentphone = value.docs[i]['parent_phone'];
-                    UserInformation.classroom = value.docs[i]['class_name'];
-                    UserInformation.clasname = value.docs[i]['class_name'];
-                    UserInformation.urlAvatr = value.docs[i]['urlAvatar'];
-                    UserInformation.grade_average =
-                        value.docs[i]['grade_average'];
-                    UserInformation.grade = value.docs[i]['grade'];
-                    print(UserInformation.fees);
-                    print(UserInformation.first_name);
-                    print(UserInformation.last_name);
-                    print(UserInformation.phone);
-                    print(UserInformation.parentphone);
-                    print(UserInformation.classroom);
-                    print(UserInformation.urlAvatr);
-                    print(UserInformation.grade_average);
-                  }
-                });
+              for (var i = 0; i < value.docs.length; i++) {
+                UserInformation.fees = value.docs[i]['fees'];
+                UserInformation.classid = value.docs[i]['class_id'];
+                UserInformation.first_name = value.docs[i]['first_name'];
+                UserInformation.last_name = value.docs[i]['last_name'];
+                UserInformation.phone = value.docs[i]['phone'];
+                UserInformation.parentphone = value.docs[i]['parent_phone'];
+                UserInformation.classroom = value.docs[i]['class_name'];
+                UserInformation.clasname = value.docs[i]['class_name'];
+                UserInformation.urlAvatr = value.docs[i]['urlAvatar'];
+                UserInformation.grade_average = value.docs[i]['grade_average'];
+                UserInformation.grade = value.docs[i]['grade'];
+                print(UserInformation.fees);
+                print(UserInformation.first_name);
+                print(UserInformation.last_name);
+                print(UserInformation.phone);
+                print(UserInformation.parentphone);
+                print(UserInformation.classroom);
+                print(UserInformation.urlAvatr);
+                print(UserInformation.grade_average);
+              }
+            });
 
             print("tmmmmmmmm");
             await FirebaseFirestore.instance
@@ -159,11 +157,10 @@ class _LoginScreenState extends State<LoginScreen> {
         if (teacher) {
           bool okte = false;
 
-          QuerySnapshot snap =
-              await FirebaseFirestore.instance
-                  .collection('teacher')
-                  .where("uid", isEqualTo: UserInformation.User_uId)
-                  .get();
+          QuerySnapshot snap = await FirebaseFirestore.instance
+              .collection('teacher')
+              .where("uid", isEqualTo: UserInformation.User_uId)
+              .get();
 
           if (snap.docs.isNotEmpty) {
             okte = true;
@@ -179,22 +176,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 .where('uid', isEqualTo: UserInformation.User_uId)
                 .get()
                 .then((value) async {
-                  for (var i = 0; i < value.docs.length; i++) {
-                    UserInformation.first_name = value.docs[i]['first_name'];
-                    UserInformation.last_name = value.docs[i]['last_name'];
-                    UserInformation.phone = value.docs[i]['phone'];
-                    UserInformation.Subjects = value.docs[i]['subjects'];
-                    UserInformation.email = value.docs[i]['email'];
-                    UserInformation.urlAvatr = value.docs[i]['urlAvatar'];
+              for (var i = 0; i < value.docs.length; i++) {
+                UserInformation.first_name = value.docs[i]['first_name'];
+                UserInformation.last_name = value.docs[i]['last_name'];
+                UserInformation.phone = value.docs[i]['phone'];
+                UserInformation.Subjects = value.docs[i]['subjects'];
+                UserInformation.email = value.docs[i]['email'];
+                UserInformation.urlAvatr = value.docs[i]['urlAvatar'];
 
-                    print(UserInformation.first_name);
-                    print(UserInformation.last_name);
-                    print(UserInformation.phone);
-                    print(UserInformation.Subjects);
-                    print(UserInformation.email);
-                    print(UserInformation.urlAvatr);
-                  }
-                });
+                print(UserInformation.first_name);
+                print(UserInformation.last_name);
+                print(UserInformation.phone);
+                print(UserInformation.Subjects);
+                print(UserInformation.email);
+                print(UserInformation.urlAvatr);
+              }
+            });
 
             print("tmmmmmmmm");
             await FirebaseFirestore.instance
@@ -282,7 +279,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 72.h),
                     const Loginlabel(),
                     SizedBox(height: size.height / 10),
-                    Text("I am", style: sfBoldStyle(fontSize: 24, color: gray)),
+                    Text(
+                      "I am",
+                      style: sfBoldStyle(fontSize: 24, color: gray),
+                    ),
                     SizedBox(height: 32.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 28.w),
@@ -361,89 +361,91 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 32.h),
                     parent == false
                         ? Form(
-                          key: formKey,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 40.w),
-                            child: Column(
-                              children: [
-                                customFormField(
-                                  controller: _emailController,
-                                  label: 'Email',
-                                  prefix: Icons.email,
-                                  onChange: (String val) {
-                                    print(_emailController.text);
-                                    // _emailController.text=val;
-                                  },
-                                  type: TextInputType.emailAddress,
-                                  validate: (String? value) {
-                                    if (value!.isEmpty) {
-                                      return 'email must not be empty';
-                                    }
+                            key: formKey,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 40.w),
+                              child: Column(
+                                children: [
+                                  customFormField(
+                                    controller: _emailController,
+                                    label: 'Email',
+                                    prefix: Icons.email,
+                                    onChange: (String val) {
+                                      print(_emailController.text);
+                                      // _emailController.text=val;
+                                    },
+                                    type: TextInputType.emailAddress,
+                                    validate: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'email must not be empty';
+                                      }
 
-                                    return null;
-                                  },
-                                ),
-                                SizedBox(height: 24.h),
-                                customFormField(
-                                  controller: _passwordController,
-                                  label: 'Password',
-                                  prefix: Icons.lock,
-                                  onChange: (String val) {
-                                    txt2 = _passwordController.text;
-                                    //  _passwordController.text=val;
-                                  },
-                                  suffix:
-                                      isPassword
-                                          ? Icons.visibility
-                                          : Icons.visibility_off,
-                                  isPassword: isPassword,
-                                  suffixPressed: () {
-                                    setState(() {
-                                      isPassword = !isPassword;
-                                      print(txt2);
-                                      setstring;
-                                    });
-                                  },
-                                  type: TextInputType.visiblePassword,
-                                  validate: (String? value) {
-                                    if (value!.isEmpty) {
-                                      return 'password is too short';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                SizedBox(height: 20.h),
-                              ],
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(height: 24.h),
+                                  customFormField(
+                                    controller: _passwordController,
+                                    label: 'Password',
+                                    prefix: Icons.lock,
+                                    onChange: (String val) {
+                                      txt2 = _passwordController.text;
+                                      //  _passwordController.text=val;
+                                    },
+                                    suffix: isPassword
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    isPassword: isPassword,
+                                    suffixPressed: () {
+                                      setState(() {
+                                        isPassword = !isPassword;
+                                        print(txt2);
+                                        setstring;
+                                      });
+                                    },
+                                    type: TextInputType.visiblePassword,
+                                    validate: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'password is too short';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(height: 20.h),
+                                ],
+                              ),
                             ),
-                          ),
-                        )
+                          )
                         : Column(
-                          children: [
-                            SizedBox(height: 32.h),
-                            Text(
-                              "Choose the same account given to School! ",
-                              style: sfRegularStyle(fontSize: 12, color: blue),
-                            ),
-                            SizedBox(height: 20.h),
-                            Roundedbutton(
-                              buttonController: buttonController,
-                              press: google,
-                            ),
-                            SizedBox(height: 20.h),
-                            const DividerParent(text: "Update your account"),
-                            SizedBox(height: 20.h),
-                            SendEmail(
-                              press: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return CustomDialog();
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
+                            children: [
+                              SizedBox(height: 32.h),
+                              Text(
+                                "Choose the same account given to School! ",
+                                style: sfRegularStyle(
+                                  fontSize: 12,
+                                  color: blue,
+                                ),
+                              ),
+                              SizedBox(height: 20.h),
+                              Roundedbutton(
+                                buttonController: buttonController,
+                                press: google,
+                              ),
+                              SizedBox(height: 20.h),
+                              const DividerParent(text: "Update your account"),
+                              SizedBox(height: 20.h),
+                              SendEmail(
+                                press: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return CustomDialog();
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                     if (parent == false) SizedBox(height: 32.h),
                     if (parent == false) CustomButton(press: Login),
                     if (parent == false) SizedBox(height: 32.h),

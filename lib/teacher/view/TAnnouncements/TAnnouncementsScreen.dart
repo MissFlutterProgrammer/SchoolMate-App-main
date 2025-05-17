@@ -35,7 +35,9 @@ class TAnnouncementsScreen extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: gradientColor,
             image: DecorationImage(
-              image: AssetImage('assets/images/appbar-background-squares.png'),
+              image: AssetImage(
+                'assets/images/appbar-background-squares.png',
+              ),
               fit: BoxFit.cover,
             ),
           ),
@@ -54,18 +56,19 @@ class TAnnouncementsScreen extends StatelessWidget {
                     init: TAnnouncementsController(),
                     builder: (controller) {
                       return StreamBuilder<QuerySnapshot>(
-                        stream:
-                            FirebaseFirestore.instance
-                                .collection('announcement')
-                                .where('type', whereIn: ['Teachers', 'All'])
-                                .snapshots(),
+                        stream: FirebaseFirestore.instance
+                            .collection('announcement')
+                            .where('type',
+                                whereIn: ['Teachers', 'All']).snapshots(),
                         builder: (
                           BuildContext context,
                           AsyncSnapshot snapshot,
                         ) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return Center(child: const Text('Laoding...'));
+                            return Center(
+                              child: const Text('Laoding...'),
+                            );
                           } else {
                             if (snapshot.hasData) {
                               return ListView.builder(
@@ -82,8 +85,8 @@ class TAnnouncementsScreen extends StatelessWidget {
 
                                   return AnnouncementsCard(
                                     title: snapshot.data!.docs[index]['title'],
-                                    content:
-                                        snapshot.data!.docs[index]['content'],
+                                    content: snapshot.data!.docs[index]
+                                        ['content'],
                                     date: annoDate,
                                   );
                                 },

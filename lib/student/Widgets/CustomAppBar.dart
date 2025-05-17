@@ -22,14 +22,22 @@ AppBar CostumAppBar({String? title, TextStyle? style}) {
             ),
             child: IconButton(
               onPressed: () {},
-              icon: Icon(Icons.notifications, size: 32.w, color: Colors.white),
+              icon: Icon(
+                Icons.notifications,
+                size: 32.w,
+                color: Colors.white,
+              ),
             ),
           ),
           Padding(
             padding: EdgeInsets.only(right: 12.w, top: 10.h, bottom: 26.5.h),
             child: IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.people_alt, size: 27, color: Colors.white),
+              icon: const Icon(
+                Icons.people_alt,
+                size: 27,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

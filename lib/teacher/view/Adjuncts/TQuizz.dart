@@ -12,6 +12,8 @@ class TQuizz extends StatefulWidget {
 class _TQuizzState extends State<TQuizz> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Quizzes'));
+    return Center(
+      child: Text('Quizzes'),
+    );
   }
 }

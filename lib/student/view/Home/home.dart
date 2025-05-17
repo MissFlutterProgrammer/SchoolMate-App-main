@@ -30,14 +30,16 @@ class HomeStudent extends StatelessWidget {
           preferredSize: Size.fromHeight(60.0),
           child: GetBuilder<HomeController>(
             init: HomeController(),
-            builder:
-                (c) => CostumHomeAppBar(
-                  title: c.appBarTitles.value[c.currentIndex.value],
-                  style: redHatRegularStyle(fontSize: 20, color: Colors.white),
-                  ontap: () {
-                    Get.to(() => AnnouncementsPage());
-                  },
-                ),
+            builder: (c) => CostumHomeAppBar(
+              title: c.appBarTitles.value[c.currentIndex.value],
+              style: redHatRegularStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
+              ontap: () {
+                Get.to(() => AnnouncementsPage());
+              },
+            ),
           ),
         ),
         body: GetBuilder<HomeController>(
@@ -60,40 +62,60 @@ class HomeStudent extends StatelessWidget {
                 icon: const Icon(Icons.home),
                 title: Text(
                   "Home",
-                  style:
-                      c.currentIndex.value == 0
-                          ? sfRegularStyle(fontSize: 10, color: primaryColor)
-                          : sfRegularStyle(fontSize: 10, color: gray),
+                  style: c.currentIndex.value == 0
+                      ? sfRegularStyle(
+                          fontSize: 10,
+                          color: primaryColor,
+                        )
+                      : sfRegularStyle(
+                          fontSize: 10,
+                          color: gray,
+                        ),
                 ),
               ),
               CustomNavigationBarItem(
                 icon: const Icon(Icons.task),
                 title: Text(
                   "Tasks",
-                  style:
-                      c.currentIndex.value == 1
-                          ? sfRegularStyle(fontSize: 10, color: primaryColor)
-                          : sfRegularStyle(fontSize: 10, color: gray),
+                  style: c.currentIndex.value == 1
+                      ? sfRegularStyle(
+                          fontSize: 10,
+                          color: primaryColor,
+                        )
+                      : sfRegularStyle(
+                          fontSize: 10,
+                          color: gray,
+                        ),
                 ),
               ),
               CustomNavigationBarItem(
                 icon: const Icon(Icons.attachment),
                 title: Text(
                   "Adjuncts",
-                  style:
-                      c.currentIndex.value == 2
-                          ? sfRegularStyle(fontSize: 10, color: primaryColor)
-                          : sfRegularStyle(fontSize: 10, color: gray),
+                  style: c.currentIndex.value == 2
+                      ? sfRegularStyle(
+                          fontSize: 10,
+                          color: primaryColor,
+                        )
+                      : sfRegularStyle(
+                          fontSize: 10,
+                          color: gray,
+                        ),
                 ),
               ),
               CustomNavigationBarItem(
                 icon: const Icon(Icons.message),
                 title: Text(
                   "Chats",
-                  style:
-                      c.currentIndex.value == 3
-                          ? sfRegularStyle(fontSize: 10, color: primaryColor)
-                          : sfRegularStyle(fontSize: 10, color: gray),
+                  style: c.currentIndex.value == 3
+                      ? sfRegularStyle(
+                          fontSize: 10,
+                          color: primaryColor,
+                        )
+                      : sfRegularStyle(
+                          fontSize: 10,
+                          color: gray,
+                        ),
                 ),
               ),
             ],

@@ -27,12 +27,15 @@ class ChatSearch extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 12.w, top: 10.h, bottom: 26.5.h),
           child: IconButton(
-            onPressed:
-                () => showSearch(
-                  context: Get.context!,
-                  delegate: MySearchDelegate(),
-                ),
-            icon: const Icon(Icons.search, size: 27, color: Colors.white),
+            onPressed: () => showSearch(
+              context: Get.context!,
+              delegate: MySearchDelegate(),
+            ),
+            icon: const Icon(
+              Icons.search,
+              size: 27,
+              color: Colors.white,
+            ),
           ),
         ),
       ],
@@ -98,7 +101,10 @@ class ChatSearch extends StatelessWidget {
     return Center(
       child: Text(
         text,
-        style: const TextStyle(fontSize: 24, color: Colors.white),
+        style: const TextStyle(
+          fontSize: 24,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -111,17 +117,17 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   List<Widget>? buildActions(BuildContext context) => [
-    IconButton(
-      onPressed: () => query.isEmpty ? close(context, null) : query = '',
-      icon: const Icon(Icons.clear),
-    ),
-  ];
+        IconButton(
+          onPressed: () => query.isEmpty ? close(context, null) : query = '',
+          icon: const Icon(Icons.clear),
+        ),
+      ];
 
   @override
   Widget? buildLeading(BuildContext context) => IconButton(
-    onPressed: () => close(context, null),
-    icon: const Icon(Icons.arrow_back),
-  );
+        onPressed: () => close(context, null),
+        icon: const Icon(Icons.arrow_back),
+      );
 
   @override
   Widget buildResults(BuildContext context) {
@@ -131,9 +137,8 @@ class MySearchDelegate extends SearchDelegate {
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemCount: controller.searchResult.length,
-        itemBuilder:
-            (context, index) =>
-                _buildSearchResultTile(controller.searchResult[index]),
+        itemBuilder: (context, index) =>
+            _buildSearchResultTile(controller.searchResult[index]),
       ),
     );
   }
@@ -160,15 +165,14 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList =
-        query.isEmpty
-            ? recentTeachers
-            : teachersNames.where((p) => p.startsWith(query)).toList();
+    final suggestionList = query.isEmpty
+        ? recentTeachers
+        : teachersNames.where((p) => p.startsWith(query)).toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,
-      itemBuilder:
-          (context, index) => _buildSuggestionTile(suggestionList[index]),
+      itemBuilder: (context, index) =>
+          _buildSuggestionTile(suggestionList[index]),
     );
   }
 

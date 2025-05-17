@@ -22,9 +22,9 @@ class LessonsServices {
           .doc('/lessons/${lessonRefrenceList[i].id}')
           .get()
           .then((value) {
-            isTaken = value.data()?['isTaken'] ?? false;
-            lessonName = value.data()!['name'] ?? '00';
-          });
+        isTaken = value.data()?['isTaken'] ?? false;
+        lessonName = value.data()!['name'] ?? '00';
+      });
 
       lessonList.add(lessonModel(title: lessonName, checked: isTaken));
     }
@@ -48,8 +48,8 @@ class LessonsServices {
           .doc('/lessons/${lessonRefrenceList[i].id}')
           .get()
           .then((value) {
-            if (value.data()?['isTaken'] == true) ++takenLessonNumber;
-          });
+        if (value.data()?['isTaken'] == true) ++takenLessonNumber;
+      });
     }
     print('here is the error' + takenLessonNumber.toString());
     return takenLessonNumber;

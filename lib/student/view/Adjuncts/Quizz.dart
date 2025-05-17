@@ -70,7 +70,11 @@ class QuizCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: Icon(Icons.quiz, size: 25, color: primaryColor),
+                child: Icon(
+                  Icons.quiz,
+                  size: 25,
+                  color: primaryColor,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 16.w),

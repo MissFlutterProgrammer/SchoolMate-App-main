@@ -39,13 +39,13 @@ class FirebaseApi {
     });
   }
 
-  static Stream<List<Message>> getMessages(String? idUser) => FirebaseFirestore
-      .instance
-      .collectionGroup('messages')
-      .where('uid', whereIn: [idUser, myId])
-      .orderBy(MessageField.createdAt, descending: true)
-      .snapshots()
-      .transform(Utils.transformer(Message.fromJson));
+  static Stream<List<Message>> getMessages(String? idUser) =>
+      FirebaseFirestore.instance
+          .collectionGroup('messages')
+          .where('uid', whereIn: [idUser, myId])
+          .orderBy(MessageField.createdAt, descending: true)
+          .snapshots()
+          .transform(Utils.transformer(Message.fromJson));
 
   static Future addRandomUsers(List<User> users) async {
     final refUsers = FirebaseFirestore.instance.collection('students');
@@ -65,17 +65,17 @@ class FirebaseApi {
         .where('first_name', isEqualTo: name)
         .get()
         .then((value) async {
-          for (var i = 0; i < value.docs.length; i++) {
-            founded.add(
-              User(
-                first_name: value.docs[i]['first_name'],
-                last_name: value.docs[i]['last_name'],
-                urlAvatar: value.docs[i]['urlAvatar'],
-                idUser: value.docs[i]['uid'],
-              ),
-            );
-          }
-        });
+      for (var i = 0; i < value.docs.length; i++) {
+        founded.add(
+          User(
+            first_name: value.docs[i]['first_name'],
+            last_name: value.docs[i]['last_name'],
+            urlAvatar: value.docs[i]['urlAvatar'],
+            idUser: value.docs[i]['uid'],
+          ),
+        );
+      }
+    });
 
     print(founded);
     return founded;

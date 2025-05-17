@@ -23,8 +23,7 @@ class ChosingGradeBar extends StatelessWidget {
       width: 428.w,
       child: GetBuilder(
         init: BottomSheetController(),
-        builder:
-            ((controller) => ListView.builder(
+        builder: ((controller) => ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: gradeList.length,
               itemBuilder: (BuildContext context, int index) {

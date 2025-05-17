@@ -35,23 +35,23 @@ class TAdjunctsServices {
           .where('type', isEqualTo: 'book')
           .get()
           .then((value) {
-            for (var element in value.docs) {
-              try {
-                pdfList.add(
-                  TpdfFilesModel(
-                    file_id: element.data()['uid'],
-                    subject_id: element.data()['subject_id'],
-                    subject_name: element.data()['subjectName'],
-                    url: element.data()['url'],
-                    file_name: element.data()['name'],
-                  ),
-                );
-              } catch (e) {
-                print('#@#@#@#@#@#@#@#@');
-                print(e);
-              }
-            }
-          });
+        for (var element in value.docs) {
+          try {
+            pdfList.add(
+              TpdfFilesModel(
+                file_id: element.data()['uid'],
+                subject_id: element.data()['subject_id'],
+                subject_name: element.data()['subjectName'],
+                url: element.data()['url'],
+                file_name: element.data()['name'],
+              ),
+            );
+          } catch (e) {
+            print('#@#@#@#@#@#@#@#@');
+            print(e);
+          }
+        }
+      });
       return pdfList;
     } catch (e) {
       print('@#@#@#@#@#@#@#@#');
@@ -88,24 +88,24 @@ class TAdjunctsServices {
           .where('type', isEqualTo: 'video')
           .get()
           .then((value) {
-            for (var element in value.docs) {
-              try {
-                videoslist.add(
-                  RefrencesVideos(
-                    videoName: element.data()['name'],
-                    teacher_name: element.data()['teacher_name'],
-                    subject: element.data()['subjectName'],
-                    url: element.data()['url'],
-                    subject_id: element.data()['subject_id'],
-                    subject_name: element.data()['subjectName'],
-                  ),
-                );
-              } catch (e) {
-                print('#@#@#@#@#@#@#@#@');
-                print(e);
-              }
-            }
-          });
+        for (var element in value.docs) {
+          try {
+            videoslist.add(
+              RefrencesVideos(
+                videoName: element.data()['name'],
+                teacher_name: element.data()['teacher_name'],
+                subject: element.data()['subjectName'],
+                url: element.data()['url'],
+                subject_id: element.data()['subject_id'],
+                subject_name: element.data()['subjectName'],
+              ),
+            );
+          } catch (e) {
+            print('#@#@#@#@#@#@#@#@');
+            print(e);
+          }
+        }
+      });
       return videoslist;
     } catch (e) {
       print('@#@#@#@#@#@#@#@#');

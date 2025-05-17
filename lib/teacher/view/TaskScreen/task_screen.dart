@@ -20,7 +20,6 @@ class TaskScreen extends StatelessWidget {
                     backgroundColor: white,
                     padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
                   ),
-
                   onPressed: () {},
                   child: Text("ADD FILE + "),
                 ),

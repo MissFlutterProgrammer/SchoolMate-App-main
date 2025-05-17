@@ -16,7 +16,11 @@ AppBar ChatAppBar() {
             padding: EdgeInsets.only(right: 12.w, top: 10.h, bottom: 26.5.h),
             child: IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.search, size: 27, color: Colors.white),
+              icon: const Icon(
+                Icons.search,
+                size: 27,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

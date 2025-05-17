@@ -75,20 +75,23 @@ class HomeScreen extends StatelessWidget {
 
               return homeController.myprograms.isEmpty
                   ? SizedBox(
-                    height: 25,
-                    child: Center(child: Text('NO Programs')),
-                  )
+                      height: 25,
+                      child: Center(
+                        child: Text('NO Programs'),
+                      ),
+                    )
                   : ListView.separated(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) => SizedBox(height: 20),
-                    itemCount: homeController.myprograms.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return programCard(
-                        gProgram: homeController.myprograms[index],
-                      );
-                    },
-                  );
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      separatorBuilder: (context, index) =>
+                          SizedBox(height: 20),
+                      itemCount: homeController.myprograms.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return programCard(
+                          gProgram: homeController.myprograms[index],
+                        );
+                      },
+                    );
             }),
           ),
           DividerParent(text: "subjects"),
@@ -134,11 +137,8 @@ class HomeScreen extends StatelessWidget {
                             );
                             Get.to(
                               () => SubjectsScreen(
-                                subjectId:
-                                    _SubjectController
-                                        .subjectList
-                                        .value[index]
-                                        .id,
+                                subjectId: _SubjectController
+                                    .subjectList.value[index].id,
                               ),
                             );
                           },
@@ -150,16 +150,10 @@ class HomeScreen extends StatelessWidget {
                               gradient: gradientColor,
                             ),
                             child: SubjectDetails(
-                              subjectName:
-                                  _SubjectController
-                                      .subjectList
-                                      .value[index]
-                                      .name,
-                              teacherName:
-                                  _SubjectController
-                                      .subjectList
-                                      .value[index]
-                                      .teacherName,
+                              subjectName: _SubjectController
+                                  .subjectList.value[index].name,
+                              teacherName: _SubjectController
+                                  .subjectList.value[index].teacherName,
                             ),
                           ),
                         ),
@@ -220,15 +214,24 @@ class programCard extends StatelessWidget {
           children: [
             const Padding(
               padding: EdgeInsets.only(left: 20),
-              child: Icon(Icons.calendar_month, color: primaryColor),
+              child: Icon(
+                Icons.calendar_month,
+                color: primaryColor,
+              ),
             ),
             Text(
               '${gProgram?.type}',
-              style: sfMediumStyle(fontSize: 16, color: black),
+              style: sfMediumStyle(
+                fontSize: 16,
+                color: black,
+              ),
             ),
             Text(
               _dateFormat.format(gProgram?.date.toDate()),
-              style: sfMediumStyle(fontSize: 10, color: black),
+              style: sfMediumStyle(
+                fontSize: 10,
+                color: black,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 12),
@@ -256,11 +259,17 @@ class programCard extends StatelessWidget {
                       print(e);
                      }*/
                     },
-                    child: Icon(Icons.arrow_circle_down, color: gray),
+                    child: Icon(
+                      Icons.arrow_circle_down,
+                      color: gray,
+                    ),
                   ),
                   Text(
                     "download",
-                    style: sfRegularStyle(fontSize: 10, color: gray),
+                    style: sfRegularStyle(
+                      fontSize: 10,
+                      color: gray,
+                    ),
                   ),
                 ],
               ),

@@ -9,6 +9,10 @@ class Skilton extends StatelessWidget {
   final decoration;
   @override
   Widget build(BuildContext context) {
-    return Container(height: height, width: width, decoration: decoration);
+    return Container(
+      height: height,
+      width: width,
+      decoration: decoration,
+    );
   }
 }

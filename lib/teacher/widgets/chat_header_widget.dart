@@ -11,48 +11,51 @@ class ChatHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-    width: double.infinity,
-    decoration: BoxDecoration(gradient: gradientColor),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.75,
-          child: Text(
-            'Students',
-            style: sfBoldStyle(fontSize: 24, color: Colors.white),
-          ),
-        ),
-        SizedBox(height: 12),
-        SizedBox(
-          height: 60,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              final user = users[index];
-
-              return Container(
-                margin: const EdgeInsets.only(right: 12),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => ChatPage(user: users[index]),
-                      ),
-                    );
-                  },
-                  child: CircleAvatar(
-                    radius: 24,
-                    backgroundImage: NetworkImage(user.urlAvatar!),
-                  ),
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
+        width: double.infinity,
+        decoration: BoxDecoration(gradient: gradientColor),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.75,
+              child: Text(
+                'Students',
+                style: sfBoldStyle(
+                  fontSize: 24,
+                  color: Colors.white,
                 ),
-              );
-            },
-          ),
+              ),
+            ),
+            SizedBox(height: 12),
+            SizedBox(
+              height: 60,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: users.length,
+                itemBuilder: (context, index) {
+                  final user = users[index];
+
+                  return Container(
+                    margin: const EdgeInsets.only(right: 12),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ChatPage(user: users[index]),
+                          ),
+                        );
+                      },
+                      child: CircleAvatar(
+                        radius: 24,
+                        backgroundImage: NetworkImage(user.urlAvatar!),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 }

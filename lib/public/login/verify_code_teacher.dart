@@ -178,10 +178,10 @@ class _OtpState extends State<Otp> {
                             ),
                             shape:
                                 WidgetStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(24),
-                                  ),
-                                ),
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
                           ),
                           child: const Padding(
                             padding: EdgeInsets.all(14),

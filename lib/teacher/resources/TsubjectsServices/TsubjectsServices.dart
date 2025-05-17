@@ -20,10 +20,10 @@ class TSubjetcsServices {
           .where('classrooms', arrayContains: classId)
           .get()
           .then((value) {
-            for (var element in value.docs) {
-              subjectListId.add(element.data()['subject'].toString());
-            }
-          });
+        for (var element in value.docs) {
+          subjectListId.add(element.data()['subject'].toString());
+        }
+      });
 
       print('subjects is ');
       print(subjectListId);
@@ -34,14 +34,14 @@ class TSubjetcsServices {
             .doc(item.toString())
             .get()
             .then((value) {
-              var item = TeacherSubjectModel(
-                subjectName: value.data()!['name'],
-                subjectId: value.data()!['id'],
-                grade: value.data()!['subject_grade'],
-              );
-              subjectList.add(item);
-              TeacherSubjects.subjectsList.add(item);
-            });
+          var item = TeacherSubjectModel(
+            subjectName: value.data()!['name'],
+            subjectId: value.data()!['id'],
+            grade: value.data()!['subject_grade'],
+          );
+          subjectList.add(item);
+          TeacherSubjects.subjectsList.add(item);
+        });
       }
 
       return subjectList;
@@ -61,10 +61,10 @@ class TSubjetcsServices {
           .where('teacher', isEqualTo: UserInformation.User_uId)
           .get()
           .then((value) {
-            for (var element in value.docs) {
-              subjectListId.add(element.data()['subject'].toString());
-            }
-          });
+        for (var element in value.docs) {
+          subjectListId.add(element.data()['subject'].toString());
+        }
+      });
 
       print('subjects is ');
       print(subjectListId);
@@ -75,14 +75,14 @@ class TSubjetcsServices {
             .doc(item.toString())
             .get()
             .then((value) {
-              var item = TeacherSubjectModel(
-                subjectName: value.data()!['name'],
-                subjectId: value.data()!['id'],
-                grade: value.data()!['subject_grade'],
-              );
-              subjectList.add(item);
-              TeacherSubjects.subjectsList.add(item);
-            });
+          var item = TeacherSubjectModel(
+            subjectName: value.data()!['name'],
+            subjectId: value.data()!['id'],
+            grade: value.data()!['subject_grade'],
+          );
+          subjectList.add(item);
+          TeacherSubjects.subjectsList.add(item);
+        });
       }
 
       return subjectList;

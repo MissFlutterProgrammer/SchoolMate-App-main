@@ -8,9 +8,8 @@ class TeacherSubjectController extends GetxController {
   var classId = ''.obs;
   var subjectServices = TSubjetcsServices();
 
-  var teacherSubjectsList =
-      [
-        /* TeacherSubjectModel(
+  var teacherSubjectsList = [
+    /* TeacherSubjectModel(
       subjectName: 'Math',
       subjectId: '',
     ),
@@ -22,7 +21,7 @@ class TeacherSubjectController extends GetxController {
       subjectName: 'Music',
       subjectId: '',
     ),*/
-      ].obs;
+  ].obs;
 
   getTeacherSubject() async {
     teacherSubjectsList.value = await subjectServices.getTeacherSubjectForClass(

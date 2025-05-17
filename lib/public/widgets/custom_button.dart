@@ -14,7 +14,6 @@ class CustomButton extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width / 3,
         height: 52,
-
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(28),
           gradient: gradientColor,
@@ -22,7 +21,10 @@ class CustomButton extends StatelessWidget {
         child: Center(
           child: Text(
             'log in',
-            style: sfMediumStyle(fontSize: 24, color: white),
+            style: sfMediumStyle(
+              fontSize: 24,
+              color: white,
+            ),
           ),
         ),
       ),

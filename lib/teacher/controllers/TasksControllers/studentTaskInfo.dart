@@ -11,12 +11,11 @@ import '../../model/Tasks/checkedStudentTaskInfo.dart';
 
 class StudentTaskInfoController extends GetxController {
   var taskServices = TaskServices();
-  var studentsTaskList =
-      [
-        /*StudentTaskInfoModel(name: 'Kok', uploadeDate: '2022/8/6'),
+  var studentsTaskList = [
+    /*StudentTaskInfoModel(name: 'Kok', uploadeDate: '2022/8/6'),
     StudentTaskInfoModel(name: 'Rissoto', uploadeDate: '2022/7/4'),
     StudentTaskInfoModel(name: 'Jojo', uploadeDate: '2022/12/4'),*/
-      ].obs;
+  ].obs;
 
   var task_id = ''.obs;
   var newMark = ''.obs;

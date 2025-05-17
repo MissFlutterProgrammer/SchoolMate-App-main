@@ -4,11 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TAnnouncementsServices {
   getAnnouncements() async {
-    var stream =
-        FirebaseFirestore.instance
-            .collection('announcement')
-            .where('type', isEqualTo: 'Teachers')
-            .snapshots();
+    var stream = FirebaseFirestore.instance
+        .collection('announcement')
+        .where('type', isEqualTo: 'Teachers')
+        .snapshots();
 
     return stream;
   }

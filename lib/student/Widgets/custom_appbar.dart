@@ -23,11 +23,17 @@ class CustomAppbar extends StatelessWidget {
           padding: const EdgeInsets.only(top: 30),
           child: Row(
             children: <Widget>[
-              const Icon(Icons.arrow_back, color: Colors.white),
+              const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
               const SizedBox(width: 10),
               Text(
                 "Profile",
-                style: redHatRegularStyle(fontSize: 20, color: Colors.white),
+                style: redHatRegularStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
             ],
           ),

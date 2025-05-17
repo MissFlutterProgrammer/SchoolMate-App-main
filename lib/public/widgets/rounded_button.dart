@@ -9,8 +9,8 @@ class Roundedbutton extends StatelessWidget {
     super.key,
     required RoundedLoadingButtonController buttonController,
     required Function press,
-  }) : _buttonController = buttonController,
-       _press = press;
+  })  : _buttonController = buttonController,
+        _press = press;
 
   final RoundedLoadingButtonController _buttonController;
   final Function _press;
@@ -24,22 +24,24 @@ class Roundedbutton extends StatelessWidget {
         color: Colors.white,
         valueColor: primaryColor,
         onPressed: () => _press.call(),
-
         width: MediaQuery.of(context).size.width * 0.80,
-
         elevation: 2,
         borderRadius: 10,
         controller: _buttonController,
         child: Wrap(
           children: [
-            Image(image: AssetImage('assets/icons/google.png')),
-
+            Image(
+              image: AssetImage('assets/icons/google.png'),
+            ),
             SizedBox(width: 24.w),
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: Text(
                 'Log In with Google',
-                style: sfRegularStyle(fontSize: 24.sp, color: darkGray),
+                style: sfRegularStyle(
+                  fontSize: 24.sp,
+                  color: darkGray,
+                ),
               ),
             ),
           ],

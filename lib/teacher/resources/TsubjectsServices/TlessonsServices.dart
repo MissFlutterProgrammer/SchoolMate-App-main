@@ -16,19 +16,19 @@ class TLessonsServices {
           .where('subject', isEqualTo: subjectId)
           .get()
           .then((value) {
-            lessonsnumber = value.docs.length;
-            for (var element in value.docs) {
-              if (element.data()['isTaken'] == true) {
-                numberOfTakesLessons++;
-              }
-              lessonsList.add(
-                lessonModel(
-                  title: element.data()['name'],
-                  checked: element.data()['isTaken'],
-                ),
-              );
-            }
-          });
+        lessonsnumber = value.docs.length;
+        for (var element in value.docs) {
+          if (element.data()['isTaken'] == true) {
+            numberOfTakesLessons++;
+          }
+          lessonsList.add(
+            lessonModel(
+              title: element.data()['name'],
+              checked: element.data()['isTaken'],
+            ),
+          );
+        }
+      });
       var resulte = LessonsResponseModel(
         lessons: lessonsList,
         numberOflesson: lessonsnumber,
@@ -49,8 +49,8 @@ class TLessonsServices {
           .where('subject', isEqualTo: subjectId)
           .get()
           .then((value) {
-            lessonsnumber = value.docs.length;
-          });
+        lessonsnumber = value.docs.length;
+      });
 
       return lessonsnumber;
     } catch (e) {
@@ -67,12 +67,12 @@ class TLessonsServices {
           .where('subject', isEqualTo: subjectId)
           .get()
           .then((value) {
-            for (var element in value.docs) {
-              if (element.data()['isTaken'] == true) {
-                lessonsnumber++;
-              }
-            }
-          });
+        for (var element in value.docs) {
+          if (element.data()['isTaken'] == true) {
+            lessonsnumber++;
+          }
+        }
+      });
 
       return lessonsnumber;
     } catch (e) {

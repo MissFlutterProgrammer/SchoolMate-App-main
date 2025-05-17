@@ -10,13 +10,12 @@ class MarkServices {
     print('Helllo');
     print(UserInformation.User_uId);
     print(subjectId);
-    var markDoc =
-        await FirebaseFirestore.instance
-            .collection('exam1')
-            .where('student_id', isEqualTo: UserInformation.User_uId)
-            .where('subject_id', isEqualTo: subjectId)
-            .where('session', isEqualTo: 1)
-            .get();
+    var markDoc = await FirebaseFirestore.instance
+        .collection('exam1')
+        .where('student_id', isEqualTo: UserInformation.User_uId)
+        .where('subject_id', isEqualTo: subjectId)
+        .where('session', isEqualTo: 1)
+        .get();
 
     markDoc.docs.forEach((element) {
       exam1Result.title = 'Exam1';
@@ -31,13 +30,12 @@ class MarkServices {
 
   getTestsResult(String subjectId) async {
     var testResult = MarksModel();
-    var markDoc =
-        await FirebaseFirestore.instance
-            .collection('tests')
-            .where('student_id', isEqualTo: UserInformation.User_uId)
-            .where('subject_id', isEqualTo: subjectId)
-            .where('session', isEqualTo: 1)
-            .get();
+    var markDoc = await FirebaseFirestore.instance
+        .collection('tests')
+        .where('student_id', isEqualTo: UserInformation.User_uId)
+        .where('subject_id', isEqualTo: subjectId)
+        .where('session', isEqualTo: 1)
+        .get();
     markDoc.docs.forEach((element) {
       testResult.title = 'Tests';
       testResult.mark = element.data()['result'];
@@ -51,13 +49,12 @@ class MarkServices {
 
   getHomeworksResult(String subjectId) async {
     var homeworksResult = MarksModel();
-    var markDoc =
-        await FirebaseFirestore.instance
-            .collection('homeworks')
-            .where('student_id', isEqualTo: UserInformation.User_uId)
-            .where('subject_id', isEqualTo: subjectId)
-            .where('session', isEqualTo: 1)
-            .get();
+    var markDoc = await FirebaseFirestore.instance
+        .collection('homeworks')
+        .where('student_id', isEqualTo: UserInformation.User_uId)
+        .where('subject_id', isEqualTo: subjectId)
+        .where('session', isEqualTo: 1)
+        .get();
 
     markDoc.docs.forEach((element) {
       homeworksResult.title = 'HomeWorks';
@@ -72,13 +69,12 @@ class MarkServices {
 
   getExam2Result(String subjectId) async {
     var exam2Result = MarksModel();
-    var markDoc =
-        await FirebaseFirestore.instance
-            .collection('exam2')
-            .where('student_id', isEqualTo: UserInformation.User_uId)
-            .where('subject_id', isEqualTo: subjectId)
-            .where('session', isEqualTo: 1)
-            .get();
+    var markDoc = await FirebaseFirestore.instance
+        .collection('exam2')
+        .where('student_id', isEqualTo: UserInformation.User_uId)
+        .where('subject_id', isEqualTo: subjectId)
+        .where('session', isEqualTo: 1)
+        .get();
     markDoc.docs.forEach((element) {
       exam2Result.title = 'Exam2';
       exam2Result.mark = element.data()['result'];

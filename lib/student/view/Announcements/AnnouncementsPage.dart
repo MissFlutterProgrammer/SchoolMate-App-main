@@ -71,14 +71,13 @@ class _AnnouncementsPageState extends State<AnnouncementsPage> {
                     builder: (controller) {
                       print('Helllllo');
                       return StreamBuilder<QuerySnapshot>(
-                        stream:
-                            FirebaseFirestore.instance
-                                .collection('announcement')
-                                .where(
-                                  'class-room',
-                                  isEqualTo: userIdclassroom.toString(),
-                                )
-                                .snapshots(),
+                        stream: FirebaseFirestore.instance
+                            .collection('announcement')
+                            .where(
+                              'class-room',
+                              isEqualTo: userIdclassroom.toString(),
+                            )
+                            .snapshots(),
                         builder: (context, AsyncSnapshot snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -109,8 +108,8 @@ class _AnnouncementsPageState extends State<AnnouncementsPage> {
 
                                   return AnnouncementsCard(
                                     title: snapshot.data!.docs[index]['title'],
-                                    content:
-                                        snapshot.data!.docs[index]['content'],
+                                    content: snapshot.data!.docs[index]
+                                        ['content'],
                                     date: annoDate,
                                   );
                                 },

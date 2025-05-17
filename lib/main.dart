@@ -65,8 +65,7 @@ Future<void> _initializeFirebaseMobile() async {
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin
-      >()
+          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
@@ -139,16 +138,17 @@ class _MyAppState extends State<MyApp> {
   void _showMessageDialog(RemoteNotification notification) {
     showDialog(
       context: context,
-      builder:
-          (_) => AlertDialog(
-            title: Text(notification.title ?? ''),
-            content: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text(notification.body ?? '')],
-              ),
-            ),
+      builder: (_) => AlertDialog(
+        title: Text(notification.title ?? ''),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(notification.body ?? ''),
+            ],
           ),
+        ),
+      ),
     );
   }
 

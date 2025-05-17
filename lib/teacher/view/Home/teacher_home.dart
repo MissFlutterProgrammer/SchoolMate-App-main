@@ -62,33 +62,36 @@ class HomeTeacher extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-
           FutureBuilder(
             future: _controller.getPrograms(),
             builder: ((context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: Text('Loading...'));
+                return Center(
+                  child: Text('Loading...'),
+                );
               }
 
               return _controller.myprograms.isEmpty
                   ? SizedBox(
-                    height: 25,
-                    child: Center(child: Text('NO Programs')),
-                  )
+                      height: 25,
+                      child: Center(
+                        child: Text('NO Programs'),
+                      ),
+                    )
                   : ListView.separated(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) => SizedBox(height: 20),
-                    itemCount: _controller.myprograms.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return programCard(
-                        gProgram: _controller.myprograms[index],
-                      );
-                    },
-                  );
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      separatorBuilder: (context, index) =>
+                          SizedBox(height: 20),
+                      itemCount: _controller.myprograms.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return programCard(
+                          gProgram: _controller.myprograms[index],
+                        );
+                      },
+                    );
             }),
           ),
-
           const DividerParent(text: "Classes"),
           const SizedBox(height: 10),
           SizedBox(
@@ -107,7 +110,8 @@ class HomeTeacher extends StatelessWidget {
                   return Center(
                     child: Text('There no classes'),
                   );
-                } */ else {
+                } */
+                  else {
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: _controller.classesList.value.length,
@@ -115,11 +119,8 @@ class HomeTeacher extends StatelessWidget {
                         return TeacherClassesCard(
                           section: _controller.classesList.value[index].section,
                           grade: _controller.classesList.value[index].grade,
-                          numberOfStudents:
-                              _controller
-                                  .classesList
-                                  .value[index]
-                                  .numberOfstudents,
+                          numberOfStudents: _controller
+                              .classesList.value[index].numberOfstudents,
                           classId:
                               _controller.classesList.value[index].classroomID,
                         );
@@ -178,14 +179,20 @@ class TeacherClassesCard extends StatelessWidget {
                   children: [
                     Text(
                       "$section-$grade",
-                      style: sfBoldStyle(fontSize: 18, color: Colors.white),
+                      style: sfBoldStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 3),
                 Text(
                   "$numberOfStudents",
-                  style: sfBoldStyle(fontSize: 10, color: Colors.white),
+                  style: sfBoldStyle(
+                    fontSize: 10,
+                    color: Colors.white,
+                  ),
                 ),
               ],
             ),
@@ -266,15 +273,24 @@ class _programCardState extends State<programCard> {
           children: [
             const Padding(
               padding: EdgeInsets.only(left: 20),
-              child: Icon(Icons.calendar_month, color: primaryColor),
+              child: Icon(
+                Icons.calendar_month,
+                color: primaryColor,
+              ),
             ),
             Text(
               '${widget.gProgram.type}',
-              style: sfMediumStyle(fontSize: 16, color: black),
+              style: sfMediumStyle(
+                fontSize: 16,
+                color: black,
+              ),
             ),
             Text(
               _dateFormat.format(widget.gProgram.date.toDate()),
-              style: sfMediumStyle(fontSize: 10, color: black),
+              style: sfMediumStyle(
+                fontSize: 10,
+                color: black,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 12),
@@ -297,11 +313,17 @@ class _programCardState extends State<programCard> {
 
                       _launchUrl(url);
                     },
-                    child: Icon(Icons.arrow_circle_down, color: gray),
+                    child: Icon(
+                      Icons.arrow_circle_down,
+                      color: gray,
+                    ),
                   ),
                   Text(
                     "download",
-                    style: sfRegularStyle(fontSize: 10, color: gray),
+                    style: sfRegularStyle(
+                      fontSize: 10,
+                      color: gray,
+                    ),
                   ),
                 ],
               ),

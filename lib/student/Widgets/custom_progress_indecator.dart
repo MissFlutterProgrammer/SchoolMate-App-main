@@ -35,7 +35,10 @@ class ProgressIndecator extends StatelessWidget {
             const SizedBox(width: 10),
             Text(
               "Grade Average",
-              style: redHatMediumStyle(fontSize: 15, color: primaryColor),
+              style: redHatMediumStyle(
+                fontSize: 15,
+                color: primaryColor,
+              ),
             ),
             const SizedBox(width: 30),
             Padding(
@@ -44,16 +47,24 @@ class ProgressIndecator extends StatelessWidget {
                 onTap: ontap,
                 child: Text(
                   "show details",
-                  style: redHatRegularStyle(fontSize: 12, color: gray),
+                  style: redHatRegularStyle(
+                    fontSize: 12,
+                    color: gray,
+                  ),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15),
-              child:
-                  isShow
-                      ? Icon(Icons.arrow_drop_up, color: gray)
-                      : Icon(Icons.arrow_drop_down, color: gray),
+              child: isShow
+                  ? Icon(
+                      Icons.arrow_drop_up,
+                      color: gray,
+                    )
+                  : Icon(
+                      Icons.arrow_drop_down,
+                      color: gray,
+                    ),
             ),
           ],
         ),

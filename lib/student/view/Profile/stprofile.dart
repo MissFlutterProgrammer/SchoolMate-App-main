@@ -27,61 +27,65 @@ class StudentProfile extends StatelessWidget {
               SizedBox(height: 20.h),
               GetBuilder<StprofileController>(
                 init: StprofileController(), // INIT IT ONLY THE FIRST TIME
-                builder:
-                    (_) => Stack(
-                      children: [
-                        Container(
-                          height: 135,
-                          width: 135,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white),
-                            image: DecorationImage(
-                              image:
-                                  UserInformation.urlAvatr != null
-                                      ? NetworkImage(UserInformation.urlAvatr)
-                                      : AssetImage('assets/images/photo.png')
-                                          as ImageProvider,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                builder: (_) => Stack(
+                  children: [
+                    Container(
+                      height: 135,
+                      width: 135,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white),
+                        image: DecorationImage(
+                          image: UserInformation.urlAvatr != null
+                              ? NetworkImage(UserInformation.urlAvatr)
+                              : AssetImage('assets/images/photo.png')
+                                  as ImageProvider,
+                          fit: BoxFit.cover,
                         ),
-                        Positioned(
-                          bottom: -20,
-                          top: 65,
-                          left: 100,
-                          child: Container(
-                            height: 35,
-                            width: 35,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.white),
-                              gradient: gradientColor,
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                c.selectImage();
-                              },
-                              icon: const Icon(
-                                Icons.camera_alt,
-                                size: 17,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
+                    Positioned(
+                      bottom: -20,
+                      top: 65,
+                      left: 100,
+                      child: Container(
+                        height: 35,
+                        width: 35,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white),
+                          gradient: gradientColor,
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            c.selectImage();
+                          },
+                          icon: const Icon(
+                            Icons.camera_alt,
+                            size: 17,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 10),
               Text(
                 UserInformation.first_name,
-                style: redHatMediumStyle(fontSize: 20, color: Colors.black),
+                style: redHatMediumStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Student',
-                style: redHatMediumStyle(fontSize: 20, color: primaryColor),
+                style: redHatMediumStyle(
+                  fontSize: 20,
+                  color: primaryColor,
+                ),
               ),
               const SizedBox(height: 30),
               GlobalInfo(
@@ -187,14 +191,13 @@ class StudentProfile extends StatelessWidget {
               const SizedBox(height: 30),
               GetBuilder(
                 init: StprofileController(),
-                builder:
-                    (controller) => ProgressIndecator(
-                      precentage: UserInformation.grade_average,
-                      isShow: c.isShow.value,
-                      ontap: () {
-                        c.showDetails();
-                      },
-                    ),
+                builder: (controller) => ProgressIndecator(
+                  precentage: UserInformation.grade_average,
+                  isShow: c.isShow.value,
+                  ontap: () {
+                    c.showDetails();
+                  },
+                ),
               ),
               SizedBox(height: 35.h),
               Row(

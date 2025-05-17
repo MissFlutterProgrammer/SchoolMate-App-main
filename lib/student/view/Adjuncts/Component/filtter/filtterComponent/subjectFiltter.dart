@@ -20,8 +20,7 @@ class ChosingSubjectBar extends StatelessWidget {
       width: 200.w,
       child: GetBuilder(
         init: RefrencesController(),
-        builder:
-            ((controller) => ListView.builder(
+        builder: ((controller) => ListView.builder(
               itemCount: subjectList.length,
               itemBuilder: (BuildContext context, int index) {
                 return SubjectRadioCard(

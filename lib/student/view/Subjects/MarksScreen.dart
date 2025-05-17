@@ -34,10 +34,10 @@ class MarksList extends StatelessWidget {
                   }
                   return Obx(
                     (() => MarksListCard(
-                      title: controller.exam1.value.title,
-                      mark: controller.exam1.value.mark,
-                      fmark: controller.exam1.value.fmark,
-                    )),
+                          title: controller.exam1.value.title,
+                          mark: controller.exam1.value.mark,
+                          fmark: controller.exam1.value.fmark,
+                        )),
                   );
                 },
               ),
@@ -49,10 +49,10 @@ class MarksList extends StatelessWidget {
                   }
                   return Obx(
                     (() => MarksListCard(
-                      title: controller.tests.value.title,
-                      mark: controller.tests.value.mark,
-                      fmark: controller.tests.value.fmark,
-                    )),
+                          title: controller.tests.value.title,
+                          mark: controller.tests.value.mark,
+                          fmark: controller.tests.value.fmark,
+                        )),
                   );
                 },
               ),
@@ -64,10 +64,10 @@ class MarksList extends StatelessWidget {
                   }
                   return Obx(
                     (() => MarksListCard(
-                      title: controller.homeworks.value.title,
-                      mark: controller.homeworks.value.mark,
-                      fmark: controller.homeworks.value.fmark,
-                    )),
+                          title: controller.homeworks.value.title,
+                          mark: controller.homeworks.value.mark,
+                          fmark: controller.homeworks.value.fmark,
+                        )),
                   );
                 },
               ),
@@ -79,10 +79,10 @@ class MarksList extends StatelessWidget {
                   }
                   return Obx(
                     (() => MarksListCard(
-                      title: controller.exam2.value.title,
-                      mark: controller.exam2.value.mark,
-                      fmark: controller.exam2.value.fmark,
-                    )),
+                          title: controller.exam2.value.title,
+                          mark: controller.exam2.value.mark,
+                          fmark: controller.exam2.value.fmark,
+                        )),
                   );
                 },
               ),

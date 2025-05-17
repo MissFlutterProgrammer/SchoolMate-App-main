@@ -138,16 +138,10 @@ class TLessonScreen extends StatelessWidget {
                                     init: TLessonsController(),
                                     builder: ((TLessonsController controller) {
                                       return LessonCard(
-                                        title:
-                                            _controller
-                                                .lessonslist
-                                                .value[index]
-                                                .title,
-                                        checked:
-                                            _controller
-                                                .lessonslist
-                                                .value[index]
-                                                .checked,
+                                        title: _controller
+                                            .lessonslist.value[index].title,
+                                        checked: _controller
+                                            .lessonslist.value[index].checked,
                                         index: index + 1,
                                       );
                                     }),

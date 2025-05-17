@@ -12,42 +12,48 @@ Widget customFormField({
   required IconData prefix,
   IconData? suffix,
   Function? suffixPressed,
-}) => TextFormField(
-  controller: controller,
-  keyboardType: type,
-  obscureText: isPassword,
-  onFieldSubmitted: (s) {
-    onSubmit!(s);
-  },
-  onChanged: (s) {
-    onChange!(s);
-  },
-  validator: validate,
-  decoration: InputDecoration(
-    filled: true,
-    fillColor: Colors.white,
-    contentPadding: const EdgeInsets.all(18),
-    labelText: label,
-    prefixIcon: Icon(prefix, color: lightGray),
-    suffixIcon:
-        suffix != null
+}) =>
+    TextFormField(
+      controller: controller,
+      keyboardType: type,
+      obscureText: isPassword,
+      onFieldSubmitted: (s) {
+        onSubmit!(s);
+      },
+      onChanged: (s) {
+        onChange!(s);
+      },
+      validator: validate,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: const EdgeInsets.all(18),
+        labelText: label,
+        prefixIcon: Icon(
+          prefix,
+          color: lightGray,
+        ),
+        suffixIcon: suffix != null
             ? IconButton(
-              onPressed: () {
-                suffixPressed!();
-              },
-              icon: Icon(suffix, color: lightGray),
-            )
+                onPressed: () {
+                  suffixPressed!();
+                },
+                icon: Icon(
+                  suffix,
+                  color: lightGray,
+                ),
+              )
             : null,
-    border: const OutlineInputBorder(),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
-      borderSide: const BorderSide(color: lightGray),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: secondaryColor),
-    ),
-    floatingLabelStyle: const TextStyle(color: secondaryColor),
-    labelStyle: const TextStyle(color: lightGray),
-  ),
-);
+        border: const OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: lightGray),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: secondaryColor),
+        ),
+        floatingLabelStyle: const TextStyle(color: secondaryColor),
+        labelStyle: const TextStyle(color: lightGray),
+      ),
+    );

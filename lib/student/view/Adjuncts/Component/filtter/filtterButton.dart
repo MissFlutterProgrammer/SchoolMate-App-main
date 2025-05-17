@@ -118,7 +118,11 @@ class _FiltterButtonState extends State<FiltterButton> {
             ),
           ),
           SizedBox(width: 7.w),
-          const Icon(Icons.arrow_drop_down, size: 15, color: primaryColor),
+          const Icon(
+            Icons.arrow_drop_down,
+            size: 15,
+            color: primaryColor,
+          ),
         ],
       ),
     );
